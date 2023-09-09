@@ -2063,7 +2063,7 @@ end)
  
 
                   function BTP(P)
-	repeat wait(0.2)
+	repeat wait(0.001)
 		game.Players.LocalPlayer.Character.Humanoid:ChangeState(15)
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P
 		task.wait()
@@ -4844,8 +4844,9 @@ else
 	   wait()
 	  if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - BonePos.Position).Magnitude > 2500 then
 	  BTP(BonePos)
-	  elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - BonePos.Position).Magnitude < 2500 then
 	  wait(0.2)
+	  elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - BonePos.Position).Magnitude < 2500 then
+	  wait(0.4)
 	  topos(BonePos)
 	  end
 else
@@ -5019,9 +5020,10 @@ else
 					
 					if BypassTP then
                     if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - cakepos.Position).Magnitude > 3500 then
+					wait(0.2)
 			        BTP(cakepos)
 					  elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - cakepos.Position).Magnitude < 2000 then
-					  wait(0.2)
+					  wait(0.4)
 	                topos(cakepos)
 	                  end
                       else
