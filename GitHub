@@ -4745,6 +4745,7 @@ end)
   --v.Humanoid:ChangeState(14)
       FarmPos = v.HumanoidRootPart.CFrame
       MonFarm = v.Name
+BringMobs = true
       Click()
       if v.Humanoid.Health <= 0 and v.Humanoid:FindFirstChild("Animator") then
       v.Humanoid.Animator:Destroy()
