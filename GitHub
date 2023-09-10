@@ -1920,7 +1920,7 @@ function main:Seperator(text)
 
 
 
-    local Library = Update:Window("Fai Fao Hub","11931759373")
+    local Library = Update:Window("Smark Hub","11931759373")
     local Main = Library:Tab("Main-Setting","1446825283")
     local Stats = Library:Tab("Stats","11446835336")
     local Teleport = Library:Tab("Teleport","11446859498")
