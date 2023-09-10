@@ -2055,6 +2055,41 @@ end)
 
 
 
+Type1 = 1
+spawn(function()
+    while wait(.1) do
+        if Type1 == 1 then
+            Pos1 = CFrame.new(0,35,0)
+		elseif Type1 == 2 then
+			Pos1 = CFrame.new(0,35,-30)
+		elseif Type1 == 3 then
+			Pos1 = CFrame.new(30,35,0)
+		elseif Type1 == 4 then
+			Pos1 = CFrame.new(0,35,30)	
+		elseif Type1 == 5 then
+			Pos1 = CFrame.new(-30,35,0)
+		elseif Type1 == 6 then
+			Pos1 = CFrame.new(0,35,-30)
+        end
+        end
+    end)
+
+spawn(function()
+    while wait(.1) do
+        Type1 = 1
+        wait(1)
+        Type1 = 2
+        wait(1)
+        Type1 = 3
+        wait(1)
+        Type1 = 4
+        wait(1)
+        Type1 = 5
+        wait(1)
+    end
+end)
+
+
 
 
 
@@ -5132,7 +5167,7 @@ local MasteryType = {
 				UseSkillGun = false
 			  EquipTool(SelectWeapon)
 			  BringMobs = true
-			  Tween(v.HumanoidRootPart.CFrame * Pos)
+			  Tween(v.HumanoidRootPart.CFrame * Pos1)
 			  v.HumanoidRootPart.Size = Vector3.new(60,60,60)
 			  v.HumanoidRootPart.Transparency = 1
 			  v.Humanoid.JumpPower = 0
@@ -5213,7 +5248,7 @@ local MasteryType = {
 				UseSkillGun = false
 				BringMobs = true
 			  EquipTool(SelectWeapon)
-			  Tween(v.HumanoidRootPart.CFrame * Pos)
+			  Tween(v.HumanoidRootPart.CFrame * Pos1)
 			  v.HumanoidRootPart.Size = Vector3.new(60,60,60)
 			  v.HumanoidRootPart.Transparency = 1
 			  v.Humanoid.JumpPower = 0
@@ -5434,7 +5469,7 @@ local MasteryType = {
 	
       EquipTool(SelectWeapon)
 	  BringMobs = true
-      Tween(v.HumanoidRootPart.CFrame * Pos)
+      Tween(v.HumanoidRootPart.CFrame * Pos1)
       v.HumanoidRootPart.Size = Vector3.new(60,60,60)
       v.HumanoidRootPart.Transparency = 1
       v.Humanoid.JumpPower = 0
@@ -5446,7 +5481,7 @@ local MasteryType = {
       MonFarm = v.Name
       Click()
       end
-      until not AutoFarmMasDevilFruit or not v.Parent or v.Humanoid.Health == 0 or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false or not game:GetService("Workspace").Enemies:FindFirstChild(v.Name) or not TypeMastery == 'Queat'
+      until not AutoFarmMasDevilFruit or not v.Parent or v.Humanoid.Health == 0 or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false or not game:GetService("Workspace").Enemies:FindFirstChild(v.Name) or not TypeMastery == 'Level'
       _G.UseSkill = false
       end
       end
@@ -5511,7 +5546,7 @@ local MasteryType = {
         _G.UseSkill = false
 		BringMobs = true
       EquipTool(SelectWeapon)
-      Tween(v.HumanoidRootPart.CFrame * Pos)
+      Tween(v.HumanoidRootPart.CFrame * Pos1)
       v.HumanoidRootPart.Size = Vector3.new(60,60,60)
       v.HumanoidRootPart.Transparency = 1
       v.Humanoid.JumpPower = 0
@@ -5575,7 +5610,7 @@ local MasteryType = {
       end
       else
         _G.UseSkill = false
-      Tween(game:GetService("ReplicatedStorage"):FindFirstChild(SelectBoss).HumanoidRootPart.CFrame * Pos)
+      Tween(game:GetService("ReplicatedStorage"):FindFirstChild(SelectBoss).HumanoidRootPart.CFrame * PosY)
       end
       end)
     end
@@ -5584,7 +5619,7 @@ local MasteryType = {
     end)
 
 
-    KillPercent = 35
+
     Main:Slider('Kill at ... %',1,100,35, function(KillPercentfunc)
       KillPercent = KillPercentfunc
       end)
@@ -5594,23 +5629,23 @@ local MasteryType = {
     SkillC = false
     SkillV = false
     SkillF = false
-    Main:Toggle('Z',SkillZ, function(zfunc)
+    Main:Toggle('Skill Z',SkillZ, function(zfunc)
       SkillZ = zfunc
       end)
     
-      Main:Toggle('X', SkillX, function(xfunc)
+      Main:Toggle('Skill X', SkillX, function(xfunc)
       SkillX = xfunc
       end)
     
-      Main:Toggle('C', SkillC, function(cfunc)
+      Main:Toggle('Skill C', SkillC, function(cfunc)
       SkillC = cfunc
       end)
     
-      Main:Toggle('V', SkillV, function(vfunc)
+      Main:Toggle('Skill V', SkillV, function(vfunc)
       SkillV = vfunc
       end)
     
-      Main:Toggle('F', SkillF, function(ffunc)
+      Main:Toggle('Skill F', SkillF, function(ffunc)
       SkillF = ffunc
     end)
     
