@@ -2356,16 +2356,16 @@ end)
 Main:Label("AutoFarm")
 
 
-SelectWeapon = "Melee"
-Main:Dropdown("Select Weapon",{"Melee","Sword","Blox Fruit","Gun"}, function(value)
+
+Main:Dropdown("Select Weapon",{"Melee","Sword","Fruit","Gun"}, function(value)
     SelectWeapon = value
 	
     
 end)
 
 
-local AttackList = {"0", "0.1", "0.15", "for Mastery"}
-_G.FastAttackDelay = "0.17"
+local AttackList = {"0 (Rick)", "0.1", "0.15", "for Mastery"}
+_G.FastAttackDelay = "for Mastery"
 Main:Dropdown("Select Fast Attack", AttackList,function(MakoGay)
     _G.FastAttackDelay = MakoGay
 
@@ -2400,56 +2400,70 @@ spawn(function()
     end
 end)
 
+function GetFightingStyle(Style)
+		ReturnText = ""
+		for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+			if v:IsA("Tool") then
+				if v.ToolTip == Style then
+					ReturnText = v.Name
+				end
+			end
+		end
+		for i ,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+			if v:IsA("Tool") then
+				if v.ToolTip == Style then
+					ReturnText = v.Name
+				end
+			end
+		end
+		if ReturnText ~= "" then
+			return ReturnText
+		else
+			return "Not Have"
+		end
+	end
 
 
 
-
-
-spawn(function()
-    while wait() do
-    pcall(function()
-      if SelectWeapon == "Melee" then
-      for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-      if v.ToolTip == "Melee" then
-      if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
-      SelectWeapon = v.Name
-      end
-      end
-      end
-      elseif SelectWeapon == "Sword" then
-      for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-      if v.ToolTip == "Sword" then
-      if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
-      SelectWeapon = v.Name
-      end
-      end
-      end
-      elseif SelectWeapon == "Devil Fruit" then
-      for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-      if v.ToolTip == "Blox Fruit" then
-      if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
-      SelectWeapon = v.Name
-      end
-      end
-      end
-      elseif SelectWeapon == "Gun" then
-      for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-      if v.ToolTip == "Gun" then
-      if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
-      SelectWeapon = v.Name
-      end
-      end
-      end
-      else
-        for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-      if v.ToolTip == SelectWeapon then
-      SelectWeapon = v.Name
-      end
-      end
-      end
-      end)
-    end
-    end)
+task.spawn(function()
+	while wait() do
+		pcall(function()
+			if SelectWeapon == "Melee" then
+				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.ToolTip == "Melee" then
+						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+							SelectWeapon = v.Name
+						end
+					end
+				end
+			elseif SelectWeapon == "Sword" then
+				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.ToolTip == "Sword" then
+						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+							SelectWeapon = v.Name
+						end
+					end
+				end
+			elseif SelectWeapon == "Fruit" then
+				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.ToolTip == "Blox Fruit" then
+						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+							SelectWeapon = v.Name
+						end
+					end
+				end
+			else
+				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.ToolTip == "Melee" then
+						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+							SelectWeapon = v.Name
+						end
+					end
+				end
+			end
+		end)
+	end
+end)
 
 
     spawn(function()
