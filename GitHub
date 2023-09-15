@@ -2360,7 +2360,7 @@ local Weaponlist = {"Melee","Sword","Gun","Fruit"}
 
 
 SelectWeapon = "Melee"
-Main:Dropdown("Weapon",function(value)
+Main:Dropdown("Weapon",Weaponlist,function(value)
     SelectWeapon = value
 end)
 
