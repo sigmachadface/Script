@@ -5132,7 +5132,7 @@ local MasteryType = {
 
 
 
-	Main:Toggle("Auto Mastery Gun",AutoFarmMasGun, function(gmf)
+	Main:Toggle("Auto Mastery Gun (Bug)",AutoFarmMasGun, function(gmf)
 		AutoFarmMasGun = gmf
 		CancelTween(AutoFarmMasGun)
 		end)
