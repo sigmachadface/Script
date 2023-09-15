@@ -4800,7 +4800,7 @@ BringMobs = true
     end)
 
 
-
+Main:Label("Mob Aura")
 
     Main:Toggle('Auto Nearest Mobs',AutoFarmNearestMob,function(nearfarmf)
         AutoFarmNearestMob = nearfarmf
@@ -4841,7 +4841,7 @@ BringMobs = true
 	  
 
 
-
+Main:Label("Bones")
 
 
 
