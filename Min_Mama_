@@ -10057,7 +10057,7 @@ spawn(function()
 	end)
 end)
 
-Dungeon:Toggle("Kill Aura เปิดตอนเข้าดัน ",_G.Kill,function(value)
+Dungeon:Toggle("Kill Aura ",_G.Kill,function(value)
 	_G.Kill = value
 end)
 
