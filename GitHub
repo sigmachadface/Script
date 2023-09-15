@@ -4381,7 +4381,7 @@ if game.PlaceId == 2753915549 then
     game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear), {
       CFrame = P1
     }):Play()
-    if _G.StopTween2 then
+    if _G.CancelTween2 then
     game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear), {
       CFrame = P1
     }):Cancel()
@@ -4400,7 +4400,7 @@ if game.PlaceId == 2753915549 then
     game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear), {
       CFrame = P1
     }):Play()
-    if _G.StopTween then
+    if _G.CancelTween then
     game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear), {
       CFrame = P1
     }):Cancel()
@@ -4410,11 +4410,11 @@ if game.PlaceId == 2753915549 then
     --// Stop Tween Farm
     function CancelTween(target)
     if not target then
-    _G.StopTween = true
+    _G.CancelTween = true
     wait()
     Tween(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
     wait()
-    _G.StopTween = false
+    _G.CancelTween = false
     end
     end
 
@@ -5620,12 +5620,17 @@ local MasteryType = {
     Main:Slider('Kill at ... %',1,100,35, function(KillPercentfunc)
       KillPercent = KillPercentfunc
       end)
+	  
     
     SkillZ = false
     SkillX = false
     SkillC = false
     SkillV = false
     SkillF = false
+	
+	
+	
+	Main:Seperator("Setting Skill Mastery")
     Main:Toggle('Skill Z',SkillZ, function(zfunc)
       SkillZ = zfunc
       end)
@@ -6052,7 +6057,7 @@ end)
     
     Main:Toggle("Auto Electric Claw",_G.AutoElectricClaw,function(value)
         _G.AutoElectricClaw = value
-        StopTween(_G.AutoElectricClaw)
+        CancelTween(_G.AutoElectricClaw)
     end)
     
     spawn(function()
@@ -6232,6 +6237,8 @@ spawn(function()
 	end
 end)
 
+
+Main:Label("Wait Update...")
 
 
 
@@ -7447,7 +7454,7 @@ end
         
 Race:Toggle("Auto Attack Sea Beast",_G.Auto_Seabest,function(value)
 _G.Auto_Seabest = value
-StopTween(_G.Auto_Seabest)
+CancelTween(_G.Auto_Seabest)
 end)
 local gg = getrawmetatable(game)
 local old = gg.__namecall
