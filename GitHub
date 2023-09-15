@@ -1938,7 +1938,7 @@ function main:Seperator(text)
 
 
 ---------------------------
-local bringfrec = 300
+local bringfrec = 350
 local posX = 0
 local PosY = 30
 local posZ = 0
