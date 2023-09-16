@@ -5075,6 +5075,8 @@ else
 
 
 
+
+
 function topos(Pos)
         Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
         if Distance < 25 then
@@ -5108,6 +5110,106 @@ end
 
 
 
+
+
+
+game:GetService('RunService').RenderStepped:connect(function()           
+     if _G.chestsea3 then
+    if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("God's Chalice") then 
+   _G.chestsea3 = false
+                                 
+    elseif not game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("God's Chalice") then 
+      if game:GetService("Workspace"):FindFirstChild("Chest1") then
+     TPchest( game:GetService("Workspace"):FindFirstChild("Chest1").CFrame)
+     end
+     if game:GetService("Workspace"):FindFirstChild("Chest2") then
+     TPchest( game:GetService("Workspace"):FindFirstChild("Chest2").CFrame)
+     end
+     if game:GetService("Workspace"):FindFirstChild("Chest3") then
+TPchest( game:GetService("Workspace"):FindFirstChild("Chest3").CFrame)
+end
+end
+end
+end)
+if game.PlaceId == 7449423635 then -- sea3
+spawn(function()
+    while task.wait(3.5) do
+        pcall(function()
+        if not   game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("God's Chalice") then
+            if _G.chestsea3 then
+                game:GetService("VirtualInputManager"):SendKeyEvent(true,"W",false,game)
+            game.Players.LocalPlayer.Character.Humanoid.Health = 0
+            end
+            wait(5)
+            
+           end end) end end) end
+
+
+
+game:GetService('RunService').RenderStepped:connect(function()           
+     if _G.chestsea2 then
+    if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Fist of Darkness") then 
+        game:GetService("VirtualInputManager"):SendKeyEvent(true,"W",false,game)
+   _G.chestsea2 = false
+                                 
+    elseif not game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Fist of Darkness") then 
+      if game:GetService("Workspace"):FindFirstChild("Chest1") then
+     TPchest( game:GetService("Workspace"):FindFirstChild("Chest1").CFrame)
+     end
+     if game:GetService("Workspace"):FindFirstChild("Chest2") then
+     TPchest( game:GetService("Workspace"):FindFirstChild("Chest2").CFrame)
+     end
+     if game:GetService("Workspace"):FindFirstChild("Chest3") then
+TPchest( game:GetService("Workspace"):FindFirstChild("Chest3").CFrame)
+end
+end
+end
+end)
+if game.PlaceId == 4442272183 then -- sea2
+spawn(function()
+    while task.wait(3.5) do
+        pcall(function()
+        if not   game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Fist of Darkness") then
+            if _G.chestsea2 then
+            game.Players.LocalPlayer.Character.Humanoid.Health = 0
+            end
+            wait(5)
+            
+           end end) end end) end
+		   
+		   
+function TPchest(P1)          
+                    local Distance = (P1.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+               if Distance >= 0 then
+                        Speed = 1200000
+                    end
+                    
+                   local tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(Distance/Speed), {CFrame = P1  }) tween:Play()                                    
+              end
+
+
+
+
+
+if Third_Sea then
+    
+Main:Seperator("Chest")    
+    Main:Toggle("Auto Chest",_G.chestsea3,function(value)
+ _G.chestsea3 = value
+ CancelTween(_G.chestsea3)
+end)
+end
+
+    
+    
+    if Second_Sea then
+    
+Main:Seperator("Chest")    
+    Main:Toggle("Auto Chest",_G.chestsea2,function(value)
+ _G.chestsea2 = value
+ CancelTween(_G.chestsea2)
+end)
+    end
 
 
 
