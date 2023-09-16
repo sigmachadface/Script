@@ -5137,7 +5137,7 @@ spawn(function()
         pcall(function()
         if not   game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("God's Chalice") then
             if _G.chestsea3 then
-                game:GetService("VirtualInputManager"):SendKeyEvent(true,"W",false,game)
+                game:GetService("VirtualInputManager"):SendKeyEvent(true,"Q",false,game)
             game.Players.LocalPlayer.Character.Humanoid.Health = 0
             end
             wait(5)
@@ -5149,7 +5149,7 @@ spawn(function()
 game:GetService('RunService').RenderStepped:connect(function()           
      if _G.chestsea2 then
     if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Fist of Darkness") then 
-        game:GetService("VirtualInputManager"):SendKeyEvent(true,"W",false,game)
+        game:GetService("VirtualInputManager"):SendKeyEvent(true,"Q",false,game)
    _G.chestsea2 = false
                                  
     elseif not game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Fist of Darkness") then 
