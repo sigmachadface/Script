@@ -3603,7 +3603,7 @@ end)
 spawn(function()
 	while wait() do
 		if _G.Auto_Farm_Level then
-			if _G.Select_Mode_Farm == "Level Farm" then
+			if _G.Select_Mode_Farm == "Nhận Nhiệm Vụ" then
 				pcall(function()
 					if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) then
 						StartMagnet = false
@@ -3655,7 +3655,7 @@ spawn(function()
 						end
 					end
 				end)
-			elseif _G.Select_Mode_Farm == "Fast Mode" then
+			elseif _G.Select_Mode_Farm == "Chế Độ Nhanh" then
 				pcall(function()
 					if game:GetService("Players").LocalPlayer.Data.SpawnPoint.Value == SPAWNPOINT then
 						if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) then
@@ -3711,7 +3711,7 @@ spawn(function()
 						until game:GetService("Players").LocalPlayer.Data.SpawnPoint.Value == SPAWNPOINT 
 					end
 				end)
-			elseif _G.Select_Mode_Farm == "No Quest" then
+			elseif _G.Select_Mode_Farm == "Không Nhiệm Vụ" then
 				pcall(function()
 					CheckQuest()
 					if game:GetService("Workspace").Enemies:FindFirstChild(Ms) then
@@ -3745,7 +3745,7 @@ spawn(function()
 						end
 					end
 				end)
-			elseif _G.Select_Mode_Farm == "Near Farm Mode" then
+			elseif _G.Select_Mode_Farm == "Đánh Quái Gần" then
 				for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
 					if v.Name and v:FindFirstChild("Humanoid") then
 						if v.Humanoid.Health > 0 then
@@ -4312,7 +4312,7 @@ end)
 Main:Seperator(" \\\\ Cài Đặt Chế Độ  // ")
 
 Main:Dropdown("Chọn Chế Độ", {
-	"Cấp Cấp","Chế Độ Nhanh","Không Nhiệm Vụ","Đánh Quái Gần"
+	"Nhận Nhiệm Vụ","Chế Độ Nhanh","Không Nhiệm Vụ","Đánh Quái Gần"
 },function(value)
 	_G.Select_Mode_Farm = value
 end)
@@ -6383,7 +6383,7 @@ end)
 spawn(function()
 	while task.wait() do
 		pcall(function()
-			if _G.Auto_Farm_Level and _G.Select_Mode_Farm == "Near Farm Mode" then
+			if _G.Auto_Farm_Level and _G.Select_Mode_Farm == "Đánh Quái Gần" then
 				for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
 					if v.Name == Ms and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 350 then
 						v.Humanoid.WalkSpeed = 0
@@ -7292,7 +7292,7 @@ end)
 
 spawn(function()
 	while task.wait() do
-		if _G.BringNormal and _G.Select_Mode_Farm == "Near Farm Mode" then
+		if _G.BringNormal and _G.Select_Mode_Farm == "Đánh Quái Gần" then
 			pcall(function()
 				for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
 					if v.Name == Mon and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 400 then
@@ -9880,6 +9880,206 @@ DevilFruit:Toggle("Lụm Fruit",_G.BringFruit,function(value)
 	end)
 end)
 
+
+
+
+
+DevilFruit:Seperator("Định Vị")
+
+
+	function isnil(thing)
+		return (thing == nil)
+	end
+	local function round(n)
+		return math.floor(tonumber(n) + 0.5)
+	end
+	Number = math.random(1, 1000000)
+	function UpdatePlayerChams()
+		for i,v in pairs(game:GetService'Players':GetChildren()) do
+			pcall(function()
+				if not isnil(v.Character) then
+					if ESPPlayer then
+						if not isnil(v.Character.Head) and not v.Character.Head:FindFirstChild('NameEsp'..Number) then
+							local bill = Instance.new('BillboardGui',v.Character.Head)
+							bill.Name = 'NameEsp'..Number
+							bill.ExtentsOffset = Vector3.new(0, 1, 0)
+							bill.Size = UDim2.new(1,200,1,30)
+							bill.Adornee = v.Character.Head
+							bill.AlwaysOnTop = true
+							local name = Instance.new('TextLabel',bill)
+							name.Font = "GothamBold"
+							name.FontSize = "Size14"
+							name.TextWrapped = true
+							name.Text = (v.Name ..' \n'.. round((game:GetService('Players').LocalPlayer.Character.Head.Position - v.Character.Head.Position).Magnitude/3) ..' M')
+							name.Size = UDim2.new(1,0,1,0)
+							name.TextYAlignment = 'Top'
+							name.BackgroundTransparency = 1
+							name.TextStrokeTransparency = 0.5
+							if v.Team == game.Players.LocalPlayer.Team then
+								name.TextColor3 = Color3.new(0,255,0)
+							else
+								name.TextColor3 = Color3.new(255,0,0)
+							end
+						else
+							v.Character.Head['NameEsp'..Number].TextLabel.Text = (v.Name ..'   \n'.. round((game:GetService('Players').LocalPlayer.Character.Head.Position - v.Character.Head.Position).Magnitude/3) ..' M')
+						end
+					else
+						if v.Character.Head:FindFirstChild('NameEsp'..Number) then
+							v.Character.Head:FindFirstChild('NameEsp'..Number):Destroy()
+						end
+					end
+				end
+			end)
+		end
+	end
+	function UpdateChestChams() 
+		for i,v in pairs(game.Workspace:GetChildren()) do
+			pcall(function()
+				if string.find(v.Name,"Chest") then
+					if ChestESP then
+						if string.find(v.Name,"Chest") then
+							if not v:FindFirstChild('NameEsp'..Number) then
+								local bill = Instance.new('BillboardGui',v)
+								bill.Name = 'NameEsp'..Number
+								bill.ExtentsOffset = Vector3.new(0, 1, 0)
+								bill.Size = UDim2.new(1,200,1,30)
+								bill.Adornee = v
+								bill.AlwaysOnTop = true
+								local name = Instance.new('TextLabel',bill)
+								name.Font = "GothamBold"
+								name.FontSize = "Size14"
+								name.TextWrapped = true
+								name.Size = UDim2.new(1,0,1,0)
+								name.TextYAlignment = 'Top'
+								name.BackgroundTransparency = 1
+								name.TextStrokeTransparency = 0.5
+								if v.Name == "Chest1" then
+									name.TextColor3 = Color3.fromRGB(10, 224, 153)
+									name.Text = ("Chest 1" ..' \n'.. round((game:GetService('Players').LocalPlayer.Character.Head.Position - v.Position).Magnitude/3) ..' M')
+								end
+								if v.Name == "Chest2" then
+									name.TextColor3 = Color3.fromRGB(10, 224, 153)
+									name.Text = ("Chest 2" ..' \n'.. round((game:GetService('Players').LocalPlayer.Character.Head.Position - v.Position).Magnitude/3) ..' M')
+								end
+								if v.Name == "Chest3" then
+									name.TextColor3 = Color3.fromRGB(10, 224, 153)
+									name.Text = ("Chest 3" ..' \n'.. round((game:GetService('Players').LocalPlayer.Character.Head.Position - v.Position).Magnitude/3) ..' M')
+								end
+							else
+								v['NameEsp'..Number].TextLabel.Text = (v.Name ..'   \n'.. round((game:GetService('Players').LocalPlayer.Character.Head.Position - v.Position).Magnitude/3) ..' M')
+							end
+						end
+					else
+						if v:FindFirstChild('NameEsp'..Number) then
+							v:FindFirstChild('NameEsp'..Number):Destroy()
+						end
+					end
+				end
+			end)
+		end
+	end
+	function UpdateDevilChams() 
+		for i,v in pairs(game.Workspace:GetChildren()) do
+			pcall(function()
+				if DevilFruitESP then
+					if string.find(v.Name, "Fruit") then   
+						if not v.Handle:FindFirstChild('NameEsp'..Number) then
+							local bill = Instance.new('BillboardGui',v.Handle)
+							bill.Name = 'NameEsp'..Number
+							bill.ExtentsOffset = Vector3.new(0, 1, 0)
+							bill.Size = UDim2.new(1,200,1,30)
+							bill.Adornee = v.Handle
+							bill.AlwaysOnTop = true
+							local name = Instance.new('TextLabel',bill)
+							name.Font = "GothamBold"
+							name.FontSize = "Size14"
+							name.TextWrapped = true
+							name.Size = UDim2.new(1,0,1,0)
+							name.TextYAlignment = 'Top'
+							name.BackgroundTransparency = 1
+							name.TextStrokeTransparency = 0.5
+							name.TextColor3 = Color3.fromRGB(10, 224, 153)
+							name.Text = (v.Name ..' \n'.. round((game:GetService('Players').LocalPlayer.Character.Head.Position - v.Handle.Position).Magnitude/3) ..' M')
+						else
+							v.Handle['NameEsp'..Number].TextLabel.Text = (v.Name ..'   \n'.. round((game:GetService('Players').LocalPlayer.Character.Head.Position - v.Handle.Position).Magnitude/3) ..' M')
+						end
+					end
+				else
+					if v.Handle:FindFirstChild('NameEsp'..Number) then
+						v.Handle:FindFirstChild('NameEsp'..Number):Destroy()
+					end
+				end
+			end)
+		end
+	end
+	function UpdateFlowerChams() 
+		for i,v in pairs(game.Workspace:GetChildren()) do
+			pcall(function()
+				if v.Name == "Flower2" or v.Name == "Flower1" then
+					if FlowerESP then 
+						if not v:FindFirstChild('NameEsp'..Number) then
+							local bill = Instance.new('BillboardGui',v)
+							bill.Name = 'NameEsp'..Number
+							bill.ExtentsOffset = Vector3.new(0, 1, 0)
+							bill.Size = UDim2.new(1,200,1,30)
+							bill.Adornee = v
+							bill.AlwaysOnTop = true
+							local name = Instance.new('TextLabel',bill)
+							name.Font = "GothamBold"
+							name.FontSize = "Size14"
+							name.TextWrapped = true
+							name.Size = UDim2.new(1,0,1,0)
+							name.TextYAlignment = 'Top'
+							name.BackgroundTransparency = 1
+							name.TextStrokeTransparency = 0.5
+							name.TextColor3 = Color3.fromRGB(10, 224, 153)
+							if v.Name == "Flower1" then 
+								name.Text = ("Blue Flower" ..' \n'.. round((game:GetService('Players').LocalPlayer.Character.Head.Position - v.Position).Magnitude/3) ..' M')
+								name.TextColor3 = Color3.fromRGB(10, 224, 153)
+							end
+							if v.Name == "Flower2" then
+								name.Text = ("Red Flower" ..' \n'.. round((game:GetService('Players').LocalPlayer.Character.Head.Position - v.Position).Magnitude/3) ..' M')
+								name.TextColor3 = Color3.fromRGB(10, 224, 153)
+							end
+						else
+							v['NameEsp'..Number].TextLabel.Text = (v.Name ..'   \n'.. round((game:GetService('Players').LocalPlayer.Character.Head.Position - v.Position).Magnitude/3) ..' M')
+						end
+					else
+						if v:FindFirstChild('NameEsp'..Number) then
+							v:FindFirstChild('NameEsp'..Number):Destroy()
+						end
+					end
+				end   
+			end)
+		end
+	end
+	DevilFruit:Toggle("ESP Người Chơi",false,function(a)
+		ESPPlayer = a
+		while ESPPlayer do wait()
+			UpdatePlayerChams()
+		end
+	end)
+	DevilFruit:Toggle("ESP Rương",false,function(a)
+		ChestESP = a
+		while ChestESP do wait()
+			UpdateChestChams() 
+		end
+	end)
+	DevilFruit:Toggle("ESP Trái Ác Quỷ",false,function(a)
+		DevilFruitESP = a
+		while DevilFruitESP do wait()
+			UpdateDevilChams() 
+		end
+	end)
+	DevilFruit:Toggle("ESP Hoa (Sea2)",false,function(a)
+		FlowerESP = a
+		while FlowerESP do wait()
+			UpdateFlowerChams() 
+		end
+	end)
+
+
+
 Shop:Seperator("\\\\\  Kĩ NĂng  //")
 
 Shop:Button(" Geppo [ $10,000 Beli ]",function()
@@ -10648,16 +10848,6 @@ game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF
 end 
 end)  
 end)
-
-
-
-
-
-
-
-
-
-
 
 
 Race:Button("Di CHuyển Đến CHổ Mua Bánh Răng",function()
