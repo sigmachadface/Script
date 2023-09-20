@@ -5873,7 +5873,7 @@ end)
                                             repeat task.wait()
                                                 EquipTool(SelectWeapon)
 												BringMobs = false
-                                                Tween(v.HumanoidRootPart.CFrame * Pos)
+                                                topos(v.HumanoidRootPart.CFrame * Pos)
                                                 MonsterPosition = v.HumanoidRootPart.CFrame
                                                 v.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
                                                 v.Humanoid.JumpPower = 0
@@ -5892,11 +5892,11 @@ end)
                                 end
                             else
                                 if game:GetService("ReplicatedStorage"):FindFirstChild("Diablo [Lv. 1750]") then
-                                    Tween(game:GetService("ReplicatedStorage"):FindFirstChild("Diablo [Lv. 1750]").HumanoidRootPart.CFrame * Pos)
+                                    BTP(game:GetService("ReplicatedStorage"):FindFirstChild("Diablo [Lv. 1750]").HumanoidRootPart.CFrame * Pos)
                                 elseif game:GetService("ReplicatedStorage"):FindFirstChild("Deandre [Lv. 1750]") then
-                                    Tween(game:GetService("ReplicatedStorage"):FindFirstChild("Deandre [Lv. 1750]").HumanoidRootPart.CFrame * Pos)
+                                    BTP(game:GetService("ReplicatedStorage"):FindFirstChild("Deandre [Lv. 1750]").HumanoidRootPart.CFrame * Pos)
                                 elseif game:GetService("ReplicatedStorage"):FindFirstChild("Urban [Lv. 1750]") then
-                                    Tween(game:GetService("ReplicatedStorage"):FindFirstChild("Urban [Lv. 1750]").HumanoidRootPart.CFrame * Pos)
+                                    BTP(game:GetService("ReplicatedStorage"):FindFirstChild("Urban [Lv. 1750]").HumanoidRootPart.CFrame * Pos)
                                 end
                             end
                         end
