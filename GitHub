@@ -2422,7 +2422,7 @@ spawn(function()
     while wait(.1) do
         if _G.FastAttackDelay then
             pcall(function()
-                if _G.FastAttackDelay == "0" then
+                if _G.FastAttackDelay == "0 (Rick)" then
                     _G.FastAttackDelay = 0
                 elseif _G.FastAttackDelay == "0.1" then
                     _G.FastAttackDelay = 0.1
