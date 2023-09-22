@@ -4576,10 +4576,26 @@ game:GetService("VirtualUser"):CaptureController()
 game:GetService("VirtualUser"):ClickButton1(Vector2.new(851,158),game:GetService("Workspace").Camera.CFrame)
 end
 
+
+
 function Click()
-game:GetService('VirtualUser'):CaptureController()
-game:GetService('VirtualUser'):Button1Down(Vector2.new(851, 158))
+	if not _G.FastAttack then
+		local Module = require(game.Players.LocalPlayer.PlayerScripts.CombatFramework)
+		local CombatFramework = debug.getupvalues(Module)[2]
+		local CamShake = require(game.ReplicatedStorage.Util.CameraShaker)
+		CamShake:Stop()
+		CombatFramework.activeController.attacking = false
+		CombatFramework.activeController.timeToNextAttack = 0
+		CombatFramework.activeController.hitboxMagnitude = 180
+		game:GetService'VirtualUser':CaptureController()
+		game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
+    else
+        game:GetService'VirtualUser':CaptureController()
+		game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
+	end
 end
+
+
 
 --// Get Weapon Sword
 function GetWeaponInventory(Weaponname)
