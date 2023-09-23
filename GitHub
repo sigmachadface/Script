@@ -2374,10 +2374,10 @@ end)
                       end)
                    
 				   
-Main:Label("SubFarm")
+Main:Label("Farming")
 
 
-local Weaponlist = {"Melee","Sword","Gun","Fruit"}
+local Weaponlist = {"Melee","Sword","Gun","Blox Fruit"}
 
 
 SelectWeapon = "Melee"
@@ -2404,7 +2404,7 @@ spawn(function()
       end
       end
       end
-      elseif SelectWeapon == "Fruit" then
+      elseif SelectWeapon == "Blox Fruit" then
       for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
       if v.ToolTip == "Blox Fruit" then
       if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
