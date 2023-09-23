@@ -1948,14 +1948,18 @@ local TweenSpeed = 250
 --------Setting
 
             
-            Setting:Toggle("White Screen",_G.WhiteScreen,function(value)
-              _G.WhiteScreen = value
-          if _G.WhiteScreen == true then
-              game:GetService("RunService"):Set3dRenderingEnabled(false)
-          elseif _G.WhiteScreen == false then
-              game:GetService("RunService"):Set3dRenderingEnabled(true)
-          end
-          end)
+     Setting:Toggle("White Screen",_G.WhiteScreen,function(vu)
+	_G.WhiteScreen = vu
+    if _G.WhiteScreen then
+        game:GetService("RunService"):Set3dRenderingEnabled(false)
+    else
+        game:GetService("RunService"):Set3dRenderingEnabled(true)
+    end
+end)
+
+
+
+
 
 Setting:Toggle("Remove Effect",true,function(value)
 	   _G.Remove_Effect = value
@@ -2126,8 +2130,7 @@ end
       
 	  
 	 
-	 
-	 Setting:Toggle("Fast Attack 1", true, function(value)
+ Setting:Toggle("Fast Attack 1", true, function(value)
     _G.FastAttack = value
 end)
 
@@ -2163,6 +2166,8 @@ spawn(function()
         end
     end)
 end)
+
+
 
 Setting:Toggle("Fast Attack 2",false,function(value)
     FastAttackSpeed = value
@@ -4597,7 +4602,7 @@ game:GetService("VirtualUser"):CaptureController()
 game:GetService("VirtualUser"):ClickButton1(Vector2.new(851,158),game:GetService("Workspace").Camera.CFrame)
 end
 
-
+--Click
 
 function Click()
 	if not _G.FastAttack then
@@ -4615,8 +4620,6 @@ function Click()
 		game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
 	end
 end
-
-
 
 --// Get Weapon Sword
 function GetWeaponInventory(Weaponname)
@@ -4781,9 +4784,80 @@ BringMobs = true
     end)
 
 
+
+
+Main:Button("Redeem All Code",function()
+		function UseCode(Text)
+        game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer(Text)
+    end
+    UseCode("Sub2Fer999")
+    UseCode("Enyu_is_Pro")
+    UseCode("Magicbus")
+    UseCode("JCWK")
+    UseCode("Starcodeheo")
+    UseCode("Bluxxy")
+    UseCode("THEGREATACE")
+    UseCode("SUB2GAMERROBOT_EXP1")
+    UseCode("StrawHatMaine")
+    UseCode("Sub2OfficialNoobie")
+    UseCode("SUB2NOOBMASTER123")
+    UseCode("Sub2Daigrock")
+    UseCode("Axiore")
+    UseCode("TantaiGaming")
+    UseCode("STRAWHATMAINE")
+end)
+
+
+
+Main:Button("FPS Booster",function()
+	FPSBooster()
+end)
+function FPSBooster()
+    local decalsyeeted = true
+    local g = game
+    local w = g.Workspace
+    local l = g.Lighting
+    local t = w.Terrain
+    sethiddenproperty(l,"Technology",2)
+    sethiddenproperty(t,"Decoration",false)
+    t.WaterWaveSize = 0
+    t.WaterWaveSpeed = 0
+    t.WaterReflectance = 0
+    t.WaterTransparency = 0
+    l.GlobalShadows = false
+    l.FogEnd = 9e9
+    l.Brightness = 0
+    settings().Rendering.QualityLevel = "Level01"
+    for i, v in pairs(g:GetDescendants()) do
+        if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+            v.Material = "Plastic"
+            v.Reflectance = 0
+        elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
+            v.Transparency = 1
+        elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+            v.Lifetime = NumberRange.new(0)
+        elseif v:IsA("Explosion") then
+            v.BlastPressure = 1
+            v.BlastRadius = 1
+        elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") or v:IsA("Sparkles") then
+            v.Enabled = false
+        elseif v:IsA("MeshPart") then
+            v.Material = "Plastic"
+            v.Reflectance = 0
+            v.TextureID = 10385902758728957
+        end
+    end
+    for i, e in pairs(l:GetChildren()) do
+        if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
+            e.Enabled = false
+        end
+    end
+end
+
+
 Main:Label("Mob Aura")
 
-    Main:Toggle('Auto Nearest Mobs',AutoFarmNearestMob,function(nearfarmf)
+    Main:Toggle('Auto Near Mobs',AutoFarmNearestMob,function(nearfarmf)
         AutoFarmNearestMob = nearfarmf
         CancelTween(AutoFarmNearestMob)
         
@@ -4860,10 +4934,10 @@ Main:Label("Bones")
 	  wait(0.2)
 	  elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - BonePos.Position).Magnitude < 2500 then
 	  wait(0.4)
-	  topos(BonePos)
+	  Tween(BonePos)
 	  end
 else
-		topos(BonePos)
+		Tween(BonePos)
 		end
 
 
@@ -4874,7 +4948,7 @@ else
 			  AutoHaki()
               EquipTool(SelectWeapon)
 			  BringMobs = true
-              topos(v.HumanoidRootPart.CFrame * Pos)
+              Tween(v.HumanoidRootPart.CFrame * Pos)
               v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
               v.HumanoidRootPart.Transparency = 1
               v.Humanoid.JumpPower = 0
@@ -4894,13 +4968,13 @@ else
               end
               for i,v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
               if v.Name == "Reborn Skeleton [Lv. 1975]" then
-              topos(v.HumanoidRootPart.CFrame * Pos)
+              Tween(v.HumanoidRootPart.CFrame * Pos)
               elseif v.Name == "Living Zombie [Lv. 2000]" then
-              topos(v.HumanoidRootPart.CFrame * Pos)
+              Tween(v.HumanoidRootPart.CFrame * Pos)
               elseif v.Name == "Demonic Soul [Lv. 2025]" then
-              topos(v.HumanoidRootPart.CFrame *Pos)
+              Tween(v.HumanoidRootPart.CFrame *Pos)
               elseif v.Name == "Posessed Mummy [Lv. 2050]" then
-              topos(v.HumanoidRootPart.CFrame * Pos)
+              Tween(v.HumanoidRootPart.CFrame * Pos)
               end
               end
               end)
