@@ -2090,14 +2090,8 @@ end
               v.HumanoidRootPart.CFrame = FarmPos
               v.Humanoid.JumpPower = 0
               v.Humanoid.WalkSpeed = 0
-              v.HumanoidRootPart.Size = Vector3.new(60,60,60)
-              v.HumanoidRootPart.CanCollide = false
-              v.Head.CanCollide = false
-          --v.Humanoid:ChangeState(11)
-          --v.Humanoid:ChangeState(14)
-              if v.Humanoid:FindFirstChild("Animator") then
-              v.Humanoid.Animator:Destroy()
-              end
+			  v.HumanoidRootPart.CanCollide = true
+              v.HumanoidRootPart.Size = Vector3.new(1,1,1)
               end
               end
               end
@@ -4763,9 +4757,7 @@ end)
       MonFarm = v.Name
 BringMobs = true
       Click()
-      if v.Humanoid.Health <= 0 and v.Humanoid:FindFirstChild("Animator") then
-      v.Humanoid.Animator:Destroy()
-      end
+
       until not AutoFarmQuest or not v.Parent or v.Humanoid.Health <= 0 or not game:GetService("Workspace").Enemies:FindFirstChild(v.Name) or game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false
       end
       end
@@ -4875,7 +4867,7 @@ Main:Label("Mob Aura")
           EquipTool(SelectWeapon)
 		  BringMobs = true
           Tween(v.HumanoidRootPart.CFrame * Pos)
-          v.HumanoidRootPart.Size = Vector3.new(60,60,60)
+          v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
           v.HumanoidRootPart.Transparency = 1
           v.Humanoid.JumpPower = 0
           v.Humanoid.WalkSpeed = 0
@@ -4949,7 +4941,7 @@ else
               EquipTool(SelectWeapon)
 			  BringMobs = true
               Tween(v.HumanoidRootPart.CFrame * Pos)
-              v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+			  v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
               v.HumanoidRootPart.Transparency = 1
               v.Humanoid.JumpPower = 0
               v.Humanoid.WalkSpeed = 0
@@ -4959,9 +4951,6 @@ else
               FarmPos = v.HumanoidRootPart.CFrame
               MonFarm = v.Name
               Click()
-              if v.Humanoid.Health <= 0 and v.Humanoid:FindFirstChild("Animator") then
-              v.Humanoid.Animator:Destroy()
-              end
               until not AutoFarmBone or not v.Parent or v.Humanoid.Health <= 0
               end
               end
@@ -5017,7 +5006,7 @@ else
                 elseif string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")) == 86 then
                     MobKilled:Set("Defeat : "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,39))
                 else
-                    MobKilled:Set("Boss Is Spawning")
+                    MobKilled:Set("Boss Spawning")
                 end
             end)
         end
@@ -5327,7 +5316,7 @@ local MasteryType = {
 			  EquipTool(SelectWeapon)
 			  BringMobs = true
 			  Tween(v.HumanoidRootPart.CFrame * Pos1)
-			  v.HumanoidRootPart.Size = Vector3.new(60,60,60)
+			  v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
 			  v.HumanoidRootPart.Transparency = 1
 			  v.Humanoid.JumpPower = 0
 			  v.Humanoid.WalkSpeed = 0
@@ -5374,7 +5363,7 @@ local MasteryType = {
 				AutoHaki()
 			  EquipTool(SelectWeapon)
 			  Tween(v.HumanoidRootPart.CFrame * Pos)
-			  v.HumanoidRootPart.Size = Vector3.new(60,60,60)
+			  v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
 			  v.HumanoidRootPart.Transparency = 1
 			  v.Humanoid.JumpPower = 0
 			  v.Humanoid.WalkSpeed = 0
@@ -5410,7 +5399,7 @@ local MasteryType = {
 				BringMobs = true
 			  EquipTool(SelectWeapon)
 			  Tween(v.HumanoidRootPart.CFrame * Pos1)
-			  v.HumanoidRootPart.Size = Vector3.new(60,60,60)
+			  v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
 			  v.HumanoidRootPart.Transparency = 1
 			  v.Humanoid.JumpPower = 0
 			  v.Humanoid.WalkSpeed = 0
@@ -5461,7 +5450,7 @@ local MasteryType = {
 				AutoHaki()
 			  EquipTool(SelectWeapon)
 			  Tween(v.HumanoidRootPart.CFrame * Pos)
-			  v.HumanoidRootPart.Size = Vector3.new(60,60,60)
+			  v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
 			  v.HumanoidRootPart.Transparency = 1
 			  v.Humanoid.JumpPower = 0
 			  v.Humanoid.WalkSpeed = 0
@@ -5632,7 +5621,7 @@ local MasteryType = {
       EquipTool(SelectWeapon)
 	  BringMobs = true
       Tween(v.HumanoidRootPart.CFrame * Pos1)
-      v.HumanoidRootPart.Size = Vector3.new(60,60,60)
+      v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
       v.HumanoidRootPart.Transparency = 1
       v.Humanoid.JumpPower = 0
       v.Humanoid.WalkSpeed = 0
@@ -5676,7 +5665,7 @@ local MasteryType = {
 		AutoHaki()
       EquipTool(SelectWeapon)
       Tween(v.HumanoidRootPart.CFrame * Pos)
-      v.HumanoidRootPart.Size = Vector3.new(60,60,60)
+      v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
       v.HumanoidRootPart.Transparency = 1
       v.Humanoid.JumpPower = 0
       v.Humanoid.WalkSpeed = 0
@@ -5711,7 +5700,7 @@ local MasteryType = {
 		BringMobs = true
       EquipTool(SelectWeapon)
       Tween(v.HumanoidRootPart.CFrame * Pos1)
-      v.HumanoidRootPart.Size = Vector3.new(60,60,60)
+      v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
       v.HumanoidRootPart.Transparency = 1
       v.Humanoid.JumpPower = 0
       v.Humanoid.WalkSpeed = 0
@@ -5759,7 +5748,7 @@ local MasteryType = {
 		AutoHaki()
       EquipTool(SelectWeapon)
       Tween(v.HumanoidRootPart.CFrame * Pos)
-      v.HumanoidRootPart.Size = Vector3.new(60,60,60)
+      v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
       v.HumanoidRootPart.Transparency = 1
       v.Humanoid.JumpPower = 0
       v.Humanoid.WalkSpeed = 0
@@ -5889,9 +5878,7 @@ wait(0.4)
     FarmPos = v.HumanoidRootPart.CFrame
     MonFarm = v.Name
     Click()
-    if v.Humanoid.Health <= 0 and v.Humanoid:FindFirstChild("Animator") then
-    v.Humanoid.Animator:Destroy()
-    end
+
     until not AutoFarmBossNoQuest or not v.Parent or v.Humanoid.Health <= 0 or not game:GetService("Workspace").Enemies:FindFirstChild(v.Name)
     end
     end
@@ -5955,7 +5942,7 @@ end)
                                                 MonFarm = v.Name
                                                 Click()
 												ClickCamera()
-                                                v.HumanoidRootPart.Size = Vector3.new(60,60,60)
+                                                v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
                                             until AutoEliteHunter == false or v.Humanoid.Health <= 0 or not v.Parent
                                         end
                                     end
@@ -6042,9 +6029,7 @@ spawn(function()
     FarmPos = v.HumanoidRootPart.CFrame
     MonFarm = v.Name
     Click()
-    if v.Humanoid.Health <= 0 and v.Humanoid:FindFirstChild("Animator") then
-    v.Humanoid.Animator:Destroy()
-    end
+
     until not AutoFarmMaterial or not v.Parent or v.Humanoid.Health <= 0
     end
     end
@@ -8815,7 +8800,7 @@ end)
 				if _G.Tweenfruit then
 					for i,v in pairs(game.Workspace:GetChildren()) do
 						if string.find(v.Name, "Fruit") then
-							topos(v.Handle.CFrame)
+							TP2(v.Handle.CFrame)
 						end
 					end
 				end
