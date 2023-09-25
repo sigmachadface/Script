@@ -1433,141 +1433,11 @@ end
 
            
           
-		 
-	
-
-		 
-
-            function BringMobSkidCuaSeaHub()
-    local c = function1()
-    local ao = game.workspace.Enemies:GetChildren()
-    if #ao > 1 then
-        for ap = 1, #ao do
-            for k, v in pairs(game.workspace.Enemies:GetChildren()) do
-                if function0(v) and (v.HumanoidRootPart.Position - c.Position).Magnitude < 350 then
-                    v.HumanoidRootPart.CFrame = c
-                    v.Humanoid:ChangeState(11)
-                    v.HumanoidRootPart.CanCollide = false
-                    v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
-                    v.HumanoidRootPart.Transparency = 1
-                    for al, f in pairs(v:GetChildren()) do
-                        if v:IsA("BasePart") then
-                            v.Velocity = Vector3.new(0, 0, 0)
-                            v.CanCollide = 0
-                            v.Anchored = true
-                        end
-                    end
-                    if v:FindFirstChild("Humanoid") then
-                        v.Humanoid.WalkSpeed = 0
-                        v.Humanoid.JumpPower = 0
-                    else
-                        return
-                    end
-                    if v.Humanoid:FindFirstChild("Animator") then
-                        v.Humanoid.Animator:Destroy()
-                    end
-                    v.Humanoid:ChangeState(11)
-                end
-            end
-        end
-    end
-end
-
-
-function BringMob()
-    if not BringMobChoosen then
-        repeat
-            task.wait()
-        until BringMobChoosen
-    end
-    sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
-    if LockCFrame then
-        for r, v in pairs(game.Workspace.Enemies:GetChildren()) do
-            if
-                (LockCFrame.Position - v.HumanoidRootPart.Position).Magnitude < 350 and
-                    (LockCFrame.Position - v.HumanoidRootPart.Position).Magnitude > 3 and
-                    chodonandngu(v.HumanoidRootPart.Position)
-             then
-                v.HumanoidRootPart.CFrame = LockCFrame
-                SizePart(v)
-                for al, ax in pairs(v:GetDescendants()) do
-                    if ax:IsA("BasePart") or ax:IsA("Part") then
-                        ax.CanCollide = false
-                    end
-                end
-            end
-        end
-    end
-    if BringMobChoosen then
-        for r, v in pairs(game.Workspace.Enemies:GetChildren()) do
-            if
-                (BringMobChoosen.HumanoidRootPart.Position - v.HumanoidRootPart.Position).Magnitude < 350 and
-                    (BringMobChoosen.HumanoidRootPart.Position - v.HumanoidRootPart.Position).Magnitude > 3 and
-                    GetNearestPlayer(v.HumanoidRootPart.Position)
-             then
-                v.HumanoidRootPart.CFrame = BringMobChoosen.HumanoidRootPart.CFrame
-                SizePart(v)
-                for al, ax in pairs(v:GetDescendants()) do
-                    if ax:IsA("BasePart") or ax:IsA("Part") then
-                        ax.CanCollide = false
-                    end
-                end
-            end
-        end
-    end
-end
-function BringMobSmart()
-    ememe = game.Workspace.Enemies:GetChildren()
-    if #ememe > 0 then
-        for ay = 1, #ememe do
-            totalpos = {}
-            for r, v in pairs(game.Workspace.Enemies:GetChildren()) do
-                if not totalpos[v.Name] then
-                    totalpos[v.Name] = GetNpcPos(v.Name)
-                end
-            end
-            for r, v in pairs(game.Workspace.Enemies:GetChildren()) do
-                if not string.find(v.Name, "Boss") or not string.find(v.Name, "Raid") then
-                    for al, f in pairs(v:GetChildren()) do
-                        if v:IsA("BasePart") then
-                            v.Velocity = Vector3.new(0, 0, 0)
-                            v.CanCollide = 0
-                            v.Anchored = true
-                        end
-                    end
-                    if v:FindFirstChild("Humanoid") then
-                        v.Humanoid.WalkSpeed = 0
-                        v.Humanoid.JumpPower = 0
-                    else
-                        return
-                    end
-                    if v.Humanoid:FindFirstChild("Animator") then
-                        v.Humanoid.Animator:Destroy()
-                    end
-                    for k, f in pairs(totalpos) do
-                        if k and v.Name == k then
-                            a = {[1] = f.X, [2] = f.Y, [3] = f.Z}
-                            hahah = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, -30, 0)
-                            if CheckExploitNgu(v.HumanoidRootPart) then
-                                if
-                                    (v.HumanoidRootPart.Position - CFrame.new(a[1], a[2], a[3]).Position).Magnitude > 3 and
-                                        (v.HumanoidRootPart.Position - CFrame.new(a[1], a[2], a[3]).Position).Magnitude <=
-                                            349
-                                 then
-                                    v.HumanoidRootPart.CFrame = CFrame.new(a[1], a[2], a[3])
-                                    v.HumanoidRootPart.CanCollide = false
-                                end
-                            end
-                        end
-                    end
-                end
-            end
-        end
-    end
-end
+		
             
-         
-          
+         ---Bring Mob
+ 
+
           task.spawn(function()
             while task.wait() do
             if BringMobs then
@@ -1575,12 +1445,12 @@ end
               for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
               if v.Name == MonFarm and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= bringfrec then
               if InMyNetWork(v.HumanoidRootPart) then
+                if InMyNetWork(v.HumanoidRootPart) then
               v.HumanoidRootPart.CFrame = FarmPos
-              v.Humanoid.JumpPower = 0
-              v.Humanoid.WalkSpeed = 0
-			  v.HumanoidRootPart.CanCollide = false
+	          v.HumanoidRootPart.CanCollide = false
               v.HumanoidRootPart.Size = Vector3.new(1,1,1)
               end
+			end
               end
               end
               end)
@@ -1609,7 +1479,9 @@ end
           return false
           end
           end
+
       
+	  
 	  
 	 
  Setting:Toggle("Fast Attack 1", true, function(value)
