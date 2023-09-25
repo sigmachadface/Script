@@ -3792,6 +3792,12 @@ end
 
 
 --// Aimbot Skill Mastery
+
+
+
+
+
+-----------------
 spawn(function()
   local gg = getrawmetatable(game)
   local old = gg.__namecall
@@ -3913,8 +3919,8 @@ spawn(function()
     Noclip.Velocity = Vector3.new(0,0,0)
     end
     else
-      if game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
-    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip"):Destroy()
+     if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyVelocity1") then
+					game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyVelocity1"):Destroy();
     end
     end
     end
@@ -3936,28 +3942,7 @@ spawn(function()
     end)
   end)
 
---// Delete Effect Audio, Death, Respawn
-spawn(function()
-  while task.wait() do
-  for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"]:GetChildren()) do
-  pcall(function()
-    if v.Name == ("CurvedRing") or v.Name == ("SlashHit") or v.Name == ("SwordSlash") or v.Name == ("SlashTail") or v.Name == ("Sounds") then
-    v:Destroy()
-    end
-    end)
-  end
-  for i,v in pairs(game:GetService("ReplicatedStorage").Effect.Container.Death:GetChildren()) do
-  pcall(function()
-    v:Destroy()
-    end)
-  end
-  for i,v in pairs(game:GetService("ReplicatedStorage").Effect.Container.Respawn:GetChildren()) do
-  pcall(function()
-    v:Destroy()
-    end)
-  end
-  end
-  end)
+
 
 --// Stun Player
 task.spawn(function()
