@@ -3758,75 +3758,51 @@ end
 
 --Click Pro
 
-
-_G.SuperFastAttack = false 
-_G.LevelFastAttack = 1  --  1  /  2  /  3  /  4  /  5  (4,5,6,7,8... = risk
-_G.AntiCameraShaking = true
-
-local CombatFramework = debug.getupvalues(require(game.Players.LocalPlayer.PlayerScripts.CombatFramework))
-local CombatFramework2 = debug.getupvalues(require(game.Players.LocalPlayer.PlayerScripts.CombatFramework))[2]
-
-if _G.AntiCameraShaking then
-	require(game.ReplicatedStorage.Util.CameraShaker):Stop()
-end
-
-function GetCurrentBlade() 
-	local blade = CombatFramework2.activeController.blades[1]
-	if not blade then
-		return
-	end
-	while blade.Parent~=game.Players.LocalPlayer.Character do blade = blade.Parent end
-	return blade
-end
-
-function Click() 
-	local CBFW2AC = CombatFramework2.activeController
-	for i = _G.LevelFastAttack, _G.LevelFastAttack do 
-		local bladehit = require(game.ReplicatedStorage.CombatFramework.RigLib).getBladeHits(
-			game.Players.LocalPlayer.Character,
-			{game.Players.LocalPlayer.Character.HumanoidRootPart},
-			150
-			)
-		local Faster = {}
-		local hash = {}
-		for k, v in pairs(bladehit) do
-			if v.Parent:FindFirstChild("HumanoidRootPart") and not hash[v.Parent] then
-				table.insert(Faster, v.Parent.HumanoidRootPart)
-				hash[v.Parent] = true
-			end
-		end
-		bladehit = Faster
-		if #bladehit > 0 then
-			local u1 = debug.getupvalue(CBFW2AC.attack, 4)
-			local u2 = debug.getupvalue(CBFW2AC.attack, 5)
-			local u3 = debug.getupvalue(CBFW2AC.attack, 6)
-			local u4 = debug.getupvalue(CBFW2AC.attack, 7)
-			local u5 = (u2 * 798405 + u1 * 727595) % u3
-			local u6 = u1 * 798405
-			(function()
-				u5 = (u5 * u3 + u6) % 1099511627776
-				u2 = math.floor(u5 / u3)
-				u1 = u5 - u2 * u3
-			end)()
-			u4 = u4 + 1
-			debug.setupvalue(CBFW2AC.attack, 5, u2)
-			debug.setupvalue(CBFW2AC.attack, 6, u3)
-			debug.setupvalue(CBFW2AC.attack, 4, u1)
-			debug.setupvalue(CBFW2AC.attack, 7, u4)
-			pcall(function()
-				for k, v in pairs(CBFW2AC.animator.anims.basic) do
-					v:Play()
-				end
-			end)
-			if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") and CBFW2AC.blades and CBFW2AC.blades[1] then 
-				game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("weaponChange",tostring(GetCurrentBlade()))
-				game.ReplicatedStorage.Remotes.Validator:FireServer(math.floor(u5 / 1099511627776 * 16777215), u4)
-				game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", bladehit , i, "") 
-			end
-		end
-	end
-end
-
+       	function Click()
+                local AC = CbFw2.activeController
+                for i = 1, 1 do 
+                    local bladehit = require(game.ReplicatedStorage.CombatFramework.RigLib).getBladeHits(
+                        plr.Character,
+                        {plr.Character.HumanoidRootPart},
+                        60
+                    )
+                    local cac = {}
+                    local hash = {}
+                    for k, v in pairs(bladehit) do
+                        if v.Parent:FindFirstChild("HumanoidRootPart") and not hash[v.Parent] then
+                            table.insert(cac, v.Parent.HumanoidRootPart)
+                            hash[v.Parent] = true
+                        end
+                    end
+                    bladehit = cac
+                    if #bladehit > 0 then
+                        local u8 = debug.getupvalue(AC.attack, 5)
+                        local u9 = debug.getupvalue(AC.attack, 6)
+                        local u7 = debug.getupvalue(AC.attack, 4)
+                        local u10 = debug.getupvalue(AC.attack, 7)
+                        local u12 = (u8 * 798405 + u7 * 727595) % u9
+                        local u13 = u7 * 798405
+                        (function()
+                            u12 = (u12 * u9 + u13) % 1099511627776
+                            u8 = math.floor(u12 / u9)
+                            u7 = u12 - u8 * u9
+                        end)()
+                        u10 = u10 + 1
+                        debug.setupvalue(AC.attack, 5, u8)
+                        debug.setupvalue(AC.attack, 6, u9)
+                        debug.setupvalue(AC.attack, 4, u7)
+                        debug.setupvalue(AC.attack, 7, u10)
+                        pcall(function()
+                            if plr.Character:FindFirstChildOfClass("Tool") and AC.blades and AC.blades[1] then
+                                AC.animator.anims.basic[1]:Play(0.01,0.01,0.01)
+                                game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("weaponChange",tostring(GetCurrentBlade()))
+                                game.ReplicatedStorage.Remotes.Validator:FireServer(math.floor(u12 / 1099511627776 * 16777215), u10)
+                                game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", bladehit, i, "")
+                            end
+                        end)
+                    end
+                end
+            end
 
 
 
