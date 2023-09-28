@@ -1303,7 +1303,7 @@ local Library = Update:Window("Fai Fao Hub","rbxassetid://",Enum.KeyCode.RightCo
 ---------------------------
 local bringfrec = 300
 local posX = 0
-local PosY = 30
+local posY = 50
 local posZ = 0
 local TweenSpeed = 250
 
@@ -1325,76 +1325,7 @@ end)
 
 
 	   
-            
-Type = 1
-spawn(function()
-    while wait(.1) do
-        if Type == 1 then
-            Pos = CFrame.new(0,PosY,0)
-		elseif Type == 2 then
-			Pos = CFrame.new(0,PosY,-30)
-		elseif Type == 3 then
-			Pos = CFrame.new(30,PosY,0)
-		elseif Type == 4 then
-			Pos = CFrame.new(0,PosY,30)	
-		elseif Type == 5 then
-			Pos = CFrame.new(-30,PosY,0)
-		elseif Type == 6 then
-			Pos = CFrame.new(0,PosY,-30)
-        end
-        end
-    end)
-
-spawn(function()
-    while wait(.1) do
-        Type = 1
-        wait(0.3)
-        Type = 2
-        wait(0.3)
-        Type = 3
-        wait(0.3)
-        Type = 4
-        wait(0.3)
-        Type = 5
-        wait(0.3)
-    end
-end)
-
-
-
-Type1 = 1
-spawn(function()
-    while wait(.1) do
-        if Type1 == 1 then
-            Pos1 = CFrame.new(0,35,0)
-		elseif Type1 == 2 then
-			Pos1 = CFrame.new(0,35,-30)
-		elseif Type1 == 3 then
-			Pos1 = CFrame.new(30,35,0)
-		elseif Type1 == 4 then
-			Pos1 = CFrame.new(0,35,30)	
-		elseif Type1 == 5 then
-			Pos1 = CFrame.new(-30,35,0)
-		elseif Type1 == 6 then
-			Pos1 = CFrame.new(0,35,-30)
-        end
-        end
-    end)
-
-spawn(function()
-    while wait(.1) do
-        Type1 = 1
-        wait(1)
-        Type1 = 2
-        wait(1)
-        Type1 = 3
-        wait(1)
-        Type1 = 4
-        wait(1)
-        Type1 = 5
-        wait(1)
-    end
-end)
+ 
 
 
 
@@ -3956,7 +3887,7 @@ end)
       repeat game:GetService("RunService").Heartbeat:wait()
 	  AutoHaki()
       EquipTool(SelectWeapon)
-      Tween(v.HumanoidRootPart.CFrame * Pos)
+      Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
       v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
       v.HumanoidRootPart.Transparency = 1
       v.Humanoid.JumpPower = 0
@@ -3976,7 +3907,7 @@ BringMobs = true
       for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"].EnemySpawns:GetChildren()) do
       if string.find(v.Name,NameMon) then
       if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).Magnitude >= 10 then
-        Tween(v.CFrame * Pos)
+        Tween(v.CFrame * CFrame.new(posX,posY,posZ))
       end
       end
       end
@@ -4005,7 +3936,7 @@ BringMobs = true
 		  AutoHaki()
           EquipTool(SelectWeapon)
 		  BringMobs = true
-          Tween(v.HumanoidRootPart.CFrame * Pos)
+          Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
           v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
           v.HumanoidRootPart.Transparency = 1
           v.Humanoid.JumpPower = 0
@@ -4150,7 +4081,7 @@ local MasteryType = {
 				AutoHaki()
 			  EquipTool(SelectWeapon)
 			  BringMobs = true
-			  Tween(v.HumanoidRootPart.CFrame * Pos1)
+			  Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
 			  v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
 			  v.HumanoidRootPart.Transparency = 1
 			  v.Humanoid.JumpPower = 0
@@ -4197,7 +4128,7 @@ local MasteryType = {
 				UseSkillGun = false
 				AutoHaki()
 			  EquipTool(SelectWeapon)
-			  Tween(v.HumanoidRootPart.CFrame * Pos)
+			  Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
 			  v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
 			  v.HumanoidRootPart.Transparency = 1
 			  v.Humanoid.JumpPower = 0
@@ -4233,7 +4164,7 @@ local MasteryType = {
 				AutoHaki()
 				BringMobs = true
 			  EquipTool(SelectWeapon)
-			  Tween(v.HumanoidRootPart.CFrame * Pos1)
+			  Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
 			  v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
 			  v.HumanoidRootPart.Transparency = 1
 			  v.Humanoid.JumpPower = 0
@@ -4277,14 +4208,14 @@ local MasteryType = {
 			  repeat game:GetService("RunService").Heartbeat:wait()
 			  if v.Humanoid.Health <= v.Humanoid.MaxHealth * KillPercent / 100 then
 			  EquipTool(CurrentEquipGun)
-			  Tween(v.HumanoidRootPart.CFrame * Pos)
+			  Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
 			  game:GetService("Players").LocalPlayer.Character[CurrentEquipGun].Cooldown.Value = 0
 			  UseSkillGun = true
 			  else
 				UseSkillGun = false
 				AutoHaki()
 			  EquipTool(SelectWeapon)
-			  Tween(v.HumanoidRootPart.CFrame * Pos)
+			  Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
 			  v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
 			  v.HumanoidRootPart.Transparency = 1
 			  v.Humanoid.JumpPower = 0
@@ -4301,7 +4232,7 @@ local MasteryType = {
 			  end
 			  else
 				UseSkillGun = false
-			  Tween(game:GetService("ReplicatedStorage"):FindFirstChild(SelectBoss).HumanoidRootPart.CFrame * Pos)
+			  Tween(game:GetService("ReplicatedStorage"):FindFirstChild(SelectBoss).HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
 			  end
 			  end)
 			end
@@ -4382,7 +4313,7 @@ local MasteryType = {
       if v.Name == MonFarm and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health <= v.Humanoid.MaxHealth * KillPercent / 100 then
       repeat game:GetService("RunService").Heartbeat:wait()
       EquipTool(game.Players.LocalPlayer.Data.DevilFruit.Value)
-      Tween(v.HumanoidRootPart.CFrame * Pos)
+      Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
       PositionSkillMasteryDevilFruit = v.HumanoidRootPart.Position
       if game:GetService("Players").LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Data.DevilFruit.Value) then
       game:GetService("Players").LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Data.DevilFruit.Value).MousePos.Value = PositionSkillMasteryDevilFruit
@@ -4455,7 +4386,7 @@ local MasteryType = {
 	AutoHaki()
       EquipTool(SelectWeapon)
 	  BringMobs = true
-      Tween(v.HumanoidRootPart.CFrame * Pos1)
+      Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
       v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
       v.HumanoidRootPart.Transparency = 1
       v.Humanoid.JumpPower = 0
@@ -4499,7 +4430,7 @@ local MasteryType = {
         _G.UseSkill = false
 		AutoHaki()
       EquipTool(SelectWeapon)
-      Tween(v.HumanoidRootPart.CFrame * Pos)
+      Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
       v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
       v.HumanoidRootPart.Transparency = 1
       v.Humanoid.JumpPower = 0
@@ -4534,7 +4465,7 @@ local MasteryType = {
 		AutoHaki()
 		BringMobs = true
       EquipTool(SelectWeapon)
-      Tween(v.HumanoidRootPart.CFrame * Pos1)
+      Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
       v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
       v.HumanoidRootPart.Transparency = 1
       v.Humanoid.JumpPower = 0
@@ -4582,7 +4513,7 @@ local MasteryType = {
         _G.UseSkill = false
 		AutoHaki()
       EquipTool(SelectWeapon)
-      Tween(v.HumanoidRootPart.CFrame * Pos)
+      Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
       v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
       v.HumanoidRootPart.Transparency = 1
       v.Humanoid.JumpPower = 0
@@ -4669,7 +4600,7 @@ else
               repeat game:GetService("RunService").Heartbeat:wait()
 			  AutoHaki()
               EquipTool(SelectWeapon)
-              Tween(v.HumanoidRootPart.CFrame * Pos)
+              Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
 			  v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
               v.HumanoidRootPart.Transparency = 1
               v.Humanoid.JumpPower = 0
@@ -4687,13 +4618,13 @@ else
               end
               for i,v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
               if v.Name == "Reborn Skeleton [Lv. 1975]" then
-              Tween(v.HumanoidRootPart.CFrame * Pos)
+              Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
               elseif v.Name == "Living Zombie [Lv. 2000]" then
-              Tween(v.HumanoidRootPart.CFrame * Pos)
+              Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
               elseif v.Name == "Demonic Soul [Lv. 2025]" then
               Tween(v.HumanoidRootPart.CFrame *Pos)
               elseif v.Name == "Posessed Mummy [Lv. 2050]" then
-              Tween(v.HumanoidRootPart.CFrame * Pos)
+              Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
               end
               end
               end)
@@ -4720,7 +4651,7 @@ else
 			AutoHaki()
             EquipTool(SelectWeapon)
 			BringMobs = false
-            Tween(v.HumanoidRootPart.CFrame * Pos)
+            Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
             v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
             v.HumanoidRootPart.Transparency = 1
             v.Humanoid.JumpPower = 0
@@ -4747,7 +4678,7 @@ else
             repeat task.wait()
 			AutoHaki()
             EquipTool(SelectWeapon)
-            Tween(v.HumanoidRootPart.CFrame * Pos)
+            Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
 			BringMobs = true
             v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
             v.HumanoidRootPart.Transparency = 1
@@ -5027,7 +4958,7 @@ wait(0.4)
     repeat game:GetService("RunService").Heartbeat:wait()
 	AutoHaki()
     EquipTool(SelectWeapon)
-    Tween(v.HumanoidRootPart.CFrame * Pos)
+    Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
     v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
     v.HumanoidRootPart.Transparency = 1
     v.Humanoid.JumpPower = 0
@@ -5091,7 +5022,7 @@ end)
                                                 EquipTool(SelectWeapon)
 												AutoHaki()
 												BringMobs = false
-                                                topos(v.HumanoidRootPart.CFrame * Pos)
+                                                topos(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
                                                 MonsterPosition = v.HumanoidRootPart.CFrame
                                                 v.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
                                                 v.Humanoid.JumpPower = 0
@@ -5110,11 +5041,11 @@ end)
                                 end
                             else
                                 if game:GetService("ReplicatedStorage"):FindFirstChild("Diablo [Lv. 1750]") then
-                                    BTP(game:GetService("ReplicatedStorage"):FindFirstChild("Diablo [Lv. 1750]").HumanoidRootPart.CFrame * Pos)
+                                    BTP(game:GetService("ReplicatedStorage"):FindFirstChild("Diablo [Lv. 1750]").HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
                                 elseif game:GetService("ReplicatedStorage"):FindFirstChild("Deandre [Lv. 1750]") then
-                                    BTP(game:GetService("ReplicatedStorage"):FindFirstChild("Deandre [Lv. 1750]").HumanoidRootPart.CFrame * Pos)
+                                    BTP(game:GetService("ReplicatedStorage"):FindFirstChild("Deandre [Lv. 1750]").HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
                                 elseif game:GetService("ReplicatedStorage"):FindFirstChild("Urban [Lv. 1750]") then
-                                    BTP(game:GetService("ReplicatedStorage"):FindFirstChild("Urban [Lv. 1750]").HumanoidRootPart.CFrame * Pos)
+                                    BTP(game:GetService("ReplicatedStorage"):FindFirstChild("Urban [Lv. 1750]").HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
                                 end
                             end
                         end
@@ -5179,7 +5110,7 @@ spawn(function()
 	AutoHaki()
     EquipTool(SelectWeapon)
 	BringMobs = true
-    Tween(v.HumanoidRootPart.CFrame * Pos)
+    Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
     v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
     v.HumanoidRootPart.Transparency = 1
     v.Humanoid.JumpPower = 0
@@ -5199,7 +5130,7 @@ spawn(function()
       for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"].EnemySpawns:GetChildren()) do
     if string.find(v.Name, MMon) then
     if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).Magnitude >= 10 then
-    Tween(v.CFrame * Pos)
+    Tween(v.CFrame * CFrame.new(posX,posY,posZ))
     end
     end
     end
@@ -5576,7 +5507,7 @@ Main:Seperator("Misc Items")
                                     AutoHaki()
                                     EquipTool(SelectWeapon)
                                     v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-                                    Tween(v.HumanoidRootPart.CFrame * Pos)
+                                    Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
                                     game:GetService("VirtualUser"):CaptureController()
                                     game:GetService("VirtualUser"):Button1Down(Vector2.new(1280, 670))
                                     v.HumanoidRootPart.Transparency = 1
