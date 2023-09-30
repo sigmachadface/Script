@@ -1311,7 +1311,7 @@ local TweenSpeed = 250
 
 
 
-Setitng:Toggle("Fast Attack 1", true, function(value)
+Setting:Toggle("Fast Attack 1", true, function(value)
     _G.FastAttack = value
 end)
 
