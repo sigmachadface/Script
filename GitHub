@@ -1738,29 +1738,7 @@ spawn(function()
 
 
 
-  function topos(Pos)
-    Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-    if Distance < 25 then
-        Speed = 5000
-    elseif Distance < 50 then
-        Speed = 2000
-    elseif Distance < 150 then
-        Speed = 800
-    elseif Distance < 250 then
-        Speed = 600
-    elseif Distance < 500 then
-        Speed = 300
-    elseif Distance < 750 then
-        Speed = 250
-    elseif Distance >= 1000 then
-        Speed = 200
-    end
-    game:GetService("TweenService"):Create(
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,
-        TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
-        {CFrame = Pos}
-    ):Play()
-end
+ 
 
 
 ------ Main Farm
@@ -3662,34 +3640,28 @@ if game.PlaceId == 2753915549 then
     wait(Distance/Speed)
     _G.Clip2 = false
     end
-    
-    --// Tween Farm
-    function Tween(P1)
-    local Distance = (P1.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-    if Distance >= 1 then
-    Speed = TweenSpeed
-    end
-    game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear), {
-      CFrame = P1
-    }):Play()
-    if _G.CancelTween then
-    game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear), {
-      CFrame = P1
-    }):Cancel()
-    end
-    end
-    
-    --// Stop Tween Farm
-    function CancelTween(target)
-    if not target then
-    _G.CancelTween = true
-    wait()
-    Tween(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
-    wait()
-    _G.CancelTween = false
-    end
-    end
+   
 
+
+
+ function Tween(Pos)
+        Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+        if game.Players.LocalPlayer.Character.Humanoid.Sit == true then game.Players.LocalPlayer.Character.Humanoid.Sit = false end
+        pcall(function() tween = game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,TweenInfo.new(Distance/210, Enum.EasingStyle.Linear),{CFrame = Pos}) end)
+        tween:Play()
+        if Distance <= 250 then
+            tween:Cancel()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Pos
+        end
+        if _G.StopTween == true then
+            tween:Cancel()
+            _G.Clip = false
+        end
+    end
+    
+    function GetDistance(target)
+        return math.floor((target.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude)
+    end
 
 
 
@@ -3964,54 +3936,7 @@ spawn(function()
   end)
 
 
-    function TP(Pos)
-    Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-    if Distance < 25 then
-        Speed = 10000
-    elseif Distance < 50 then
-        Speed = 2000
-    elseif Distance < 150 then
-        Speed = 800
-    elseif Distance < 250 then
-        Speed = 600
-    elseif Distance < 500 then
-        Speed = 400
-    elseif Distance < 750 then
-        Speed = 250
-    elseif Distance >= 1000 then
-        Speed = 200
-    end
-    game:GetService("TweenService"):Create(
-        game.Players.LocalPlayer.Character.HumanoidRootPart,
-        TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
-        {CFrame = Pos}
-    ):Play()
-end
-
-    function TP1(Pos)
-        Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-        if Distance < 25 then
-            Speed = 5000
-        elseif Distance < 50 then
-            Speed = 2000
-        elseif Distance < 150 then
-            Speed = 800
-        elseif Distance < 250 then
-            Speed = 600
-        elseif Distance < 500 then
-            Speed = 300
-        elseif Distance < 750 then
-            Speed = 250
-        elseif Distance >= 1000 then
-            Speed = 200
-        end
-        game:GetService("TweenService"):Create(
-            game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,
-            TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
-            {CFrame = Pos}
-        ):Play()
-end
-
+  
 
 
 
@@ -4026,17 +3951,7 @@ end)
       CheckLevel()
       if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
       game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-     
-	   if BypassTP then
-                    if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQ.Position).Magnitude > 2500 then
-			        BTP(CFrameQ)
-				    elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQ.Position).Magnitude < 2500 then
-				    TP2(CFrameQ)
-					end
-				else
-				    TP2(CFrameQ)
-				end
-		
+				    Tween(CFrameQ)
       if (CFrameQ.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5 then
       game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest",NameQuest,QuestLv)
       end
@@ -4047,8 +3962,7 @@ end)
       repeat game:GetService("RunService").Heartbeat:wait()
 	  AutoHaki()
       EquipTool(SelectWeapon)
-	  BringBone()
-	  BringMobs = false
+	  BringMobs = true
       Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
       v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
       v.HumanoidRootPart.Transparency = 1
@@ -4920,7 +4834,7 @@ else
 
 
             	
-	          TP2(cakepos)
+	          Tween(cakepos)
 		
             end
             end
@@ -4956,30 +4870,6 @@ else
 
 
 
-
-function topos(Pos)
-        Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-        if Distance < 25 then
-            Speed = 5000
-        elseif Distance < 50 then
-            Speed = 2000
-        elseif Distance < 150 then
-            Speed = 800
-        elseif Distance < 250 then
-            Speed = 600
-        elseif Distance < 500 then
-            Speed = 300
-        elseif Distance < 750 then
-            Speed = 250
-        elseif Distance >= 1000 then
-            Speed = 200
-        end
-        game:GetService("TweenService"):Create(
-            game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,
-            TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
-            {CFrame = Pos}
-        ):Play()
-end
 
 
 
@@ -5217,7 +5107,7 @@ end)
                                                 EquipTool(SelectWeapon)
 												AutoHaki()
 												BringMobs = false
-                                                topos(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
+                                                Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
                                                 MonsterPosition = v.HumanoidRootPart.CFrame
                                                 v.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
                                                 v.Humanoid.JumpPower = 0
@@ -5461,7 +5351,7 @@ end)
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyFishmanKarate")
                     if string.find(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate"), "keys") then  
                         if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Water Key") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Water Key") then
-                            topos(CFrame.new(-2604.6958, 239.432526, -10315.1982, 0.0425701365, 0, -0.999093413, 0, 1, 0, 0.999093413, 0, 0.0425701365))
+                            Tween(CFrame.new(-2604.6958, 239.432526, -10315.1982, 0.0425701365, 0, -0.999093413, 0, 1, 0, 0.999093413, 0, 0.0425701365))
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate")
                         elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild("Fishman Karate") and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Fishman Karate").Level.Value >= 400 then
                         else 
@@ -5478,7 +5368,7 @@ end)
                                             v.HumanoidRootPart.CanCollide = false
                                             v.HumanoidRootPart.Size = Vector3.new(50,50,50)
                                             v.HumanoidRootPart.CFrame = OldCFrameShark
-                                            topos(v.HumanoidRootPart.CFrame*CFrame.new(2,20,2))
+                                            Tween(v.HumanoidRootPart.CFrame*CFrame.new(2,20,2))
                                             game:GetService("VirtualUser"):CaptureController()
                                             game:GetService("VirtualUser"):Button1Down(Vector2.new(1280, 670))
                                             sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
@@ -5486,7 +5376,7 @@ end)
                                     end
                                 end
                             else
-                                topos(CFrame.new(-3570.18652, 123.328949, -11555.9072, 0.465199202, -1.3857326e-08, 0.885206044, 4.0332897e-09, 1, 1.35347511e-08, -0.885206044, -2.72606271e-09, 0.465199202))
+                                Tween(CFrame.new(-3570.18652, 123.328949, -11555.9072, 0.465199202, -1.3857326e-08, 0.885206044, 4.0332897e-09, 1, 1.35347511e-08, -0.885206044, -2.72606271e-09, 0.465199202))
                                 wait(3)
                             end
                         end
@@ -5528,16 +5418,16 @@ end)
                         if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Electro") or game:GetService("Players").LocalPlayer.Character:FindFirstChild("Electro") and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Electro").Level.Value >= 400 or game:GetService("Players").LocalPlayer.Character:FindFirstChild("Electro").Level.Value >= 400 then
                             if _G.AutoFarm == false then
                                 repeat task.wait()
-                                    topos(CFrame.new(-10371.4717, 330.764496, -10131.4199))
+                                    Tween(CFrame.new(-10371.4717, 330.764496, -10131.4199))
                                 until not _G.AutoElectricClaw or (game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position - CFrame.new(-10371.4717, 330.764496, -10131.4199).Position).Magnitude <= 10
                                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw","Start")
                                 wait(2)
                                 repeat task.wait()
-                                    topos(CFrame.new(-12550.532226563, 336.22631835938, -7510.4233398438))
+                                    Tween(CFrame.new(-12550.532226563, 336.22631835938, -7510.4233398438))
                                 until not _G.AutoElectricClaw or (game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position - CFrame.new(-12550.532226563, 336.22631835938, -7510.4233398438).Position).Magnitude <= 10
                                 wait(1)
                                 repeat task.wait()
-                                    topos(CFrame.new(-10371.4717, 330.764496, -10131.4199))
+                                    Tween(CFrame.new(-10371.4717, 330.764496, -10131.4199))
                                 until not _G.AutoElectricClaw or (game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position - CFrame.new(-10371.4717, 330.764496, -10131.4199).Position).Magnitude <= 10
                                 wait(1)
                                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw")
@@ -5545,16 +5435,16 @@ end)
                                 _G.AutoFarm = false
                                 wait(1)
                                 repeat task.wait()
-                                    topos(CFrame.new(-10371.4717, 330.764496, -10131.4199))
+                                    Tween(CFrame.new(-10371.4717, 330.764496, -10131.4199))
                                 until not _G.AutoElectricClaw or (game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position - CFrame.new(-10371.4717, 330.764496, -10131.4199).Position).Magnitude <= 10
                                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw","Start")
                                 wait(2)
                                 repeat task.wait()
-                                    topos(CFrame.new(-12550.532226563, 336.22631835938, -7510.4233398438))
+                                    Tween(CFrame.new(-12550.532226563, 336.22631835938, -7510.4233398438))
                                 until not _G.AutoElectricClaw or (game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position - CFrame.new(-12550.532226563, 336.22631835938, -7510.4233398438).Position).Magnitude <= 10
                                 wait(1)
                                 repeat task.wait()
-                                    topos(CFrame.new(-10371.4717, 330.764496, -10131.4199))
+                                    Tween(CFrame.new(-10371.4717, 330.764496, -10131.4199))
                                 until not _G.AutoElectricClaw or (game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position - CFrame.new(-10371.4717, 330.764496, -10131.4199).Position).Magnitude <= 10
                                 wait(1)
                                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw")
@@ -5707,7 +5597,7 @@ Main:Seperator("Misc Items")
                                     AutoHaki()
                                     EquipTool(SelectWeapon)
                                     v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-                                    TP2(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
+                                    Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
                                     v.HumanoidRootPart.Transparency = 1
                                     sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
 									Click()
@@ -5716,11 +5606,11 @@ Main:Seperator("Misc Items")
                             end
                         end
                     elseif game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Hallow Essence") or game:GetService("Players").LocalPlayer.Character:FindFirstChild("Hallow Essence") then
-                        repeat TP2(CFrame.new(-8932.322265625, 146.83154296875, 6062.55078125)) wait() until (CFrame.new(-8932.322265625, 146.83154296875, 6062.55078125).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 8                        
+                        repeat Tween(CFrame.new(-8932.322265625, 146.83154296875, 6062.55078125)) wait() until (CFrame.new(-8932.322265625, 146.83154296875, 6062.55078125).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 8                        
                         EquipTool("Hallow Essence")
                     else
                         if game:GetService("ReplicatedStorage"):FindFirstChild("Soul Reaper [Lv. 2100] [Raid Boss]") then
-                            TP2(game:GetService("ReplicatedStorage"):FindFirstChild("Soul Reaper [Lv. 2100] [Raid Boss]").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+                            Tween(game:GetService("ReplicatedStorage"):FindFirstChild("Soul Reaper [Lv. 2100] [Raid Boss]").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
                         else
                             if AutoHallowSycthe1 then
                                 Hop()
@@ -5926,7 +5816,7 @@ Teleport:Label("Island")
         if BypassTP then
             BTP(CFrame.new(1071.2832, 16.3085976, 1426.86792))
         else
-            TP2(CFrame.new(1071.2832, 16.3085976, 1426.86792))
+            Tween(CFrame.new(1071.2832, 16.3085976, 1426.86792))
         end
         
     end)
@@ -5934,7 +5824,7 @@ Teleport:Label("Island")
         if BypassTP then
             BTP(CFrame.new(-2573.3374, 6.88881969, 2046.99817))
         else
-            TP2(CFrame.new(-2573.3374, 6.88881969, 2046.99817))
+            Tween(CFrame.new(-2573.3374, 6.88881969, 2046.99817))
         end
         
     end)
@@ -5942,7 +5832,7 @@ Teleport:Label("Island")
         if BypassTP then
             BTP(CFrame.new(-655.824158, 7.88708115, 1436.67908))
         else
-            TP2(CFrame.new(-655.824158, 7.88708115, 1436.67908))
+            Tween(CFrame.new(-655.824158, 7.88708115, 1436.67908))
         end
         
     end)
@@ -5950,7 +5840,7 @@ Teleport:Label("Island")
         if BypassTP then
             BTP(CFrame.new(-1249.77222, 11.8870859, 341.356476))
         else
-            TP2(CFrame.new(-1249.77222, 11.8870859, 341.356476))
+            Tween(CFrame.new(-1249.77222, 11.8870859, 341.356476))
         end
         
     end)
@@ -5958,7 +5848,7 @@ Teleport:Label("Island")
         if BypassTP then
             BTP(CFrame.new(-1122.34998, 4.78708982, 3855.91992))
         else
-            TP2(CFrame.new(-1122.34998, 4.78708982, 3855.91992))
+            Tween(CFrame.new(-1122.34998, 4.78708982, 3855.91992))
         end
         
     end)
@@ -5966,7 +5856,7 @@ Teleport:Label("Island")
         if BypassTP then
             BTP(CFrame.new(1094.14587, 6.47350502, 4192.88721))
         else
-            TP2(CFrame.new(1094.14587, 6.47350502, 4192.88721))
+            Tween(CFrame.new(1094.14587, 6.47350502, 4192.88721))
         end
         
     end)
@@ -5974,7 +5864,7 @@ Teleport:Label("Island")
         if BypassTP then
             BTP(CFrame.new(1198.00928, 27.0074959, -1211.73376))
         else
-            TP2(CFrame.new(1198.00928, 27.0074959, -1211.73376))
+            Tween(CFrame.new(1198.00928, 27.0074959, -1211.73376))
         end
         
     end)
@@ -5982,7 +5872,7 @@ Teleport:Label("Island")
         if BypassTP then
             BTP(CFrame.new(-4505.375, 20.687294, 4260.55908))
         else
-            TP2(CFrame.new(-4505.375, 20.687294, 4260.55908))
+            Tween(CFrame.new(-4505.375, 20.687294, 4260.55908))
         end
         
     end)
@@ -5990,7 +5880,7 @@ Teleport:Label("Island")
         if BypassTP then
             BTP(CFrame.new(-1428.35474, 7.38933945, -3014.37305))
         else
-            TP2(CFrame.new(-1428.35474, 7.38933945, -3014.37305))
+            Tween(CFrame.new(-1428.35474, 7.38933945, -3014.37305))
         end
         
     end)
@@ -5998,7 +5888,7 @@ Teleport:Label("Island")
         if BypassTP then
             BTP(CFrame.new(-4970.21875, 717.707275, -2622.35449))
         else
-            TP2(CFrame.new(-4970.21875, 717.707275, -2622.35449))
+            Tween(CFrame.new(-4970.21875, 717.707275, -2622.35449))
         end
         
     end)
@@ -6006,7 +5896,7 @@ Teleport:Label("Island")
         if BypassTP then
             BTP(CFrame.new(-4813.0249, 903.708557, -1912.69055))
         else
-            TP2(CFrame.new(-4813.0249, 903.708557, -1912.69055))
+            Tween(CFrame.new(-4813.0249, 903.708557, -1912.69055))
         end
         
     end)
@@ -6014,7 +5904,7 @@ Teleport:Label("Island")
         if BypassTP then
             BTP(CFrame.new(-7952.31006, 5545.52832, -320.704956))
         else
-            TP2(CFrame.new(-7952.31006, 5545.52832, -320.704956))
+            Tween(CFrame.new(-7952.31006, 5545.52832, -320.704956))
         end
         
     end)
@@ -6022,7 +5912,7 @@ Teleport:Label("Island")
         if BypassTP then
             BTP(CFrame.new(-7793.43896, 5607.22168, -2016.58362))
         else
-            TP2(CFrame.new(-7793.43896, 5607.22168, -2016.58362))
+            Tween(CFrame.new(-7793.43896, 5607.22168, -2016.58362))
         end
         
     end)
@@ -6030,7 +5920,7 @@ Teleport:Label("Island")
         if BypassTP then
             BTP(CFrame.new(4854.16455, 5.68742752, 740.194641))
         else
-            TP2(CFrame.new(4854.16455, 5.68742752, 740.194641))
+            Tween(CFrame.new(4854.16455, 5.68742752, 740.194641))
         end
         
     end)
@@ -6038,7 +5928,7 @@ Teleport:Label("Island")
         if BypassTP then
             BTP(CFrame.new(-5231.75879, 8.61593437, 8467.87695))
         else
-            TP2(CFrame.new(-5231.75879, 8.61593437, 8467.87695))
+            Tween(CFrame.new(-5231.75879, 8.61593437, 8467.87695))
         end
     
     end)
@@ -6046,15 +5936,15 @@ Teleport:Label("Island")
         if BypassTP then
             BTP(CFrame.new(61163.8516, 11.7796879, 1819.78418))
         else
-            TP2(CFrame.new(61163.8516, 11.7796879, 1819.78418))
+            Tween(CFrame.new(61163.8516, 11.7796879, 1819.78418))
         end
         
     end)
     Teleport:Button("Fountain City",function()
         if BypassTP then
-            TP2(CFrame.new(5132.7124, 4.53632832, 4037.8562))
+            Tween(CFrame.new(5132.7124, 4.53632832, 4037.8562))
         else
-            TP2(CFrame.new(5132.7124, 4.53632832, 4037.8562))
+            Tween(CFrame.new(5132.7124, 4.53632832, 4037.8562))
         end
         
     end)
@@ -6062,7 +5952,7 @@ Teleport:Label("Island")
         if BypassTP then
             BTP(CFrame.new(6262.72559, 71.3003616, 3998.23047))
         else
-            TP2(CFrame.new(6262.72559, 71.3003616, 3998.23047))
+            Tween(CFrame.new(6262.72559, 71.3003616, 3998.23047))
         end
         
     end)
@@ -6070,7 +5960,7 @@ Teleport:Label("Island")
         if BypassTP then
             BTP(CFrame.new(-1442.16553, 29.8788261, -28.3547478))
         else
-            TP2(CFrame.new(-1442.16553, 29.8788261, -28.3547478))
+            Tween(CFrame.new(-1442.16553, 29.8788261, -28.3547478))
         end
         
     end)
@@ -6078,7 +5968,7 @@ Teleport:Label("Island")
         if BypassTP then
             BTP(CFrame.new(-2850.20068, 7.39224768, 5354.99268))
         else
-            TP2(CFrame.new(-2850.20068, 7.39224768, 5354.99268))
+            Tween(CFrame.new(-2850.20068, 7.39224768, 5354.99268))
         end
         
     end)
@@ -6088,7 +5978,7 @@ elseif Second_Sea then
         if BypassTP then
             BTP(CFrame.new(82.9490662, 18.0710983, 2834.98779))
         else
-            TP2(CFrame.new(82.9490662, 18.0710983, 2834.98779))
+            Tween(CFrame.new(82.9490662, 18.0710983, 2834.98779))
         end
         
     end)
@@ -6096,7 +5986,7 @@ elseif Second_Sea then
         if BypassTP then
             BTP(CFrame.new(-394.983521, 118.503128, 1245.8446))
         else
-            TP2(CFrame.new(-394.983521, 118.503128, 1245.8446))
+            Tween(CFrame.new(-394.983521, 118.503128, 1245.8446))
         end
         
     end)
@@ -6104,7 +5994,7 @@ elseif Second_Sea then
         if BypassTP then
             BTP(CFrame.new(-390.096313, 331.886475, 673.464966))
         else
-            TP2(CFrame.new(-390.096313, 331.886475, 673.464966))
+            Tween(CFrame.new(-390.096313, 331.886475, 673.464966))
         end
         
     end)
@@ -6112,7 +6002,7 @@ elseif Second_Sea then
         if BypassTP then
             BTP(CFrame.new(2302.19019, 15.1778421, 663.811035))
         else
-            TP2(CFrame.new(2302.19019, 15.1778421, 663.811035))
+            Tween(CFrame.new(2302.19019, 15.1778421, 663.811035))
         end
         
     end)
@@ -6120,7 +6010,7 @@ elseif Second_Sea then
         if BypassTP then
             BTP(CFrame.new(-2372.14697, 72.9919434, -3166.51416))
         else
-            TP2(CFrame.new(-2372.14697, 72.9919434, -3166.51416))
+            Tween(CFrame.new(-2372.14697, 72.9919434, -3166.51416))
         end
         
     end)
@@ -6128,7 +6018,7 @@ elseif Second_Sea then
         if BypassTP then
             BTP(CFrame.new(-385.250916, 73.0458984, 297.388397))
         else
-            TP2(CFrame.new(-385.250916, 73.0458984, 297.388397))
+            Tween(CFrame.new(-385.250916, 73.0458984, 297.388397))
         end
         
     end)
@@ -6136,7 +6026,7 @@ elseif Second_Sea then
         if BypassTP then
             BTP(CFrame.new(430.42569, 210.019623, -432.504791))
         else
-            TP2(CFrame.new(430.42569, 210.019623, -432.504791))
+            Tween(CFrame.new(430.42569, 210.019623, -432.504791))
         end
         
     end)
@@ -6144,7 +6034,7 @@ elseif Second_Sea then
         if BypassTP then
             BTP(CFrame.new(-1836.58191, 44.5890656, 1360.30652))
         else
-            TP2(CFrame.new(-1836.58191, 44.5890656, 1360.30652))
+            Tween(CFrame.new(-1836.58191, 44.5890656, 1360.30652))
         end
         
     end)
@@ -6152,7 +6042,7 @@ elseif Second_Sea then
         if BypassTP then
             BTP(CFrame.new(-5411.47607, 48.8234024, -721.272522))
         else
-            TP2(CFrame.new(-5411.47607, 48.8234024, -721.272522))
+            Tween(CFrame.new(-5411.47607, 48.8234024, -721.272522))
         end
         
     end)
@@ -6160,7 +6050,7 @@ elseif Second_Sea then
         if BypassTP then
             BTP(CFrame.new(511.825226, 401.765198, -5380.396))
         else
-            TP2(CFrame.new(511.825226, 401.765198, -5380.396))
+            Tween(CFrame.new(511.825226, 401.765198, -5380.396))
         end
         
     end)
@@ -6168,7 +6058,7 @@ elseif Second_Sea then
         if BypassTP then
             BTP(CFrame.new(-6026.96484, 14.7461271, -5071.96338))
         else
-            TP2(CFrame.new(-6026.96484, 14.7461271, -5071.96338))
+            Tween(CFrame.new(-6026.96484, 14.7461271, -5071.96338))
         end
         
     end)
@@ -6176,7 +6066,7 @@ elseif Second_Sea then
         if BypassTP then
             BTP(CFrame.new(-5478.39209, 15.9775667, -5246.9126))
         else
-            TP2(CFrame.new(-5478.39209, 15.9775667, -5246.9126))
+            Tween(CFrame.new(-5478.39209, 15.9775667, -5246.9126))
         end
         
     end)
@@ -6184,7 +6074,7 @@ elseif Second_Sea then
         if BypassTP then
             BTP(CFrame.new(902.059143, 124.752518, 33071.8125))
         else
-            TP2(CFrame.new(902.059143, 124.752518, 33071.8125))
+            Tween(CFrame.new(902.059143, 124.752518, 33071.8125))
         end
         
     end)
@@ -6192,7 +6082,7 @@ elseif Second_Sea then
         if BypassTP then
             BTP(CFrame.new(5400.40381, 28.21698, -6236.99219))
         else
-            TP2(CFrame.new(5400.40381, 28.21698, -6236.99219))
+            Tween(CFrame.new(5400.40381, 28.21698, -6236.99219))
         end
         
     end)
@@ -6200,7 +6090,7 @@ elseif Second_Sea then
         if BypassTP then
             BTP(CFrame.new(-3043.31543, 238.881271, -10191.5791))
         else
-            TP2(CFrame.new(-3043.31543, 238.881271, -10191.5791))
+            Tween(CFrame.new(-3043.31543, 238.881271, -10191.5791))
         end
         
     end)
@@ -6208,7 +6098,7 @@ elseif Second_Sea then
         if BypassTP then
             BTP(CFrame.new(4748.78857, 8.35370827, 2849.57959))
         else
-            TP2(CFrame.new(4748.78857, 8.35370827, 2849.57959))
+            Tween(CFrame.new(4748.78857, 8.35370827, 2849.57959))
         end
         
     end)
@@ -6216,7 +6106,7 @@ elseif Second_Sea then
         if BypassTP then
             BTP(CFrame.new(-260.358917, 49325.7031, -35259.3008))
         else
-            TP2(CFrame.new(-260.358917, 49325.7031, -35259.3008))
+            Tween(CFrame.new(-260.358917, 49325.7031, -35259.3008))
         end
         
     end)
@@ -6226,7 +6116,7 @@ elseif Third_Sea then
         if BypassTP then
             BTP(CFrame.new(-610.309692, 57.8323097, 6436.33594))
         else
-            TP2(CFrame.new(-610.309692, 57.8323097, 6436.33594))
+            Tween(CFrame.new(-610.309692, 57.8323097, 6436.33594))
         end
         
     end)
@@ -6234,7 +6124,7 @@ elseif Third_Sea then
         if BypassTP then
             BTP(CFrame.new(5229.99561, 603.916565, 345.154022))
         else
-            TP2(CFrame.new(5229.99561, 603.916565, 345.154022))
+            Tween(CFrame.new(5229.99561, 603.916565, 345.154022))
         end
         
     end)
@@ -6242,7 +6132,7 @@ elseif Third_Sea then
         if BypassTP then
             BTP(CFrame.new(2174.94873, 28.7312393, -6728.83154))
         else
-            TP2(CFrame.new(2174.94873, 28.7312393, -6728.83154))
+            Tween(CFrame.new(2174.94873, 28.7312393, -6728.83154))
         end
         
     end)
@@ -6250,7 +6140,7 @@ elseif Third_Sea then
         if BypassTP then
             BTP(CFrame.new(-5477.62842, 313.794739, -2808.4585))
         else
-            TP2(CFrame.new(-5477.62842, 313.794739, -2808.4585))
+            Tween(CFrame.new(-5477.62842, 313.794739, -2808.4585))
         end
         
     end)
@@ -6258,7 +6148,7 @@ elseif Third_Sea then
         if BypassTP then
             BTP(CFrame.new(-10919.2998, 331.788452, -8637.57227))
         else
-            TP2(CFrame.new(-10919.2998, 331.788452, -8637.57227))
+            Tween(CFrame.new(-10919.2998, 331.788452, -8637.57227))
         end
         
     end)
@@ -6266,7 +6156,7 @@ elseif Third_Sea then
         if BypassTP then
             BTP(CFrame.new(-12553.8125, 332.403961, -7621.91748))
         else
-            TP2(CFrame.new(-12553.8125, 332.403961, -7621.91748))
+            Tween(CFrame.new(-12553.8125, 332.403961, -7621.91748))
         end
         
     end)
@@ -6274,7 +6164,7 @@ elseif Third_Sea then
         if BypassTP then
             BTP(CFrame.new(5217.35693, 6.56511116, 1100.88159))
         else
-            TP2(CFrame.new(5217.35693, 6.56511116, 1100.88159))
+            Tween(CFrame.new(5217.35693, 6.56511116, 1100.88159))
         end
         
     end)
@@ -6282,7 +6172,7 @@ elseif Third_Sea then
         if BypassTP then
             BTP(CFrame.new(5220.28955, 72.8193436, -1450.86304))
         else
-            TP2(CFrame.new(5220.28955, 72.8193436, -1450.86304))
+            Tween(CFrame.new(5220.28955, 72.8193436, -1450.86304))
         end
         
     end)
@@ -6290,7 +6180,7 @@ elseif Third_Sea then
         if BypassTP then
             BTP(CFrame.new(5310.8095703125, 21.594484329224, 129.39053344727))
         else
-            TP2(CFrame.new(5310.8095703125, 21.594484329224, 129.39053344727))
+            Tween(CFrame.new(5310.8095703125, 21.594484329224, 129.39053344727))
         end
         
     end)
@@ -6298,7 +6188,7 @@ elseif Third_Sea then
         if BypassTP then
             BTP(CFrame.new(-9512.3623046875, 142.13258361816, 5548.845703125))
         else
-            TP2(CFrame.new(-9512.3623046875, 142.13258361816, 5548.845703125))
+            Tween(CFrame.new(-9512.3623046875, 142.13258361816, 5548.845703125))
         end
         
     end)
@@ -6306,7 +6196,7 @@ elseif Third_Sea then
         if BypassTP then
             BTP(CFrame.new(-2142, 48, -10031))
         else
-            TP2(CFrame.new(-2142, 48, -10031))
+            Tween(CFrame.new(-2142, 48, -10031))
         end
         
     end)
@@ -6314,7 +6204,7 @@ elseif Third_Sea then
         if BypassTP then
             BTP(CFrame.new(156.896484, 30.5935211, -12662.7031, -0.573599219, 0, 0.81913656, 0, 1, 0, -0.81913656, 0, -0.573599219))
         else
-            TP2(CFrame.new(156.896484, 30.5935211, -12662.7031, -0.573599219, 0, 0.81913656, 0, 1, 0, -0.81913656, 0, -0.573599219))
+            Tween(CFrame.new(156.896484, 30.5935211, -12662.7031, -0.573599219, 0, 0.81913656, 0, 1, 0, -0.81913656, 0, -0.573599219))
         end
         
     end)
@@ -6322,7 +6212,7 @@ elseif Third_Sea then
         if BypassTP then
             BTP(CFrame.new(-949, 59, -10907))
         else
-            TP2(CFrame.new(-949, 59, -10907))
+            Tween(CFrame.new(-949, 59, -10907))
         end
         
     end)
@@ -6330,7 +6220,7 @@ elseif Third_Sea then
         if BypassTP then
             BTP(CFrame.new(-9530.61035, -132.860657, 5763.13477))
         else
-            TP2(CFrame.new(-9530.61035, -132.860657, 5763.13477))
+            Tween(CFrame.new(-9530.61035, -132.860657, 5763.13477))
         end
         
     end)
@@ -6338,7 +6228,7 @@ elseif Third_Sea then
         if BypassTP then
             BTP(CFrame.new(-2099.33154, 66.9970703, -12128.585, 0.997561574, 0, 0.0697919354, 0, 1, 0, -0.0697919354, 0, 0.997561574))
         else
-            TP2(CFrame.new(-2099.33154, 66.9970703, -12128.585, 0.997561574, 0, 0.0697919354, 0, 1, 0, -0.0697919354, 0, 0.997561574))
+            Tween(CFrame.new(-2099.33154, 66.9970703, -12128.585, 0.997561574, 0, 0.0697919354, 0, 1, 0, -0.0697919354, 0, 0.997561574))
         end
         
     end)
@@ -6346,7 +6236,7 @@ elseif Third_Sea then
         if BypassTP then
             BTP(CFrame.new(-1530.97144, 13.728817, -14770.0889, 0.898790359, -0, -0.438378751, 0, 1, -0, 0.438378751, 0, 0.898790359))
         else
-            TP2(CFrame.new(-1530.97144, 13.728817, -14770.0889, 0.898790359, -0, -0.438378751, 0, 1, -0, 0.438378751, 0, 0.898790359))
+            Tween(CFrame.new(-1530.97144, 13.728817, -14770.0889, 0.898790359, -0, -0.438378751, 0, 1, -0, 0.438378751, 0, 0.898790359))
         end
         
     end)
@@ -6354,7 +6244,7 @@ elseif Third_Sea then
         if BypassTP then
             BTP(CFrame.new(-5057.146484375, 314.54132080078, -2934.7995605469))
         else
-            TP2(CFrame.new(-5057.146484375, 314.54132080078, -2934.7995605469))
+            Tween(CFrame.new(-5057.146484375, 314.54132080078, -2934.7995605469))
         end
         
     end)
@@ -6362,7 +6252,7 @@ elseif Third_Sea then
         if BypassTP then
             BTP(CFrame.new(-263.66668701172, 49325.49609375, -35260))
         else
-            TP2(CFrame.new(-263.66668701172, 49325.49609375, -35260))
+            Tween(CFrame.new(-263.66668701172, 49325.49609375, -35260))
         end
         
     end)
@@ -7384,7 +7274,7 @@ spawn(function()
                          if v.Name == "PirateBrigade" or v.Name == "PirateBasic" then
                             AutoHaki()
                             EquipWeapon(_G.SelectWeapon)
-                            topos(v.HumanoidRootPart.CFrame * CFrame.new(0,20,3))
+                            Tween(v.HumanoidRootPart.CFrame * CFrame.new(0,20,3))
                             game:GetService("VirtualUser"):CaptureController()
                             game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
                        else
@@ -8138,7 +8028,7 @@ end)
 				if _G.Tweenfruit then
 					for i,v in pairs(game.Workspace:GetChildren()) do
 						if string.find(v.Name, "Fruit") then
-							TP2(v.Handle.CFrame)
+							Tween(v.Handle.CFrame)
 						end
 					end
 				end
