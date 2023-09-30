@@ -1604,7 +1604,7 @@ end
           if isnetworkowner then
           return isnetworkowner(object)
           else
-            if (object.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= bringfrec then
+            if (object.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 300 then
           return true
           end
           return false
@@ -1621,14 +1621,44 @@ end
 	 
 	
 	 Setting:Toggle("Bypass Tp",false,function(Fast)
-BypassTP = Fast
+    BypassTP = Fast
 
 end)
 	  
 	  
 	  
-	  
-	  
+	  if BypassTP then
+		if Distance > 3000 then
+			pcall(function()
+				tween:Cancel()
+				fkwarp = false
+
+				if game:GetService("Players")["LocalPlayer"].Data:FindFirstChild("SpawnPoint").Value == tostring(GetIsLand(RealTarget)) then 
+					wait(.1)
+					Com("F_","TeleportToSpawn")
+				elseif game:GetService("Players")["LocalPlayer"].Data:FindFirstChild("LastSpawnPoint").Value == tostring(GetIsLand(RealTarget)) then
+					game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid"):ChangeState(15)
+					wait(0.1)
+					repeat wait() until game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").Health > 0
+				else
+					if game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").Health > 0 then
+						if fkwarp == false then
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = RealTarget
+						end
+						fkwarp = true
+					end
+					wait(.08)
+					game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid"):ChangeState(15)
+					repeat wait() until game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").Health > 0
+					wait(.1)
+					Com("F_","SetSpawnPoint")
+				end
+				wait(0.2)
+
+				return
+			end)
+		end
+	end
 	  
 	  
 	  
@@ -3519,7 +3549,7 @@ if game.PlaceId == 2753915549 then
             end
         )
     end
-    function toTarget(ab, ab, b1)
+    function Tween(ab, ab, b1)
         Tweento(b1)
     end
     local aP = require(game:GetService("Players").LocalPlayer.PlayerScripts:WaitForChild("CombatFramework"))
@@ -3654,6 +3684,11 @@ spawn(function()
 				game.Players.LocalPlayer.Character.Busy.Value = false        
 			end)
 		end)
+
+
+
+
+
 
 
 
