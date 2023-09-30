@@ -1352,7 +1352,7 @@ Setting:Toggle("Fast Attack 2",false,function(value)
     FastAttackSpeed = value
 end)
 
-_G.Fast_Delay = 0.02
+_G.Fast_Delay = 0.1
 
 local CurveFrame = debug.getupvalues(require(game:GetService("Players").LocalPlayer.PlayerScripts:WaitForChild("CombatFramework")))[2]
 local VirtualUser = game:GetService("VirtualUser")
@@ -4047,6 +4047,8 @@ end)
       repeat game:GetService("RunService").Heartbeat:wait()
 	  AutoHaki()
       EquipTool(SelectWeapon)
+	  BringBone()
+	  BringMobs = false
       Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
       v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
       v.HumanoidRootPart.Transparency = 1
@@ -4057,7 +4059,6 @@ end)
   --v.Humanoid:ChangeState(14)
       FarmPos = v.HumanoidRootPart.CFrame
       MonFarm = v.Name
-BringMobs = true
       Click()
 
       until not AutoFarmQuest or not v.Parent or v.Humanoid.Health <= 0 or not game:GetService("Workspace").Enemies:FindFirstChild(v.Name) or game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false
@@ -4076,6 +4077,30 @@ BringMobs = true
     end
     end
     end)
+
+
+----remove lag
+spawn(function()
+	  while task.wait() do
+	  for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"]:GetChildren()) do
+	  pcall(function()
+	    if v.Name == ("SlashHit") or v.Name == ("SwordSlash") or v.Name == ("SlashTail") then
+	    v:Destroy()
+	    end
+	    end)
+	  end
+	  for i,v in pairs(game:GetService("ReplicatedStorage").Effect.Container.Death:GetChildren()) do
+	  pcall(function()
+	    v:Destroy()
+	    end)
+	  end
+	  for i,v in pairs(game:GetService("ReplicatedStorage").Effect.Container.Respawn:GetChildren()) do
+	  pcall(function()
+	    v:Destroy()
+	    end)
+	  end
+	  end
+	  end)
 
 
 
@@ -4760,6 +4785,7 @@ else
               repeat game:GetService("RunService").Heartbeat:wait()
 			  AutoHaki()
               EquipTool(SelectWeapon)
+			  BringMobs = true
               Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
 			  v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
               v.HumanoidRootPart.Transparency = 1
@@ -4771,7 +4797,6 @@ else
               FarmPos = v.HumanoidRootPart.CFrame
               MonFarm = v.Name
               Click()
-			  BringMobs = true
               until not AutoFarmBone or not v.Parent or v.Humanoid.Health <= 0
               end
               end
@@ -4792,8 +4817,30 @@ else
             end
           end)
           
-          
+          function BringBone()
+        for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
+      	  for x,y in pairs(game.Workspace.Enemies:GetChildren()) do
+      	      if v.Name == y.Name then
+         	       v.HumanoidRootPart.CFrame = y.HumanoidRootPart.CFrame
+      	          v.HumanoidRootPart.Transparency = 0.5
+        	        y.HumanoidRootPart.Transparency = 0.5
+        	        v.Humanoid.WalkSpeed = 0
+      	          y.Humanoid.WalkSpeed = 0
+           	     v.Humanoid.JumpPower = 0
+        	        y.Humanoid.JumpPower = 0
+           	     if v.Humanoid:FindFirstChild("Animator") then
+                    v.Humanoid.Animator:Destroy()
+                   end
+                     sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
+               	 end
+    	      end
+   	 end
+   end
+
         
+
+
+
 
            Main:Toggle('Auto Cake Prince', AutoCakePrince, function(autocakefunc)
             AutoCakePrince = autocakefunc
