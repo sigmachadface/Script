@@ -4872,20 +4872,8 @@ else
     
 
 
-            
-					
-					if BypassTP then
-                    if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - cakepos.Position).Magnitude > 2500 then
-					wait(0.2)
-			        BTP(cakepos)
-					  elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - cakepos.Position).Magnitude < 2500 then
-					  wait(0.4)
-	                topos(cakepos)
-	                  end
-                      else
-		topos(cakepos)
-		end
-			
+            	
+	          TP2(cakepos)
 		
             end
             end
