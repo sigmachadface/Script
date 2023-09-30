@@ -3646,7 +3646,7 @@ if game.PlaceId == 2753915549 then
 
  function Tween(Pos)
         Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-        if game.Players.LocalPlayer.Character.Humanoid.Sit == true then game.Players.LocalPlayer.Character.Humanoid.Sit = false end
+        if game.Players.LocalPlayer.Character.Humanoid.Sit == true then game.Players.LocalPlayer.Character.Humanoid.Sit = true end
         pcall(function() tween = game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,TweenInfo.new(Distance/210, Enum.EasingStyle.Linear),{CFrame = Pos}) end)
         tween:Play()
         if Distance <= 250 then
@@ -3678,11 +3678,6 @@ end
 
 --// Aimbot Skill Mastery
 
-
-
-
-
------------------
 spawn(function()
   local gg = getrawmetatable(game)
   local old = gg.__namecall
@@ -3942,7 +3937,6 @@ spawn(function()
 
     Main:Toggle("Auto Level",AutoFarmQuest,function(value)
     AutoFarmQuest = value
-   CancelTween(AutoFarmQuest)
 end)
   spawn(function()
     while task.wait() do
@@ -4020,7 +4014,7 @@ spawn(function()
 
     Main:Toggle('Auto Near Mobs',AutoFarmNearestMob,function(nearfarmf)
         AutoFarmNearestMob = nearfarmf
-        CancelTween(AutoFarmNearestMob)
+
         
         end)
       spawn(function()
@@ -4655,7 +4649,6 @@ Main:Label("Misc Farm")
 
 Main:Toggle("Auto Bone",AutoFarmBone, function(bonefarn)
             AutoFarmBone = bonefarn
-            CancelTween(AutoFarmBone)
             end)
           spawn(function()
             while task.wait(.1) do
@@ -4758,7 +4751,7 @@ else
 
            Main:Toggle('Auto Cake Prince', AutoCakePrince, function(autocakefunc)
             AutoCakePrince = autocakefunc
-            CancelTween(AutoCakePrince)
+        
             end)
           spawn(function()
             while task.wait() do
@@ -5170,7 +5163,6 @@ Main:Dropdown('Select Material', MaterialList, function(matelist)
 
 Main:Toggle('Auto Farm Material',AutoFarmMaterial, function(automatefunc)
   AutoFarmMaterial = automatefunc
-  CancelTween(AutoFarmMaterial)
   end)
 spawn(function()
   while task.wait() do
@@ -5390,7 +5382,6 @@ end)
     
     Main:Toggle("Auto Electric Claw",_G.AutoElectricClaw,function(value)
         _G.AutoElectricClaw = value
-        CancelTween(_G.AutoElectricClaw)
     end)
     
     spawn(function()
@@ -6315,7 +6306,7 @@ end)
 
 Raid:Toggle("Auto Next Island",AutoNextIsland,function(Value)
   AutoNextIsland = Value
-  CancelTween(AutoNextIsland)
+
 end)
 
 
@@ -6857,7 +6848,7 @@ Race:Label("Complete Trial")
 
 Race:Toggle("Auto Fish trial",_G.Auto_Seabest,function(value)
   _G.Auto_Seabest = value
-  CancelTween(_G.Auto_Seabest)
+
   end)
 
 
@@ -6991,7 +6982,7 @@ end
 
 Race:Toggle("Auto Tween To Mirage Island",_G.AutoMysticIsland,function(value)
     _G.AutoMysticIsland = value
-    CancelTween(_G.AutoMysticIsland)
+
     end)
   
     spawn(function()
@@ -7010,7 +7001,7 @@ Race:Toggle("Auto Tween To Mirage Island",_G.AutoMysticIsland,function(value)
 
 Race:Toggle("Tween to Gear",_G.TweenMGear,function(value)
 _G.TweenMGear = value
-CancelTween(_G.TweenMGear)
+
 end)
 
 spawn(function()
@@ -7038,7 +7029,7 @@ end)
 		
 Race:Toggle("Auto Attack Sea Beast",_G.Auto_Seabest,function(value)
 _G.Auto_Seabest = value
-CancelTween(_G.Auto_Seabest)
+
 end)
 local gg = getrawmetatable(game)
 local old = gg.__namecall
@@ -7357,7 +7348,7 @@ Playerslist = {}
             if _G.TeleportPly then
                 repeat TP2(game:GetService("Players")[_G.SelectPly].Character.HumanoidRootPart.CFrame) wait() until _G.TeleportPly == false
             end
-            CancelTween(_G.TeleportPly)
+         
         end)
     end)
 	
