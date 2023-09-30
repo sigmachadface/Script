@@ -5650,15 +5650,20 @@ Main:Seperator("Misc Items")
 
     Main:Label("Hallow Scythe")
     
-    Main:Toggle("Auto Hallow Scythe",_G.AutoFarmBossHallow,function(value)
-        _G.AutoFarmBossHallow = value
-        Cancel(_G.AutoFarmBossHallow)
+    Main:Toggle("Auto Hallow Scythe",AutoHallowSycthe,function(value)
+        AutoHallowSycthe = value
+        Cancel(AutoHallowSycthe)
+    end)
+	
+	Main:Toggle("Auto Hallow Scythe Hop",AutoHallowSycthe,function(value)
+        AutoHallowSycthe1 = value
+        Cancel(AutoHallowSycthe1)
     end)
     
 
     spawn(function()
         while wait() do
-            if _G.AutoFarmBossHallow then
+            if AutoHallowSycthe then
                 pcall(function()
                     if game:GetService("Workspace").Enemies:FindFirstChild("Soul Reaper [Lv. 2100] [Raid Boss]") then
                         for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
@@ -5667,24 +5672,22 @@ Main:Seperator("Misc Items")
                                     AutoHaki()
                                     EquipTool(SelectWeapon)
                                     v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-                                    Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
-                                    game:GetService("VirtualUser"):CaptureController()
-                                    game:GetService("VirtualUser"):Button1Down(Vector2.new(1280, 670))
+                                    TP2(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
                                     v.HumanoidRootPart.Transparency = 1
                                     sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
 									Click()
 									BringMobs = false
-                                until v.Humanoid.Health <= 0 or _G.AutoFarmBossHallow == false
+                                until v.Humanoid.Health <= 0 or AutoHallowSycthe == false
                             end
                         end
                     elseif game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Hallow Essence") or game:GetService("Players").LocalPlayer.Character:FindFirstChild("Hallow Essence") then
-                        repeat Tween(CFrame.new(-8932.322265625, 146.83154296875, 6062.55078125)) wait() until (CFrame.new(-8932.322265625, 146.83154296875, 6062.55078125).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 8                        
+                        repeat TP2(CFrame.new(-8932.322265625, 146.83154296875, 6062.55078125)) wait() until (CFrame.new(-8932.322265625, 146.83154296875, 6062.55078125).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 8                        
                         EquipTool("Hallow Essence")
                     else
                         if game:GetService("ReplicatedStorage"):FindFirstChild("Soul Reaper [Lv. 2100] [Raid Boss]") then
-                            Tween(game:GetService("ReplicatedStorage"):FindFirstChild("Soul Reaper [Lv. 2100] [Raid Boss]").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+                            TP2(game:GetService("ReplicatedStorage"):FindFirstChild("Soul Reaper [Lv. 2100] [Raid Boss]").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
                         else
-                            if _G.AutoFarmBossHallowHop then
+                            if AutoHallowSycthe1 then
                                 Hop()
                             end
                         end
@@ -5693,14 +5696,6 @@ Main:Seperator("Misc Items")
             end
         end
     end)
-
-
-
-
-
-
-
-
 
 
 
@@ -5743,7 +5738,7 @@ Main:Seperator("Misc Items")
 		end
 	end)
 	
-	Stats:Toggle("Auto Stats Melee",_G.Auto_Stats_Melee,function(value)
+	Stats:Toggle("Auto Melee",_G.Auto_Stats_Melee,function(value)
 	 _G.Auto_Stats_Melee = value
 	end)
 	
@@ -5762,7 +5757,7 @@ Main:Seperator("Misc Items")
 		end
 	end)
 	
-	Stats:Toggle("Auto Stats Defense",_G.Auto_Stats_Defense,function(value)
+	Stats:Toggle("Auto Defense",_G.Auto_Stats_Defense,function(value)
 	 _G.Auto_Stats_Defense = value
 	end)
 	
@@ -5781,7 +5776,7 @@ Main:Seperator("Misc Items")
 		end
 	end)
 	
-	Stats:Toggle("Auto Stats Sword",_G.Auto_Stats_Sword,function(value)
+	Stats:Toggle("Auto Sword",_G.Auto_Stats_Sword,function(value)
 	 _G.Auto_Stats_Sword = value
 	end)
 	
@@ -5800,7 +5795,7 @@ Main:Seperator("Misc Items")
 		end
 	end)
 	
-	Stats:Toggle("Auto Stats Gun",_G.Auto_Stats_Gun,function(value)
+	Stats:Toggle("Auto Gun",_G.Auto_Stats_Gun,function(value)
 	 _G.Auto_Stats_Gun = value
 	end)
 	
@@ -5818,7 +5813,7 @@ Main:Seperator("Misc Items")
 		end
 	end)
 	
-	Stats:Toggle("Auto Stats Blox Fruit",_G.Auto_Stats_Devil_Fruit,function(value)
+	Stats:Toggle("Auto Blox Fruit",_G.Auto_Stats_Devil_Fruit,function(value)
 	 _G.Auto_Stats_Devil_Fruit = value
 	end)
 	
@@ -7435,7 +7430,7 @@ Playerslist = {}
         _G.TeleportPly = value
         pcall(function()
             if _G.TeleportPly then
-                repeat Tween(game:GetService("Players")[_G.SelectPly].Character.HumanoidRootPart.CFrame) wait() until _G.TeleportPly == false
+                repeat TP2(game:GetService("Players")[_G.SelectPly].Character.HumanoidRootPart.CFrame) wait() until _G.TeleportPly == false
             end
             CancelTween(_G.TeleportPly)
         end)
