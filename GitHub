@@ -1559,14 +1559,9 @@ end
        
 		  
 		  
-
-            
-                 
-         ---Bring Mob
- 
-
-
-
+		      Setting:Toggle("Bring Mob",true,function(vu)
+                BringMobs = vu
+	                end)
 
 
 
@@ -1576,11 +1571,11 @@ end
             if BringMobs then
             pcall(function()
               for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-              if v.Name == MonFarm and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= bringfrec then
+              if not string.find(v.Name,"Boss") and v.Name == MonFarm and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 500 then
               if InMyNetWork(v.HumanoidRootPart) then
                 if InMyNetWork(v.HumanoidRootPart) then
-              v.Head.CanCollide = false
-						v.HumanoidRootPart.CanCollide = false
+               v.Head.CanCollide = false
+			v.HumanoidRootPart.CanCollide = false
 						v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
 						v.HumanoidRootPart.CFrame = FarmPos
 			
@@ -1615,9 +1610,23 @@ end
           end
           end
 
-      
+  
+	
 	  
-	  
+-- [No Stun]
+
+task.spawn(function()
+	if game.Players.LocalPlayer.Character:FindFirstChild("Stun") then
+		game.Players.LocalPlayer.Character.Stun.Changed:connect(function()
+			pcall(function()
+				if game.Players.LocalPlayer.Character:FindFirstChild("Stun") then
+					game.Players.LocalPlayer.Character.Stun.Value = 0
+				end
+			end)
+		end)
+	end
+end)
+
 
 
 
@@ -3968,7 +3977,7 @@ else
       repeat game:GetService("RunService").Heartbeat:wait()
 	  AutoHaki()
       EquipTool(SelectWeapon)
-	  BringMobs = true
+	     
       Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
       v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
       v.HumanoidRootPart.Transparency = 1
@@ -3982,7 +3991,7 @@ else
       Click()
       until not AutoFarmQuest or not v.Parent or v.Humanoid.Health <= 0 or not game:GetService("Workspace").Enemies:FindFirstChild(v.Name) or game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false
       end
-	    BringMobs = false
+	       
       end
       end
       for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"].EnemySpawns:GetChildren()) do
@@ -4034,7 +4043,7 @@ end
           repeat task.wait(0.0001)
 		  AutoHaki()
           EquipTool(SelectWeapon)
-		  BringMobs = true
+		     
           Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
           v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
           v.HumanoidRootPart.Transparency = 1
@@ -4179,7 +4188,7 @@ local MasteryType = {
 				UseSkillGun = false
 				AutoHaki()
 			  EquipTool(SelectWeapon)
-			  BringMobs = true
+			     
 			  Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
 			  v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
 			  v.HumanoidRootPart.Transparency = 1
@@ -4261,7 +4270,7 @@ local MasteryType = {
 			  else
 				UseSkillGun = false
 				AutoHaki()
-				BringMobs = true
+				   
 			  EquipTool(SelectWeapon)
 			  Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
 			  v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
@@ -4484,7 +4493,7 @@ local MasteryType = {
         _G.UseSkill = false
 	AutoHaki()
       EquipTool(SelectWeapon)
-	  BringMobs = true
+	     
       Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
       v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
       v.HumanoidRootPart.Transparency = 1
@@ -4562,7 +4571,7 @@ local MasteryType = {
       else
         _G.UseSkill = false
 		AutoHaki()
-		BringMobs = true
+		   
       EquipTool(SelectWeapon)
       Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
       v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
@@ -4698,7 +4707,7 @@ else
               repeat game:GetService("RunService").Heartbeat:wait()
 			  AutoHaki()
               EquipTool(SelectWeapon)
-			  BringMobs = true
+			     
               Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
 			  v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
               v.HumanoidRootPart.Transparency = 1
@@ -4712,7 +4721,7 @@ else
               Click()
               until not AutoFarmBone or not v.Parent or v.Humanoid.Health <= 0
               end
-			   BringMobs = false
+			      
               end
               end
               for i,v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
@@ -4771,7 +4780,7 @@ else
             repeat task.wait()
 			AutoHaki()
             EquipTool(SelectWeapon)
-			BringMobs = false
+			   
             Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
             v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
             v.HumanoidRootPart.Transparency = 1
@@ -4800,7 +4809,7 @@ else
 			AutoHaki()
             EquipTool(SelectWeapon)
             Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
-			BringMobs = true
+			   
             v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
             v.HumanoidRootPart.Transparency = 1
             v.Humanoid.JumpPower = 0
@@ -5059,7 +5068,7 @@ wait(0.4)
     v.Humanoid.JumpPower = 0
     v.Humanoid.WalkSpeed = 0
     v.HumanoidRootPart.CanCollide = false
-	BringMobs = false
+	   
 --v.Humanoid:ChangeState(11)
 --v.Humanoid:ChangeState(14)
     FarmPos = v.HumanoidRootPart.CFrame
@@ -5071,7 +5080,7 @@ wait(0.4)
     end
     end
     else
-	BringMobs = true
+	   
       Tween(game:GetService("ReplicatedStorage"):FindFirstChild(SelectBoss).HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
     end
     end)
@@ -5116,7 +5125,7 @@ end)
                                             repeat task.wait()
                                                 EquipTool(SelectWeapon)
 												AutoHaki()
-												BringMobs = false
+												   
                                                 Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
                                                 MonsterPosition = v.HumanoidRootPart.CFrame
                                                 v.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
@@ -5203,7 +5212,7 @@ spawn(function()
     repeat task.wait()
 	AutoHaki()
     EquipTool(SelectWeapon)
-	BringMobs = true
+	   
     Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
     v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
     v.HumanoidRootPart.Transparency = 1
@@ -5609,7 +5618,7 @@ Main:Seperator("Misc Items")
                                     v.HumanoidRootPart.Transparency = 1
                                     sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
 									Click()
-									BringMobs = false
+									   
                                 until v.Humanoid.Health <= 0 or AutoHallowSycthe == false
                             end
                         end
