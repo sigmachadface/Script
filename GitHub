@@ -17,53 +17,6 @@ function GetCurrentBlade()
     return ret
 end
 
-function AttackNoCD() 
-    local AC = CbFw2.activeController
-    for i = 1, 1 do 
-        local bladehit = require(game.ReplicatedStorage.CombatFramework.RigLib).getBladeHits(
-            plr.Character,
-            {plr.Character.HumanoidRootPart},
-            60
-        )
-        local cac = {}
-        local hash = {}
-        for k, v in pairs(bladehit) do
-            if v.Parent:FindFirstChild("HumanoidRootPart") and not hash[v.Parent] then
-                table.insert(cac, v.Parent.HumanoidRootPart)
-                hash[v.Parent] = true
-            end
-        end
-        bladehit = cac
-        if #bladehit > 0 then
-            local u8 = debug.getupvalue(AC.attack, 5)
-            local u9 = debug.getupvalue(AC.attack, 6)
-            local u7 = debug.getupvalue(AC.attack, 4)
-            local u10 = debug.getupvalue(AC.attack, 7)
-            local u12 = (u8 * 798405 + u7 * 727595) % u9
-            local u13 = u7 * 798405
-            (function()
-                u12 = (u12 * u9 + u13) % 1099511627776
-                u8 = math.floor(u12 / u9)
-                u7 = u12 - u8 * u9
-            end)()
-            u10 = u10 + 1
-            debug.setupvalue(AC.attack, 5, u8)
-            debug.setupvalue(AC.attack, 6, u9)
-            debug.setupvalue(AC.attack, 4, u7)
-            debug.setupvalue(AC.attack, 7, u10)
-            pcall(function()
-                for k, v in pairs(AC.animator.anims.basic) do
-                    v:Play()
-                end                  
-            end)
-            if plr.Character:FindFirstChildOfClass("Tool") and AC.blades and AC.blades[1] then 
-                game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("weaponChange",tostring(GetCurrentBlade()))
-                game.ReplicatedStorage.Remotes.Validator:FireServer(math.floor(u12 / 1099511627776 * 16777215), u10)
-                game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", bladehit, i, "") 
-            end
-        end
-    end
-end
 
 _G.Check_Save_Setting = "CheckSaveSetting"
 
@@ -1311,218 +1264,34 @@ local TweenSpeed = 250
 
 
 
-Setting:Toggle("Fast Attack 1", true, function(value)
-    _G.FastAttack = value
+Setting:Toggle("Fast Attack",true,function(t)
+	_G.FastAttack = t
 end)
 
-local CameraShaker = require(game.ReplicatedStorage.Util.CameraShaker)
-CombatFrameworkR = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework)
-y = debug.getupvalues(CombatFrameworkR)[2]
+
+Setting:Dropdown("Select Fast Attack Type",{'for mastery','Fast','Super Fast'},function(t)
+	if t == 'for mastery' then
+		_G.FastDelay = 0.3
+	end
+	if t == 'Fast' then
+		_G.FastDelay = 0.1
+	end
+	if t == 'Super Fast' then
+		_G.FastDelay = 0
+	end
+end)
+
+
 spawn(function()
-    game:GetService("RunService").RenderStepped:Connect(function()
-        if _G.FastAttack then
-            if typeof(y) == "table" then
-                pcall(function()
-                    CameraShaker:Stop()
-                    y.activeController.timeToNextAttack = (math.huge^math.huge^math.huge)
-                    y.activeController.timeToNextAttack = 0
-                    y.activeController.hitboxMagnitude = 60
-                    y.activeController.active = false
-                    y.activeController.timeToNextBlock = 0
-                    y.activeController.focusStart = 1655503339.0980349
-                    y.activeController.increment = 1
-                    y.activeController.blocking = false
-                    y.activeController.attacking = false
-                    y.activeController.humanoid.AutoRotate = true
-                end)
-            end
-        end
-    end)
-end)
-spawn(function()
-    game:GetService("RunService").RenderStepped:Connect(function()
-        if _G.FastAttack == true then
-            game.Players.LocalPlayer.Character.Stun.Value = 0
-            game.Players.LocalPlayer.Character.Busy.Value = false        
-        end
-    end)
-end)
+while true do task.wait()
+pcall(function()
+if _G.FastAttack then
+repeat wait(_G.FastDelay) AttackNoCD() until not _G.FastAttack
 
-Setting:Toggle("Fast Attack 2",false,function(value)
-    FastAttackSpeed = value
-end)
-
-_G.Fast_Delay = 0.1
-
-local CurveFrame = debug.getupvalues(require(game:GetService("Players").LocalPlayer.PlayerScripts:WaitForChild("CombatFramework")))[2]
-local VirtualUser = game:GetService("VirtualUser")
-local RigControllerR = debug.getupvalues(require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework.RigController))[2]
-local Client = game:GetService("Players").LocalPlayer
-local DMG = require(Client.PlayerScripts.CombatFramework.Particle.Damage)
-local CameraShaker = require(game.ReplicatedStorage.Util.CameraShaker)
-CameraShaker:Stop()
-function CurveFuckWeapon()
-    local p13 = CurveFrame.activeController
-    local wea = p13.blades[1]
-    if not wea then
-        return
-    end
-    while wea.Parent ~= game.Players.LocalPlayer.Character do
-        wea = wea.Parent
-    end
-    return wea
 end
-
-function getHits(Size)
-    local Hits = {}
-    local Enemies = workspace.Enemies:GetChildren()
-    local Characters = workspace.Characters:GetChildren()
-    for i = 1, #Enemies do
-        local v = Enemies[i]
-        local Human = v:FindFirstChildOfClass("Humanoid")
-        if
-            Human and Human.RootPart and Human.Health > 0 and
-                game.Players.LocalPlayer:DistanceFromCharacter(Human.RootPart.Position) < Size + 5
-         then
-            table.insert(Hits, Human.RootPart)
-        end
-    end
-    for i = 1, #Characters do
-        local v = Characters[i]
-        if v ~= game.Players.LocalPlayer.Character then
-            local Human = v:FindFirstChildOfClass("Humanoid")
-            if
-                Human and Human.RootPart and Human.Health > 0 and
-                    game.Players.LocalPlayer:DistanceFromCharacter(Human.RootPart.Position) < Size + 5
-             then
-                table.insert(Hits, Human.RootPart)
-            end
-        end
-    end
-    return Hits
-end
-
-function Boost()
-    task.spawn(function()
-        game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("weaponChange",tostring(CurveFuckWeapon()))
-    end)
-end
-
-function Unboost()
-    tsak.spawn(function()
-        game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("unequipWeapon",tostring(CurveFuckWeapon()))
-    end)
-end
-
-local cdnormal = 0
-local Animation = Instance.new("Animation")
-local CooldownFastAttack = 0
-
-FastAttack = function()
-    local ac = CurveFrame.activeController
-    if ac and ac.equipped then
-        task.spawn(function()
-            if tick() - cdnormal > 0.5 then
-                ac:attack()
-                cdnormal = tick()
-            else
-                Animation.AnimationId = ac.anims.basic[2]
-                ac.humanoid:LoadAnimation(Animation):Play(1, 1)
-                game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", getHits(120), 2, "")
-            end
-        end)
-    end
-end
-
-bs = tick()
-task.spawn(function()
-    while task.wait(_G.Fast_Delay) do
-        if FastAttackSpeed then
-            _G.Fast = true
-            if bs - tick() > 0.75 then
-                task.wait()
-                bs = tick()
-            end
-            pcall(function()
-                for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
-                    if v.Humanoid.Health > 0 then
-                        if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 100 then
-                            FastAttack()
-                            task.wait()
-                            Boost()
-                        end
-                    end
-                end
-            end)
-        end
-    end
 end)
-
-k = tick()
-task.spawn(function()
-    if _G.Fast then
-    while task.wait(.2) do
-            if k - tick() > 0.75 then
-                task.wait()
-                k = tick()
-            end
-            end
-            pcall(function()
-                for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
-                    if v.Humanoid.Health > 0 then
-                        if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 100 then
-                            task.wait(.000025)
-                            Unboost()
-                        end
-                    end
-                end
-            end)
-    end
+end
 end)
-
-task.spawn(function()
-    while task.wait() do
-        if _G.Fast then
-       pcall(function()
-        CurveFrame.activeController.timeToNextAttack = 0
-        CurveFrame.activeController.focusStart = 0
-        CurveFrame.activeController.hitboxMagnitude = 200
-        CurveFrame.activeController.humanoid.AutoRotate = true
-        CurveFrame.activeController.increment = 1 + 1 / 1
-       end)
-    end
-    end
-end)
-
-abc = true
-task.spawn(function()
-    local a = game.Players.LocalPlayer
-    local b = require(a.PlayerScripts.CombatFramework.Particle)
-    local c = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
-    if not shared.orl then
-        shared.orl = c.wrapAttackAnimationAsync
-    end
-    if not shared.cpc then
-        shared.cpc = b.play
-    end
-    if abc then
-        pcall(function()
-            c.wrapAttackAnimationAsync = function(d, e, f, g, h)
-            local i = c.getBladeHits(e, f, g)
-            if i then
-                b.play = function()
-                end
-                d:Play(0.25, 0.25, 0.25)
-                h(i)
-                b.play = shared.cpc
-                wait(.5)
-                d:Stop()
-            end
-            end
-        end)
-    end
-end)
-
 
 
             
@@ -1545,28 +1314,20 @@ end)
 
 
 function BTP(P)
-	repeat wait(0.1)
+	repeat wait(0.3)
 		game.Players.LocalPlayer.Character.Humanoid:ChangeState(15)
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P
 		task.wait()
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P
-	until (P.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 500
+	until (P.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 1500
 end
+
 
 
 
            
        
-		  
-		  
-		      Setting:Toggle("Bring Mob",true,function(vu)
-                BringMobs = vu
-	                end)
-
-
-
-
-    task.spawn(function()
+	  task.spawn(function()
             while task.wait() do
             if BringMobs then
             pcall(function()
@@ -1576,7 +1337,7 @@ end
                 if InMyNetWork(v.HumanoidRootPart) then
                v.Head.CanCollide = false
 			v.HumanoidRootPart.CanCollide = false
-						v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+						v.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
 						v.HumanoidRootPart.CFrame = FarmPos
 			
               end
@@ -1609,6 +1370,19 @@ end
           return false
           end
           end
+
+	   
+	   
+	   
+		  
+		  
+		      Setting:Toggle("Bring Mob",true,function(vu)
+                BringMobs = vu
+	                end)
+
+
+
+
 
   
 	
@@ -3876,8 +3650,59 @@ end
 
 --Click Pro
 
+function AttackNoCD() 
+	local AC = CbFw2.activeController
+	for i = 1, 1 do 
+		local bladehit = require(game.ReplicatedStorage.CombatFramework.RigLib).getBladeHits(
+			plr.Character,
+			{plr.Character.HumanoidRootPart},
+			60
+		)
+			local cac = {}
+			local hash = {}
+			for k, v in pairs(bladehit) do
+				if v.Parent:FindFirstChild("HumanoidRootPart") and not hash[v.Parent] then
+					table.insert(cac, v.Parent.HumanoidRootPart)
+					hash[v.Parent] = true
+				end
+			end
+			bladehit = cac
+		if #bladehit > 0 then
+			local u8 = debug.getupvalue(AC.attack, 5)
+			local u9 = debug.getupvalue(AC.attack, 6)
+			local u7 = debug.getupvalue(AC.attack, 4)
+			local u10 = debug.getupvalue(AC.attack, 7)
+			local u12 = (u8 * 798405 + u7 * 727595) % u9
+			local u13 = u7 * 798405
+			(function()
+			u12 = (u12 * u9 + u13) % 1099511627776
+				u8 = math.floor(u12 / u9)
+				u7 = u12 - u8 * u9
+			end)()
+			u10 = u10 + 1
+			debug.setupvalue(AC.attack, 5, u8)
+			debug.setupvalue(AC.attack, 6, u9)
+			debug.setupvalue(AC.attack, 4, u7)
+			debug.setupvalue(AC.attack, 7, u10)
+			pcall(function()
+				for k, v in pairs(AC.animator.anims.basic) do
+					v:Play()
+				end                  
+			end)
+			if plr.Character:FindFirstChildOfClass("Tool") and AC.blades and AC.blades[1] then 
+				game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("weaponChange",tostring(GetCurrentBlade()))
+				game.ReplicatedStorage.Remotes.Validator:FireServer(math.floor(u12 / 1099511627776 * 16777215), u10)
+				game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", bladehit, i, "") 
+			end
+		end
+	end
+end
+
+
+
+---
   
-function Click()
+function NormalAttack()
 	if not _G.FastAttack then
 		local Module = require(game.Players.LocalPlayer.PlayerScripts.CombatFramework)
 		local CombatFramework = debug.getupvalues(Module)[2]
@@ -3888,11 +3713,9 @@ function Click()
 		CombatFramework.activeController.hitboxMagnitude = 180
 		game:GetService'VirtualUser':CaptureController()
 		game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
-    else
-        game:GetService'VirtualUser':CaptureController()
-		game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
 	end
 end
+
 
 --// Get Weapon Sword
 function GetWeaponInventory(Weaponname)
@@ -3988,7 +3811,7 @@ else
   --v.Humanoid:ChangeState(14)
       FarmPos = v.HumanoidRootPart.CFrame
       MonFarm = v.Name
-      Click()
+      NormalAttack()
       until not AutoFarmQuest or not v.Parent or v.Humanoid.Health <= 0 or not game:GetService("Workspace").Enemies:FindFirstChild(v.Name) or game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false
       end
 	       
@@ -4054,7 +3877,7 @@ end
       --v.Humanoid:ChangeState(14)
           FarmPos = v.HumanoidRootPart.CFrame
           MonFarm = v.Name
-          Click()
+          NormalAttack()
           until not AutoFarmNearestMob or not v.Parent or v.Humanoid.Health <= 0 or not game.Workspace.Enemies:FindFirstChild(v.Name)
           end
           end
@@ -4199,7 +4022,7 @@ local MasteryType = {
 		  --v.Humanoid:ChangeState(14)
 			  FarmPos = v.HumanoidRootPart.CFrame
 			  MonFarm = v.Name
-			  Click()
+			  NormalAttack()
 			  end
 			  until not AutoFarmMasGun or not v.Parent or v.Humanoid.Health <= 0 or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false or not game:GetService("Workspace").Enemies:FindFirstChild(v.Name) or not TypeMastery == 'Queat'
 			  UseSkillGun = false
@@ -4246,7 +4069,7 @@ local MasteryType = {
 			--v.Humanoid:ChangeState(14)
 			  FarmPos = v.HumanoidRootPart.CFrame
 			  MonFarm = v.Name
-			  Click()
+			  NormalAttack()
 			  end
 			  until not AutoFarmMasGun or not v.Parent or v.Humanoid.Health <= 0 or not game:GetService("Workspace").Enemies:FindFirstChild(v.Name) or not TypeMastery == 'No Quest'
 			  end
@@ -4282,7 +4105,7 @@ local MasteryType = {
 		  --v.Humanoid:ChangeState(14)
 			  FarmPos = v.HumanoidRootPart.CFrame
 			  MonFarm = v.Name
-			  Click()
+			  NormalAttack()
 			  end
 			  until not AutoFarmMasGun or not MasteryType == 'Near Mobs' or not v.Parent or v.Humanoid.Health <= 0 or not TypeMastery == 'Near Mobs'
 			  UseSkillGun = false
@@ -4333,7 +4156,7 @@ local MasteryType = {
 		  --v.Humanoid:ChangeState(14)
 			  FarmPos = v.HumanoidRootPart.CFrame
 			  MonFarm = v.Name
-			  Click()
+			  NormalAttack()
 			  end
 			  until not AutoFarmMasGun or not TypeMastery == 'Boss' or not v.Parent or v.Humanoid.Health <= 0 or game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false or not game:GetService("Workspace").Enemies:FindFirstChild(v.Name)
 			  end
@@ -4504,7 +4327,7 @@ local MasteryType = {
   --v.Humanoid:ChangeState(14)
       FarmPos = v.HumanoidRootPart.CFrame
       MonFarm = v.Name
-      Click()
+      NormalAttack()
       end
       until not AutoFarmMasDevilFruit or not v.Parent or v.Humanoid.Health == 0 or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false or not game:GetService("Workspace").Enemies:FindFirstChild(v.Name) or not TypeMastery == 'Level'
       _G.UseSkill = false
@@ -4548,7 +4371,7 @@ local MasteryType = {
   --v.Humanoid:ChangeState(14)
       FarmPos = v.HumanoidRootPart.CFrame
       MonFarm = v.Name
-      Click()
+      NormalAttack()
       end
   
       until not AutoFarmMasDevilFruit or not v.Parent or v.Humanoid.Health == 0 or not game:GetService("Workspace").Enemies:FindFirstChild(v.Name) or not TypeMastery == 'No Quest'
@@ -4583,7 +4406,7 @@ local MasteryType = {
   --v.Humanoid:ChangeState(14)
       FarmPos = v.HumanoidRootPart.CFrame
       MonFarm = v.Name
-      Click()
+      NormalAttack()
       end
       until not AutoFarmMasDevilFruit or not MasteryType == 'Nearest' or not v.Parent or v.Humanoid.Health == 0 or not TypeMastery == 'Nearest'
       _G.UseSkill = false
@@ -4631,7 +4454,7 @@ local MasteryType = {
   --v.Humanoid:ChangeState(14)
       FarmPos = v.HumanoidRootPart.CFrame
       MonFarm = v.Name
-      Click()
+      NormalAttack()
       end
       until not AutoFarmMasDevilFruit or not TypeMastery == 'Boss' or not v.Parent or v.Humanoid.Health == 0 or game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false or not game:GetService("Workspace").Enemies:FindFirstChild(v.Name)
       end
@@ -4718,7 +4541,7 @@ else
           --v.Humanoid:ChangeState(14)
               FarmPos = v.HumanoidRootPart.CFrame
               MonFarm = v.Name
-              Click()
+              NormalAttack()
               until not AutoFarmBone or not v.Parent or v.Humanoid.Health <= 0
               end
 			      
@@ -4787,7 +4610,7 @@ else
             v.Humanoid.JumpPower = 0
             v.Humanoid.WalkSpeed = 0
             v.HumanoidRootPart.CanCollide = false
-			Click()
+			NormalAttack()
           --v.Humanoid:ChangeState(11)
           --v.Humanoid:ChangeState(14)
             FarmPos = v.HumanoidRootPart.CFrame
@@ -4815,7 +4638,7 @@ else
             v.Humanoid.JumpPower = 0
             v.Humanoid.WalkSpeed = 0
             v.HumanoidRootPart.CanCollide = false
-			Click()
+			NormalAttack()
           --v.Humanoid:ChangeState(11)
           --v.Humanoid:ChangeState(14)
             FarmPos = v.HumanoidRootPart.CFrame
@@ -5073,7 +4896,7 @@ wait(0.4)
 --v.Humanoid:ChangeState(14)
     FarmPos = v.HumanoidRootPart.CFrame
     MonFarm = v.Name
-    Click()
+    NormalAttack()
 
     until not AutoFarmBossNoQuest or not v.Parent or v.Humanoid.Health <= 0 or not game:GetService("Workspace").Enemies:FindFirstChild(v.Name)
     end
@@ -5136,7 +4959,7 @@ end)
                                                 --v.Humanoid:ChangeState(11)
                                                 FarmPos = v.HumanoidRootPart.CFrame
                                                 MonFarm = v.Name
-                                                Click()
+                                                NormalAttack()
 							
                                                 v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
                                             until AutoEliteHunter == false or v.Humanoid.Health <= 0 or not v.Parent
@@ -5223,7 +5046,7 @@ spawn(function()
 --v.Humanoid:ChangeState(14)
     FarmPos = v.HumanoidRootPart.CFrame
     MonFarm = v.Name
-    Click()
+    NormalAttack()
 
     until not AutoFarmMaterial or not v.Parent or v.Humanoid.Health <= 0
     end
@@ -5617,7 +5440,7 @@ Main:Seperator("Misc Items")
                                     Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
                                     v.HumanoidRootPart.Transparency = 1
                                     sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
-									Click()
+									NormalAttack()
 									   
                                 until v.Humanoid.Health <= 0 or AutoHallowSycthe == false
                             end
