@@ -3871,11 +3871,13 @@ local MasteryType = {
 			  FarmPos = v.HumanoidRootPart.CFrame
 			  MonFarm = v.Name
 			  NormalAttack()
+			  _G.FastAttack = false
 			  end
 			  until not AutoFarmMasGun or not v.Parent or v.Humanoid.Health <= 0 or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false or not game:GetService("Workspace").Enemies:FindFirstChild(v.Name) or not TypeMastery == 'Queat'
 			  UseSkillGun = false
 			  end
 			  end
+			  _G.FastAttack = true
 			  end
 			  UseSkillGun = false
 			  Tween(CFrameMon)
@@ -3954,10 +3956,12 @@ local MasteryType = {
 			  FarmPos = v.HumanoidRootPart.CFrame
 			  MonFarm = v.Name
 			  NormalAttack()
+			  _G.FastAttack = false
 			  end
 			  until not AutoFarmMasGun or not MasteryType == 'Near Mobs' or not v.Parent or v.Humanoid.Health <= 0 or not TypeMastery == 'Near Mobs'
 			  UseSkillGun = false
 			  end
+			  _G.FastAttack = true
 			  end
 			  end
 			  end)
@@ -4176,9 +4180,11 @@ local MasteryType = {
       FarmPos = v.HumanoidRootPart.CFrame
       MonFarm = v.Name
       NormalAttack()
+	  _G.FastAttack = false
       end
       until not AutoFarmMasDevilFruit or not v.Parent or v.Humanoid.Health == 0 or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false or not game:GetService("Workspace").Enemies:FindFirstChild(v.Name) or not TypeMastery == 'Level'
       _G.UseSkill = false
+	  _G.FastAttack = true
       end
       end
       end
@@ -4255,10 +4261,12 @@ local MasteryType = {
       FarmPos = v.HumanoidRootPart.CFrame
       MonFarm = v.Name
       NormalAttack()
+	  _G.FastAttack = false
       end
       until not AutoFarmMasDevilFruit or not MasteryType == 'Nearest' or not v.Parent or v.Humanoid.Health == 0 or not TypeMastery == 'Nearest'
       _G.UseSkill = false
       end
+	  _G.FastAttack = true
       end
       end
       end)
