@@ -13,7 +13,7 @@ OPENCLOSE.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
 OPENCLOSE.Size = UDim2.new(0,25,0,25)
 OPENCLOSE.Font = Enum.Font.DenkOne
 OPENCLOSE.Text = ''
-OPENCLOSE.TextColor3 = Color3.fromRGB(255,255,255)
+OPENCLOSE.TextColor3 = Color3.fromRGB(112,63,208)
 OPENCLOSE.TextScaled = true
 OPENCLOSE.TextSize = 14.000
 OPENCLOSE.TextWrapped = true
@@ -135,7 +135,7 @@ Name.Position = UDim2.new( 0.0827338099, 0, 0, 0)
 Name.Size = UDim2.new(0, 81, 0, 27)
 Name.Font = Enum.Font.Cartoon
 Name.Text = "Fai Fao Hub"
-Name.TextColor3 = Color3.fromRGB(255,255,255)
+Name.TextColor3 = Color3.fromRGB(92,203,58)
 Name.TextScaled = true
 Name.TextSize = 14.000
 Name.TextWrapped = true
@@ -144,14 +144,14 @@ Name.TextWrapped = true
 local ServerTime = Instance.new("TextLabel")
 ServerTime.Name = "ServerTime"
 ServerTime.Parent = Top
-ServerTime.BackgroundColor3 = Color3.fromRGB(255,255,255)
+ServerTime.BackgroundColor3 = Color3.fromRGB(255,0,119)
 ServerTime.BackgroundTransparency = 1.000
 ServerTime.Position = UDim2.new(0.68, 0,0.074, 0)
 ServerTime.Size = UDim2.new(0, 225, 0, 25)
 ServerTime.Font = Enum.Font.GothamSemibold
 ServerTime.Text = ""
 ServerTime.TextSize = 11.000
-ServerTime.TextColor3 = Color3.fromRGB(255,255,255)
+ServerTime.TextColor3 = Color3.fromRGB(255,0,119)
 ServerTime.TextXAlignment = Enum.TextXAlignment.Left
 
 function osfunc:Set(textadd)
@@ -1363,29 +1363,6 @@ Setting:Toggle("Fast Attack",true,function(t)
 end)
 
 
-Setting:Dropdown("Select Fast Attack Type",{'for mastery','Fast','Super Fast'},function(t)
-	if t == 'for mastery' then
-		_G.FastDelay = 0.3
-	end
-	if t == 'Fast' then
-		_G.FastDelay = 0.1
-	end
-	if t == 'Super Fast' then
-		_G.FastDelay = 0
-	end
-end)
-
-
-spawn(function()
-while true do task.wait()
-pcall(function()
-if _G.FastAttack then
-repeat wait(_G.FastDelay) AttackNoCD() until not _G.FastAttack
-
-end
-end)
-end
-end)
 
 
             
@@ -1560,7 +1537,30 @@ Main:Label("Level Farm")
 
 local Weaponlist = {"Melee","Sword","Gun","Blox Fruit"}
 
+_G.FastDelay = "Fast"
+Main:Dropdown("Select Fast Attack",{'for mastery','Fast','Super Fast'},function(t)
+	if t == 'for mastery' then
+		_G.FastDelay = 0.3
+	end
+	if t == 'Fast' then
+		_G.FastDelay = 0.1
+	end
+	if t == 'Super Fast' then
+		_G.FastDelay = 0
+	end
+end)
 
+
+spawn(function()
+while true do task.wait()
+pcall(function()
+if _G.FastAttack then
+repeat wait(_G.FastDelay) AttackNoCD() until not _G.FastAttack
+
+end
+end)
+end
+end)
 SelectWeapon = "Melee"
 Main:Dropdown("Select Weapon",Weaponlist,function(value)
     SelectWeapon = value
