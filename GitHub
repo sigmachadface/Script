@@ -5317,6 +5317,22 @@ Main:Seperator("Misc Items")
             end
         end
     end)
+	
+	
+	spawn(function()
+           while wait(0.1) do
+           if AutoHallowSycthe then
+           local args = {
+            [1] = "Bones",
+            [2] = "Buy",
+            [3] = 1,
+            [4] = 1
+           }
+          
+           game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+           end
+           end
+           end)
 
 
 
