@@ -1454,30 +1454,6 @@ end
 
 
 
-
-  
-	
-	  
--- [No Stun]
-
-task.spawn(function()
-	if game.Players.LocalPlayer.Character:FindFirstChild("Stun") then
-		game.Players.LocalPlayer.Character.Stun.Changed:connect(function()
-			pcall(function()
-				if game.Players.LocalPlayer.Character:FindFirstChild("Stun") then
-					game.Players.LocalPlayer.Character.Stun.Value = 0
-				end
-			end)
-		end)
-	end
-end)
-
-
-
-
-	 
-	 
-	
 	 Setting:Toggle("Bypass Tp",false,function(Fast)
     BypassTP = Fast
 
@@ -7754,7 +7730,3 @@ end)
 	        game:GetService("Players").LocalPlayer.PlayerGui.Main.FruitShop.Visible = true
 	    end)
 		
-
-
-
-
