@@ -7655,7 +7655,7 @@ end)
 				if _G.Tweenfruit then
 					for i,v in pairs(game.Workspace:GetChildren()) do
 						if string.find(v.Name, "Fruit") then
-							Tween(v.Handle.CFrame)
+							TP2(v.Handle.CFrame)
 						end
 					end
 				end
