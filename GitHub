@@ -3228,12 +3228,12 @@ Main:Label("Choose Weapon")
 local Weaponlist = {"Melee","Sword","Gun","Blox Fruit"}
 
 
-local Dropdown = Main:Dropdown("Select Fast Attack",{"for mastery","Fast","Super Fast"},"Fast",function(t)
-    if t == 'for mastery' then
+local Dropdown = Main:Dropdown("Select Fast Attack",{"Slow","Fast","Super Fast"},"Fast",function(t)
+    if t == 'Slow' then
 		_G.FastDelay = 0.3
 	end
 	if t == 'Fast' then
-		_G.FastDelay = 0.1
+		_G.FastDelay = 0.08
 	end
 	if t == 'Super Fast' then
 		_G.FastDelay = 0
@@ -4264,7 +4264,7 @@ Main:Label("Katakuri")
 			AutoHaki()
             EquipTool(SelectWeapon)
             Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
-			   
+			
             v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
             v.HumanoidRootPart.Transparency = 1
             v.Humanoid.JumpPower = 0
@@ -4315,6 +4315,37 @@ else
             end
             end
             end)
+
+
+--------
+
+spawn(function()
+	while true do game:GetService("RunService").RenderStepped:Wait()
+		if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
+			if BringMobs1 then
+				for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+					if not string.find(v.Name,"Boss") and v.Name == MonFarm and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 250  then
+						v.HumanoidRootPart.Size = Vector3.new(50,50,50)
+						v.Humanoid:ChangeState(14)
+						v.HumanoidRootPart.CanCollide = false
+						v.Head.CanCollide = false
+						v.HumanoidRootPart.CFrame = FarmPos
+						if v.Humanoid:FindFirstChild("Animator") then
+							v.Humanoid.Animator:Destroy()
+						end
+						sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
+					end
+				end
+			end
+		end
+	end
+end)
+
+
+--------
+
+
+
 
 
 Main:Toggle("Auto Katakuri V2",_G.AutoDoughKingV2,function(value)
@@ -5170,7 +5201,7 @@ end)
 
 
       Setting:Toggle("Bring Mob",true,function(vu)
-                BringMobs = vu
+                BringMobs1 = vu
 	                end)
 
 
