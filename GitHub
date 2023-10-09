@@ -3233,10 +3233,10 @@ local Dropdown = Main:Dropdown("Select Fast Attack",{"Slow","Fast","Super Fast"}
 		_G.FastDelay = 0.3
 	end
 	if t == 'Fast' then
-		_G.FastDelay = 0.08
+		_G.FastDelay = 0.06
 	end
 	if t == 'Super Fast' then
-		_G.FastDelay = 0.04
+		_G.FastDelay = 0.01
 	end
 end)
 
@@ -5201,9 +5201,105 @@ end)
 
 
       Setting:Toggle("Bring Mob",true,function(vu)
-                BringMobs1 = vu
+                BringMobs = vu
 	                end)
 
+     task.spawn(function()
+            while task.wait() do
+            if BringMobs then
+            pcall(function()
+              for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
+              if not string.find(v.Name,"Boss") and  v.Name == MonFarm and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= bringfrec then
+              if InMyNetWork(v.HumanoidRootPart) then
+              v.HumanoidRootPart.CFrame = FarmPos
+              v.Humanoid.JumpPower = 0
+              v.Humanoid.WalkSpeed = 0
+              v.HumanoidRootPart.Size = Vector3.new(60,60,60)
+              v.HumanoidRootPart.CanCollide = false
+              v.Head.CanCollide = false
+              if v.Humanoid:FindFirstChild("Animator") then
+              v.Humanoid.Animator:Destroy()
+              end
+              end
+              end
+              end
+              end)
+            end
+            end
+            end)
+          
+          task.spawn(function()
+            while true do wait()
+            if setscriptable then
+            setscriptable(game.Players.LocalPlayer,"SimulationRadius",true)
+            end
+            if sethiddenproperty then
+            sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
+            end
+            end
+            end)
+          
+          function InMyNetWork(object)
+          if isnetworkowner then
+          return isnetworkowner(object)
+          else
+            if (object.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 275 then
+          return true
+          end
+          return false
+          end
+          end
+		  
+		  
+		  
+		  
+	  task.spawn(function()
+            while task.wait() do
+            if BringMobs55 then
+            pcall(function()
+              for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
+              if not string.find(v.Name,"Boss") and v.Name == MonFarm and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 500 then
+              if InMyNetWork(v.HumanoidRootPart) then
+                if InMyNetWork(v.HumanoidRootPart) then
+                     v.HumanoidRootPart.Size = Vector3.new(50,50,50)
+						v.Humanoid:ChangeState(14)
+						v.HumanoidRootPart.CanCollide = false
+						v.Head.CanCollide = false
+						v.HumanoidRootPart.CFrame = FarmPos
+						if v.Humanoid:FindFirstChild("Animator") then
+							v.Humanoid.Animator:Destroy()
+						end
+			
+              end
+			end
+              end
+              end
+              end)
+            end
+            end
+            end)
+          
+          task.spawn(function()
+            while true do wait()
+            if setscriptable then
+            setscriptable(game.Players.LocalPlayer,"SimulationRadius",true)
+            end
+            if sethiddenproperty then
+            sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
+            end
+            end
+            end)
+          
+          function InMyNetWork(object)
+          if isnetworkowner then
+          return isnetworkowner(object)
+          else
+            if (object.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 300 then
+          return true
+          end
+          return false
+          end
+          end
 
 
 
@@ -5211,6 +5307,8 @@ end)
     BypassTP = Fast
 
 end)
+
+
 	  
 
 
@@ -5246,58 +5344,7 @@ end
 
 
 
-           
-       
-	  task.spawn(function()
-            while task.wait() do
-            if BringMobs then
-            pcall(function()
-              for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-              if not string.find(v.Name,"Boss") and v.Name == MonFarm and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 500 then
-              if InMyNetWork(v.HumanoidRootPart) then
-                if InMyNetWork(v.HumanoidRootPart) then
-               v.Head.CanCollide = false
-			v.HumanoidRootPart.CanCollide = false
-						v.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
-						v.HumanoidRootPart.CFrame = FarmPos
-			
-              end
-			end
-              end
-              end
-              end)
-            end
-            end
-            end)
-          
-          task.spawn(function()
-            while true do wait()
-            if setscriptable then
-            setscriptable(game.Players.LocalPlayer,"SimulationRadius",true)
-            end
-            if sethiddenproperty then
-            sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
-            end
-            end
-            end)
-          
-          function InMyNetWork(object)
-          if isnetworkowner then
-          return isnetworkowner(object)
-          else
-            if (object.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 300 then
-          return true
-          end
-          return false
-          end
-          end
-
-	   
-	   
-	   
-		  
-		  
-
+         
 
           Setting:Toggle("Disnable Dame Text",_G.DisableDamage,function(value)
             _G.DisableDamage = value
