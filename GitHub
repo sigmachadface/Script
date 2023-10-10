@@ -3233,7 +3233,7 @@ local Dropdown = Main:Dropdown("Select Fast Attack",{"Slow","Fast","Super Fast"}
 		_G.FastDelay = 0.3
 	end
 	if t == 'Fast' then
-		_G.FastDelay = 0.08
+		_G.FastDelay = 0.09
 	end
 	if t == 'Super Fast' then
 		_G.FastDelay = 0.01
@@ -4314,7 +4314,13 @@ else
             end
             end
             end
- 
+            end)
+
+
+--------
+
+
+
 --------
 
 
@@ -5182,7 +5188,7 @@ end)
             if BringMobs then
             pcall(function()
               for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-              if not string.find(v.Name,"Boss") and  v.Name == MonFarm and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= bringfrec then
+              if not string.find(v.Name,"Boss") and  v.Name == MonFarm and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 250 then
               if InMyNetWork(v.HumanoidRootPart) then
               v.HumanoidRootPart.CFrame = FarmPos
               v.Humanoid.JumpPower = 0
@@ -5223,8 +5229,10 @@ end)
           end
           end
 		  
-		
 		  
+		  
+	
+
 
 	 Setting:Toggle("Bypass Tp",false,function(Fast)
     BypassTP = Fast
@@ -5233,6 +5241,8 @@ end)
 
 
 	  
+
+
 
             
      Setting:Toggle("White Screen",_G.WhiteScreen,function(vu)
@@ -5285,7 +5295,7 @@ end
                       end)
                    
 	Setting:Label("Setting Mastery")
-
+	
 	    
     SkillZ = true
     SkillX = true
