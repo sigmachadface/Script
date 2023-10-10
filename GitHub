@@ -3233,7 +3233,7 @@ local Dropdown = Main:Dropdown("Select Fast Attack",{"Slow","Fast","Super Fast"}
 		_G.FastDelay = 0.3
 	end
 	if t == 'Fast' then
-		_G.FastDelay = 0.06
+		_G.FastDelay = 0.08
 	end
 	if t == 'Super Fast' then
 		_G.FastDelay = 0.01
