@@ -4314,34 +4314,7 @@ else
             end
             end
             end
-            end)
-
-
---------
-
-spawn(function()
-	while true do game:GetService("RunService").RenderStepped:Wait()
-		if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
-			if BringMobs1 then
-				for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-					if not string.find(v.Name,"Boss") and v.Name == MonFarm and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 250  then
-						v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-						v.Humanoid:ChangeState(14)
-						v.HumanoidRootPart.CanCollide = false
-						v.Head.CanCollide = false
-						v.HumanoidRootPart.CFrame = FarmPos
-						if v.Humanoid:FindFirstChild("Animator") then
-							v.Humanoid.Animator:Destroy()
-						end
-						sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
-					end
-				end
-			end
-		end
-	end
-end)
-
-
+ 
 --------
 
 
@@ -5250,58 +5223,8 @@ end)
           end
           end
 		  
+		
 		  
-		  
-		  
-	  task.spawn(function()
-            while task.wait() do
-            if BringMobs55 then
-            pcall(function()
-              for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-              if not string.find(v.Name,"Boss") and v.Name == MonFarm and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 500 then
-              if InMyNetWork(v.HumanoidRootPart) then
-                if InMyNetWork(v.HumanoidRootPart) then
-                     v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-						v.Humanoid:ChangeState(14)
-						v.HumanoidRootPart.CanCollide = false
-						v.Head.CanCollide = false
-						v.HumanoidRootPart.CFrame = FarmPos
-						if v.Humanoid:FindFirstChild("Animator") then
-							v.Humanoid.Animator:Destroy()
-						end
-			
-              end
-			end
-              end
-              end
-              end)
-            end
-            end
-            end)
-          
-          task.spawn(function()
-            while true do wait()
-            if setscriptable then
-            setscriptable(game.Players.LocalPlayer,"SimulationRadius",true)
-            end
-            if sethiddenproperty then
-            sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
-            end
-            end
-            end)
-          
-          function InMyNetWork(object)
-          if isnetworkowner then
-          return isnetworkowner(object)
-          else
-            if (object.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 300 then
-          return true
-          end
-          return false
-          end
-          end
-
-
 
 	 Setting:Toggle("Bypass Tp",false,function(Fast)
     BypassTP = Fast
@@ -5310,8 +5233,6 @@ end)
 
 
 	  
-
-
 
             
      Setting:Toggle("White Screen",_G.WhiteScreen,function(vu)
@@ -5364,7 +5285,7 @@ end
                       end)
                    
 	Setting:Label("Setting Mastery")
-	
+
 	    
     SkillZ = true
     SkillX = true
