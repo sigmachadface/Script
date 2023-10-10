@@ -5294,7 +5294,7 @@ end
                           end
                       end)
                    
-	Setting:Label("Setting Mastery")
+	Setting:Label("Setting ")
 	
 	    
     SkillZ = true
@@ -6398,6 +6398,11 @@ Raid:Label("Esp")
 
 ---------------race v4
 
+
+
+
+
+
     Race:Button("Teleport To Timple Of Time",function()
   game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
     end)
@@ -7411,6 +7416,20 @@ end)
 
 
     Misc:Label("Misc ")
+	Misc:Button("Remove Mirage Island Fog",function()
+	NoFog()
+	end)
+	
+	function NoFog()
+    local c = game.Lighting
+    c.FogEnd = 100000
+    for r, v in pairs(c:GetDescendants()) do
+        if v:IsA("Atmosphere") then
+            v:Destroy()
+        end
+    end
+end
+	
 
 Misc:Toggle("Anti AFK", true, function()
 local vu = game:GetService("VirtualUser")
