@@ -5196,9 +5196,7 @@ end)
               v.HumanoidRootPart.Size = Vector3.new(60,60,60)
               v.HumanoidRootPart.CanCollide = false
               v.Head.CanCollide = false
-              if v.Humanoid:FindFirstChild("Animator") then
-              v.Humanoid.Animator:Destroy()
-              end
+            
               end
               end
               end
