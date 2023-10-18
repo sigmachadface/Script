@@ -3360,11 +3360,7 @@ local D = Library:AddTab("Fruit","7044233235")
 local Misc = Library:AddTab("Misc","11156061121")
 local Ss = Library:AddTab("Stats","7040410130")
 
-      game.StarterGui:SetCore("SendNotification", {
-      Icon = "http://www.roblox.com/asset/?id=13858697661";
-      Title = "Min Gaming Hub", 
-      Text = "Success!"
-  })
+  
   H:AddLine()
 H:AddLabel("Min Gaming Hub [ Script Free ]")
 
@@ -4195,6 +4191,14 @@ Main:AddToggle("Bring Mob",true,function(Mag)
     end)
 
 
+
+
+
+
+
+
+
+
 Main:AddToggle("Auto Buso",true,function(value)
 _G.AUTOHAKI = value
 end)
@@ -4578,20 +4582,12 @@ local BonePos = CFrame.new(-9506.234375, 172.130615234375, 6117.0771484375)
                             end
                         end
                     else
-                    if BypassTP then
-                    elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - BonePos.Position).Magnitude > 1500 then
-                    BTP(BonePos)
-                else
+               
                     topos(BonePos)
-                end
+              
 
 
-                if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - BonePos.Position).Magnitude > 2000 then
-                    BTP(BonePos)
-                    wait(3)
-                    elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - BonePos.Position).Magnitude < 2000 then
-                    topos(BonePos)
-                    end
+            
 
                     StartMagnetBoneMon = false
                     topos(CFrame.new(-9506.234375, 172.130615234375, 6117.0771484375))
@@ -4716,22 +4712,7 @@ local DoughtPos = CFrame.new(-2099.33154, 66.9970703, -12128.585, 0.997561574, 0
                                         end
                                     end
                                 else
-
-                    if BypassTP then
-                    elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - DoughtPos.Position).Magnitude > 1500 then
-                    BTP(DoughtPos)
-                else
                     topos(DoughtPos)
-                end
-
-
-                if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - DoughtPos.Position).Magnitude > 2000 then
-                    BTP(DoughtPos)
-                    wait(3)
-                    elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - DoughtPos.Position).Magnitude < 2000 then
-                    topos(DoughtPos)
-                    end
-
                     StartMagnetBoneMon = false
 
                                     topos(CFrame.new(-2091.911865234375, 70.00884246826172, -12142.8359375))
