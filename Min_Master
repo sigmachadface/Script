@@ -1,17 +1,5 @@
 
-if game.Players.LocalPlayer.Name == "vodinhhuyVmax" then 
-    game.Players.vodinhhuyVmax:kick("Admin Asuka Kenshiro Đã Band bạn ")
-    end
-
-
-
-
-
-
 local Players = game:GetService("Players")
-
--- Hàm được gọi để kiểm tra số lượng người chơi
-
     local playerCount = #Players:GetPlayers()
 local FullMoon = ""
 
@@ -528,7 +516,7 @@ end
  end
  _G.BGColor_1 = Color3.fromRGB(30,30,30)
  _G.BGColor_2 = Color3.fromRGB(20, 20, 20)
- _G.Color = Color3.fromRGB(255, 49, 52)
+ _G.Color = Color3.fromRGB(205,255,3)
  _G.WindowBackgroundColor = Color3.fromRGB(12,12,12)
  _G.BackgroundItemColor = Color3.fromRGB(20, 20, 20)
  _G.TabWindowColor = Color3.fromRGB(30, 30, 30)
@@ -732,7 +720,7 @@ end
  local Logo = Instance.new("ImageLabel")
  Logo.Name = "Logo"
  Logo.Parent = Top
- Logo.BackgroundColor3 = Color3.fromRGB(224,224,224)
+ Logo.BackgroundColor3 = Color3.fromRGB(205,255,3)
  Logo.BackgroundTransparency = 1.000
  Logo.Position = UDim2.new(-0.01, 0,-0.319, 0)
  Logo.Size = UDim2.new(0, 55,0, 45)
@@ -741,7 +729,7 @@ end
  local Name = Instance.new("TextLabel")
  Name.Name = "Name"
  Name.Parent = Top
- Name.BackgroundColor3 = Color3.fromRGB(224,224,224)
+ Name.BackgroundColor3 = Color3.fromRGB(205,255,3)
  Name.BackgroundTransparency = 1.000
  Name.Position = UDim2.new(0.0909756112, 0, 0, 0)
  Name.Size = UDim2.new(0, 61, 0, 27)
@@ -753,7 +741,7 @@ end
  local Hub = Instance.new("TextLabel")
  Hub.Name = ""
  Hub.Parent = Top
- Hub.BackgroundColor3 = Color3.fromRGB(224,224,224)
+ Hub.BackgroundColor3 = Color3.fromRGB(205,255,3)
  Hub.BackgroundTransparency = 1.000
  Hub.Position = UDim2.new(0, 78, 0, 0)
  Hub.Size = UDim2.new(0, 81, 0, 27)
@@ -768,7 +756,7 @@ end
  local MainImageFrame = Instance.new("Frame")
  -- MainImage.Name =  "MainImage"
  MainImage.Parent = Main
- MainImage.BackgroundColor3 = Color3.fromRGB(224,224,224)
+ MainImage.BackgroundColor3 = Color3.fromRGB(205,255,3)
  MainImage.BackgroundTransparency = 1.000
  MainImage.Position = UDim2.new(0, 25, 0, 25)
  MainImage.Size = UDim2.new(0, 100, 0, 170)
@@ -799,7 +787,7 @@ end
  ScrollTab.Name = "ScrollTab"
  ScrollTab.Parent = Tab
  ScrollTab.Active = true
- ScrollTab.BackgroundColor3 = Color3.fromRGB(224,224,224)
+ ScrollTab.BackgroundColor3 = Color3.fromRGB(205,255,3)
  ScrollTab.BackgroundTransparency = 1.000
  ScrollTab.Size = UDim2.new(0, 133, 0, 250)
  ScrollTab.CanvasSize = UDim2.new(0, 0, 0, 0)
@@ -832,7 +820,7 @@ end
  MainPage.Name = "MainPage"
  MainPage.Parent = Page
  MainPage.ClipsDescendants = true
- MainPage.BackgroundColor3 = Color3.fromRGB(224,224,224)
+ MainPage.BackgroundColor3 = Color3.fromRGB(205,255,3)
  MainPage.BackgroundTransparency = 1.000
  MainPage.Size = UDim2.new(0, 325, 0, 316)
  
@@ -874,7 +862,7 @@ end
  TabButton.Parent = ScrollTab
  TabButton.Name = text.."Server"
  TabButton.Text = text
- TabButton.BackgroundColor3 = Color3.fromRGB(224,224,224)
+ TabButton.BackgroundColor3 = Color3.fromRGB(205,255,3)
  TabButton.BackgroundTransparency = 1.000
  TabButton.Size = UDim2.new(0, 130, 0, 23)
  TabButton.Font = Enum.Font.Gotham
@@ -907,7 +895,7 @@ end
  MainFramePage.Name = text.."_Page"
  MainFramePage.Parent = PageList
  MainFramePage.Active = true
- MainFramePage.BackgroundColor3 = Color3.fromRGB(224,224,224)
+ MainFramePage.BackgroundColor3 = Color3.fromRGB(205,255,3)
  MainFramePage.BackgroundTransparency = 1.000
  MainFramePage.BorderSizePixel = 0
  MainFramePage.Size = UDim2.new(0, 400, 0, 245)
@@ -1233,7 +1221,7 @@ end
  UIStroke.Name = "UIStroke"
  UIStroke.Parent = CheckFrame2
  UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
- UIStroke.Color = Color3.fromRGB(224,224,224)
+ UIStroke.Color = Color3.fromRGB(205,255,3)
  UIStroke.LineJoinMode = Enum.LineJoinMode.Round
  UIStroke.Thickness = 1
  UIStroke.Transparency = 0
@@ -1251,7 +1239,7 @@ end
  ImageLabel.Position = UDim2.new(-0.018, 0,-0.252, 0)
  ImageLabel.Size = UDim2.new(0, 45,0, 45)
  ImageLabel.Image = "rbxassetid://"
- ImageLabel.ImageColor3 = Color3.fromRGB(224,224,224)
+ ImageLabel.ImageColor3 = Color3.fromRGB(205,255,3)
  
  Space.Name = "Space"
  Space.Parent = CheckFrame2
@@ -1273,19 +1261,19 @@ end
  Title.Size = UDim2.new(0, 280, 0, 30)
  Title.Font = Enum.Font.Gotham
  Title.Text = TogInfo or "checkBox Title"
- Title.TextColor3 = Color3.fromRGB(224,224,224)
+ Title.TextColor3 = Color3.fromRGB(205,255,3)
  Title.TextSize = 12.000
  Title.TextXAlignment = Enum.TextXAlignment.Left
  
  ImageButton.Name = "ImageButton"
  ImageButton.Parent = CheckFrame2
- ImageButton.BackgroundColor3 = Color3.fromRGB(224,224,224)
+ ImageButton.BackgroundColor3 = Color3.fromRGB(205,255,3)
  ImageButton.BackgroundTransparency = 1.000
  ImageButton.Position = UDim2.new(0, 280, 0, 4)
  ImageButton.Size = UDim2.new(0, 23, 0, 23)
  ImageButton.ZIndex = 2
  ImageButton.Image = "rbxassetid://3926311105"
- ImageButton.ImageColor3 = Color3.fromRGB(224,224,224)
+ ImageButton.ImageColor3 = Color3.fromRGB(205,255,3)
  ImageButton.ImageRectOffset = Vector2.new(940, 784)
  ImageButton.ImageRectSize = Vector2.new(48, 48)
  
@@ -1311,7 +1299,7 @@ end
   else
    game.TweenService:Create(ImageButton, TweenInfo.new(0.08, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut),
    {
-    ImageColor3 = Color3.fromRGB(224,224,224)}
+    ImageColor3 = Color3.fromRGB(205,255,3)}
   ):Play()
   ImageButton.ImageRectOffset = Vector2.new(940, 784)
   end
@@ -1354,7 +1342,7 @@ end
  
  DropTitle.Name = "DropTitle"
  DropTitle.Parent = Dropdown
- DropTitle.BackgroundColor3 = Color3.fromRGB(224,224,224)
+ DropTitle.BackgroundColor3 = Color3.fromRGB(205,255,3)
  DropTitle.BackgroundTransparency = 1.000
  DropTitle.Size = UDim2.new(0, 310, 0, 31)
  DropTitle.Font = Enum.Font.Gotham
@@ -1365,7 +1353,7 @@ end
  DropScroll.Name = "DropScroll"
  DropScroll.Parent = DropTitle
  DropScroll.Active = true
- DropScroll.BackgroundColor3 = Color3.fromRGB(224,224,224)
+ DropScroll.BackgroundColor3 = Color3.fromRGB(205,255,3)
  DropScroll.BackgroundTransparency = 1.000
  DropScroll.BorderSizePixel = 0
  DropScroll.Position = UDim2.new(0, 0, 0, 31)
@@ -1383,7 +1371,7 @@ end
  
  DropImage.Name = "DropImage"
  DropImage.Parent = Dropdown
- DropImage.BackgroundColor3 = Color3.fromRGB(224,224,224)
+ DropImage.BackgroundColor3 = Color3.fromRGB(205,255,3)
  DropImage.BackgroundTransparency = 1.000
  DropImage.Position = UDim2.new(0, 280, 0, 6)
  DropImage.Rotation = 180.000
@@ -1392,7 +1380,7 @@ end
  
  DropButton.Name = "DropButton"
  DropButton.Parent = Dropdown
- DropButton.BackgroundColor3 = Color3.fromRGB(224,224,224)
+ DropButton.BackgroundColor3 = Color3.fromRGB(205,255,3)
  DropButton.BackgroundTransparency = 1.000
  DropButton.Size = UDim2.new(0, 310, 0, 31)
  DropButton.Font = Enum.Font.SourceSans
@@ -1405,7 +1393,7 @@ end
  
  Item.Name = "Item"
  Item.Parent = DropScroll
- Item.BackgroundColor3 = Color3.fromRGB(224,224,224)
+ Item.BackgroundColor3 = Color3.fromRGB(205,255,3)
  Item.BackgroundTransparency = 1.000
  Item.Size = UDim2.new(0, 310, 0, 26)
  Item.Font = Enum.Font.Gotham
@@ -1480,7 +1468,7 @@ end
  local Item = Instance.new("TextButton")
  Item.Name = "Item"
  Item.Parent = DropScroll
- Item.BackgroundColor3 = Color3.fromRGB(224,224,224)
+ Item.BackgroundColor3 = Color3.fromRGB(205,255,3)
  Item.BackgroundTransparency = 1.000
  Item.Size = UDim2.new(0, 310, 0, 26)
  Item.Font = Enum.Font.Gotham
@@ -1583,7 +1571,7 @@ SliderFrame_2.Size = UDim2.new(0, 308, 0, 55)
 UIStroke.Name = "UIStroke"
 UIStroke.Parent = SliderFrame_2
 UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-UIStroke.Color = Color3.fromRGB(224,224,224)
+UIStroke.Color = Color3.fromRGB(205,255,3)
 UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 UIStroke.Thickness = 1
 UIStroke.Transparency = 0
@@ -1601,7 +1589,7 @@ ImageLabel.BorderSizePixel = 0
 ImageLabel.Position = UDim2.new(0, 5, 0, 5)
 ImageLabel.Size = UDim2.new(0, 18, 0, 18)
 ImageLabel.Image = "rbxassetid://"
-ImageLabel.ImageColor3 = Color3.fromRGB(224,224,224)
+ImageLabel.ImageColor3 = Color3.fromRGB(205,255,3)
 
 Space.Name = "Space"
 Space.Parent = SliderFrame_2
@@ -1612,7 +1600,7 @@ Space.Size = UDim2.new(0, 15, 0, 30)
 Space.Font = Enum.Font.Gotham
 Space.Text = ""
 Space.TextSize = 15.000
-Space.TextColor3 = Color3.fromRGB(224,224,224)
+Space.TextColor3 = Color3.fromRGB(205,255,3)
 Space.TextXAlignment = Enum.TextXAlignment.Center
 
 Title.Name = "Title"
@@ -1623,13 +1611,13 @@ Title.Position = UDim2.new(0, 50, 0, 0)
 Title.Size = UDim2.new(0, 280, 0, 30)
 Title.Font = Enum.Font.Gotham
 Title.Text = slidertitle or "Slider Title"
-Title.TextColor3 = Color3.fromRGB(224,224,224)
+Title.TextColor3 = Color3.fromRGB(205,255,3)
 Title.TextSize = 12.000
 Title.TextXAlignment = Enum.TextXAlignment.Left
 
 SliderInput.Name = "SliderInput"
 SliderInput.Parent = SliderFrame_2
-SliderInput.BackgroundColor3 = Color3.fromRGB(224,224,224)
+SliderInput.BackgroundColor3 = Color3.fromRGB(205,255,3)
 SliderInput.BackgroundTransparency = 0.7
 SliderInput.BorderSizePixel = 0
 SliderInput.Position = UDim2.new(0, 8, 0, 37)
@@ -1648,7 +1636,7 @@ SliderButton.Size = UDim2.new(0, 290, 0, 25)
 
 SliderCount.Name = "SliderCount"
 SliderCount.Parent = SliderButton
-SliderCount.BackgroundColor3 = Color3.fromRGB(224,224,224)
+SliderCount.BackgroundColor3 = Color3.fromRGB(205,255,3)
 SliderCount.BackgroundTransparency = 0.3
 SliderCount.BorderSizePixel = 0
 SliderCount.Position = UDim2.new(0,start,0,0)
@@ -1657,14 +1645,14 @@ SliderCount.Size = UDim2.new(0, 18, 0, 18)
 Title_2.Name = "Title_2"
 Title_2.Parent = SliderButton
 Title_2.AnchorPoint = Vector2.new(0, 0)
-Title_2.BackgroundColor3 = Color3.fromRGB(224,224,224)
+Title_2.BackgroundColor3 = Color3.fromRGB(205,255,3)
 Title_2.AutoButtonColor = false
 Title_2.BackgroundTransparency = 1.000
 Title_2.Position = UDim2.new(0,start,0,0)
 Title_2.Size = UDim2.new(0, 18, 0, 18)
 Title_2.Font = Enum.Font.GothamBold
 Title_2.Text = tostring(start and math.floor((start / max) * (max - min) + min) or 0)
-Title_2.TextColor3 = Color3.fromRGB(224,224,224)
+Title_2.TextColor3 = Color3.fromRGB(205,255,3)
 Title_2.TextSize = 8.000
 Title_2.TextXAlignment = Enum.TextXAlignment.Center
 
@@ -1677,7 +1665,7 @@ SliderCorner.Parent = SliderCount
 SliderStroke.Name = "SliderStroke"
 SliderStroke.Parent = BoxFrame
 SliderStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-SliderStroke.Color = Color3.fromRGB(224,224,224)
+SliderStroke.Color = Color3.fromRGB(205,255,3)
 SliderStroke.LineJoinMode = Enum.LineJoinMode.Round
 SliderStroke.Thickness = 1
 SliderStroke.Transparency = 0.5
@@ -1700,7 +1688,7 @@ SliderBox.Size = UDim2.new(0, 50, 0, 15)
 SliderBox.ClearTextOnFocus = false
 SliderBox.Font = Enum.Font.GothamBold
 SliderBox.Text = tostring(start and math.floor((start / max) * (max - min) + min) or 0)
-SliderBox.TextColor3 = Color3.fromRGB(224,224,224)
+SliderBox.TextColor3 = Color3.fromRGB(205,255,3)
 SliderBox.TextSize = 9.000
 SliderBox.TextTransparency = 0
 SliderBox.TextXAlignment = Enum.TextXAlignment.Center
@@ -1946,26 +1934,26 @@ end
  
  SliderLabel.Name = "SliderLabel"
  SliderLabel.Parent = sliderr
- SliderLabel.BackgroundColor3 = Color3.fromRGB(224,224,224)
+ SliderLabel.BackgroundColor3 = Color3.fromRGB(205,255,3)
  SliderLabel.BackgroundTransparency = 1.000
  SliderLabel.Position = UDim2.new(0, 15, 0, 0)
  SliderLabel.Size = UDim2.new(0, 180, 0, 26)
  SliderLabel.Font = Enum.Font.Gotham
  SliderLabel.Text = text
- SliderLabel.TextColor3 = Color3.fromRGB(224,224,224)
+ SliderLabel.TextColor3 = Color3.fromRGB(205,255,3)
  SliderLabel.TextSize = 12.000
  SliderLabel.TextTransparency = 0
  SliderLabel.TextXAlignment = Enum.TextXAlignment.Left
  
  HAHA.Name = "HAHA"
  HAHA.Parent = sliderr
- HAHA.BackgroundColor3 = Color3.fromRGB(224,224,224)
+ HAHA.BackgroundColor3 = Color3.fromRGB(205,255,3)
  HAHA.BackgroundTransparency = 1.000
  HAHA.Size = UDim2.new(0, 290, 0, 29)
  
  AHEHE.Name = "AHEHE"
  AHEHE.Parent = sliderr
- AHEHE.BackgroundColor3 = Color3.fromRGB(224,224,224)
+ AHEHE.BackgroundColor3 = Color3.fromRGB(205,255,3)
  AHEHE.BackgroundTransparency = 1.000
  AHEHE.Position = UDim2.new(0, 10, 0, 35)
  AHEHE.Size = UDim2.new(0, 290, 0, 5)
@@ -1995,7 +1983,7 @@ end
  
  circlebar.Name = "circlebar"
  circlebar.Parent = bar1
- circlebar.BackgroundColor3 = Color3.fromRGB(224,224,224)
+ circlebar.BackgroundColor3 = Color3.fromRGB(205,255,3)
  circlebar.Position = UDim2.new(1, -2, 0, -3)
  circlebar.Size = UDim2.new(0, 10, 0, 10)
  
@@ -2018,7 +2006,7 @@ end
  TextBox.Position = UDim2.new(0, 0, 0, 0)
  TextBox.Size = UDim2.new(0, 60, 0, 20)
  TextBox.Font = Enum.Font.Gotham
- TextBox.TextColor3 = Color3.fromRGB(224,224,224)
+ TextBox.TextColor3 = Color3.fromRGB(205,255,3)
  TextBox.TextSize = 9.000
  TextBox.Text = set
  TextBox.TextTransparency = 0
@@ -2026,7 +2014,7 @@ end
  posto.Name = "posto"
  posto.Parent = TextBox
  posto.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
- posto.Color = Color3.fromRGB(224,224,224)
+ posto.Color = Color3.fromRGB(205,255,3)
  posto.LineJoinMode = Enum.LineJoinMode.Round
  posto.Thickness = 1
  posto.Transparency = 0
@@ -2124,7 +2112,7 @@ end
  
  TextboxLabel.Name = "TextboxLabel"
  TextboxLabel.Parent = Textbox
- TextboxLabel.BackgroundColor3 = Color3.fromRGB(224,224,224)
+ TextboxLabel.BackgroundColor3 = Color3.fromRGB(205,255,3)
  TextboxLabel.BackgroundTransparency = 1.000
  TextboxLabel.Position = UDim2.new(0, 15, 0, 0)
  TextboxLabel.Text = text
@@ -2137,7 +2125,7 @@ end
  
  txtbtn.Name = "txtbtn"
  txtbtn.Parent = Textbox
- txtbtn.BackgroundColor3 = Color3.fromRGB(224,224,224)
+ txtbtn.BackgroundColor3 = Color3.fromRGB(205,255,3)
  txtbtn.BackgroundTransparency = 1.000
  txtbtn.Position = UDim2.new(0, 1, 0, 1)
  txtbtn.Size = UDim2.new(0, 310, 0, 29)
@@ -2175,7 +2163,7 @@ end
  
  Label.Name = "Label"
  Label.Parent = MainFramePage
- Label.BackgroundColor3 = Color3.fromRGB(224,224,224)
+ Label.BackgroundColor3 = Color3.fromRGB(205,255,3)
  Label.BackgroundTransparency = 1.000
  Label.Size = UDim2.new(0, 325, 0, 20)
  Label.Font = Enum.Font.Gotham
@@ -2201,7 +2189,7 @@ end
  
  Label1.Name = "Label1"
  Label1.Parent = MainFramePage
- Label1.BackgroundColor3 = Color3.fromRGB(224,224,224)
+ Label1.BackgroundColor3 = Color3.fromRGB(205,255,3)
  Label1.BackgroundTransparency = 1.000
  Label1.Size = UDim2.new(0, 325, 0, 20)
  Label1.Font = Enum.Font.Gotham
@@ -2228,7 +2216,7 @@ function main:Seperator(text)
  
  Seperator.Name = "Seperator"
  Seperator.Parent = MainFramePage
- Seperator.BackgroundColor3 = Color3.fromRGB(224,224,224)
+ Seperator.BackgroundColor3 = Color3.fromRGB(205,255,3)
  Seperator.BackgroundTransparency = 1.000
  Seperator.Size = UDim2.new(0, 290, 0, 20)
  
@@ -2241,13 +2229,13 @@ function main:Seperator(text)
  
  Sep2.Name = "Sep2"
  Sep2.Parent = Seperator
- Sep2.BackgroundColor3 = Color3.fromRGB(224,224,224)
+ Sep2.BackgroundColor3 = Color3.fromRGB(205,255,3)
  Sep2.BackgroundTransparency = 1.000
  Sep2.Position = UDim2.new(0, 120, 0, 0)
  Sep2.Size = UDim2.new(0, 80, 0, 20)
  Sep2.Font = Enum.Font.Gotham
  Sep2.Text = text
- Sep2.TextColor3 = Color3.fromRGB(224,224,224)
+ Sep2.TextColor3 = Color3.fromRGB(205,255,3)
  Sep2.TextSize = 14.000
  
  Sep3.Name = "Sep3"
@@ -2265,7 +2253,7 @@ function main:Seperator(text)
  
  Linee.Name = "Linee"
  Linee.Parent = MainFramePage
- Linee.BackgroundColor3 = Color3.fromRGB(224,224,224)
+ Linee.BackgroundColor3 = Color3.fromRGB(205,255,3)
  Linee.BackgroundTransparency = 1.000
  Linee.Position = UDim2.new(0, 0, 0.119999997, 0)
  Linee.Size = UDim2.new(0, 310, 0, 20)
@@ -4693,22 +4681,22 @@ spawn(function()
 end)
 
 --------------------------
-local Main = Library:Tab("Main","rbxassetid://11446825283")
-local Weapon = Library:Tab("Weapons","rbxassetid://11446859498")
-local Race = Library:Tab("Race V4","rbxassetid://11447069304")
+local Main = Library:Tab("Chính","rbxassetid://11446825283")
+local Weapon = Library:Tab("Vật Phẩm","rbxassetid://11446859498")
+local Race = Library:Tab("Tộc V4","rbxassetid://11447069304")
 --local Stats = Library:Tab("Stats","rbxassetid://11447069304")
-local P = Library:Tab("Player","rbxassetid://11446900930")
-local Teleport = Library:Tab("Teleport","rbxassetid://11446920523")
-local Dungeon = Library:Tab("Dungeon","rbxassetid://11446957539")
-local DevilFruit = Library:Tab("Fruit+Esp","rbxassetid://11446965348")
-local Shop = Library:Tab("Shop","rbxassetid://6031265976")
-local Misc = Library:Tab("Misc","rbxassetid://11447063791")
+local P = Library:Tab("Người Chơi","rbxassetid://11446900930")
+local Teleport = Library:Tab("Di chuyển","rbxassetid://11446920523")
+local Dungeon = Library:Tab("Tập Kích","rbxassetid://11446957539")
+local DevilFruit = Library:Tab("Trái Ác Quỷ & Esp","rbxassetid://11446965348")
+local Shop = Library:Tab("Cửa hàng","rbxassetid://6031265976")
+local Misc = Library:Tab("Khác","rbxassetid://11447063791")
 --local Op = Library:Tab("Status", "rbxassetid://7040410130")
-local Setting = Library:Tab("Settings","rbxassetid://11446835336")
+local Setting = Library:Tab("Cài Đặt","rbxassetid://11446835336")
 --------------------------------------------------------------------
 
-Setting:Seperator(" Setting ")
-Setting:Toggle("Auto Set Spawn Points",true,function(value)
+Setting:Seperator(" Cài Đặt ")
+Setting:Toggle("Tự Đặt Điểm Hồi Sinh",true,function(value)
  _G.AutoSetSpawn = value
 end)
 
@@ -4728,24 +4716,24 @@ spawn(function()
   end)
  end)
 
-Setting:Toggle("Anti AFK",true,function(value)
+Setting:Toggle("Tránh Văng",true,function(value)
  _G.AFK = value
  end)
 
 if not game:GetService("UserInputService").TouchEnabled and not game:GetService("UserInputService").KeyboardEnabled == false then
 _G.DistanceMob = 25
-Setting:Slider("Farm Distance",1,100,25,function(value)
+Setting:Slider("Khoảng Cách Farm",1,100,25,function(value)
  _G.DistanceMob = value
  end)
 else
  _G.DistanceMob = 25
-Setting:Slider1("Farm Distance",1,100,25,function(value)
+Setting:Slider1("Khoảng Cách Farm",1,100,25,function(value)
  _G.DistanceMob = value
  end)
 end
 
-Setting:Dropdown("Select Farm Method", {
- "Behind","Below","Upper"
+Setting:Dropdown("Cách Farm", {
+ "Sau","Dưới","Trên"
 },function(value)
  _G.Method = value
 end)
@@ -4753,11 +4741,11 @@ end)
 spawn(function()
  while wait() do
  pcall(function()
-  if _G.Method == "Behind" then
+  if _G.Method == "Sau" then
   MethodFarm = CFrame.new(0,0,_G.DistanceMob)
-  elseif _G.Method == "Below" then
+  elseif _G.Method == "Dưới" then
   MethodFarm = CFrame.new(0,-_G.DistanceMob,0) * CFrame.Angles(math.rad(90),0,0)
-  elseif _G.Method == "Upper" then
+  elseif _G.Method == "Trên" then
   MethodFarm = CFrame.new(0,_G.DistanceMob,0) * CFrame.Angles(math.rad(-90),0,0)
   else
    MethodFarm = CFrame.new(0,_G.DistanceMob,0)
@@ -4887,7 +4875,7 @@ if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Respawn
 	game:GetService("ReplicatedStorage").Effect.Container.Respawn:Destroy()
 end
 
-Setting:Toggle("Bring Mob [Normal]",true,function(value)
+Setting:Toggle("Gom Quái",true,function(value)
  _G.BringNormal = value
 end)
 
@@ -4911,9 +4899,6 @@ spawn(function()
     end)
 	end)
 	
-Setting:Toggle("Bring Mob [Extra+Lag]",false,function(value)
- _G.BringExtra = value
-end)
 
 spawn(function()
  game:GetService("RunService").Heartbeat:Connect(function() CheckQuest()
@@ -4938,7 +4923,7 @@ end)
 
 
 
-Setting:Toggle("Slow Attack",false,function(value)
+Setting:Toggle("Đánh Chậm",false,function(value)
  _G.FastAttack1 = value
  if value then
      Attack1Function()
@@ -5053,15 +5038,10 @@ end
 end)
 
 
-Setting:Toggle("Fast Attack",true,function(value)
+Setting:Toggle("Đánh Nhanh",true,function(value)
  _G.FastAttack = value
  end)
 
-
-Setting:Toggle("Auto Click",false,function(value)
- _G.click = value
-end)
-    
     
     
 
@@ -5316,10 +5296,6 @@ end)
                     
                     
                     
-    
-
-
-
 
 Main:Seperator(" Server ")
 
@@ -5437,17 +5413,17 @@ spawn(function()
 
 
 
-Main:Seperator("Select Item Farm")
-local WeaponList = {"Melee","Sword","Fruit"}
+Main:Seperator("Chọn Vũ Khí")
+local WeaponList = {"Cận Chiến","Kiếm","Trái Ác Quỷ"}
 _G.Select_Weapon = "Melee"
-local SelectWeapona = Main:Dropdown("Chọn Item Farm",WeaponList,function(value)
+local SelectWeapona = Main:Dropdown("Chọn Vũ Khí",WeaponList,function(value)
  _G.Select_Weapon = value
  end)
 
 task.spawn(function()
 	while wait() do
 		pcall(function()
-			if _G.Select_Weapon == "Melee" then
+			if _G.Select_Weapon == "Cận Chiến" then
 				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
 					if v.ToolTip == "Melee" then
 						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
@@ -5455,7 +5431,7 @@ task.spawn(function()
 						end
 					end
 				end
-			elseif _G.Select_Weapon == "Sword" then
+			elseif _G.Select_Weapon == "Kiếm" then
 				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
 					if v.ToolTip == "Sword" then
 						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
@@ -5471,7 +5447,7 @@ task.spawn(function()
 						end
 					end
 				end
-			elseif _G.Select_Weapon == "Fruit" then
+			elseif _G.Select_Weapon == "Trái Ác Quỷ" then
 				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
 					if v.ToolTip == "Blox Fruit" then
 						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
@@ -13645,38 +13621,8 @@ pcall(function()
 end)
 
 wait(1)
-
 game:GetService("Players").LocalPlayer.PlayerGui.Main.Level.Position = UDim2.new(0, 10, 0.90299999, 0)
 game:GetService("Players").LocalPlayer.PlayerGui.Main.RaceEnergy.Position = UDim2.new(0, 10, 0.97299999, 0)
 game:GetService("Players").LocalPlayer.PlayerGui.Main.Beli.Position = UDim2.new(0.00999999999, 0, 0.765, 0)
 game:GetService("Players").LocalPlayer.PlayerGui.Main.Fragments:Destroy()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 end)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
