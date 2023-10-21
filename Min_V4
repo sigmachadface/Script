@@ -3650,9 +3650,7 @@ spawn(function()
     end
 end)
 
-    Main:AddButton("Instant Chest Bypass ( ON/OFF )",function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/devidangelcl3/ange/main/onoff"))()
-    end)
+  
 
     
     Main:AddSeperator("Main Boss")
