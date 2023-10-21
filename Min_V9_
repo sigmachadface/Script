@@ -11435,13 +11435,13 @@ Raid:Toggle("Auto Raid Hop",_G.Setting_table.Auto_Raid_Hop,function(vu)
 	Update_Setting(getgenv()['MyName'])
 end)
 
-Raid:Toggle("Auto Raid Normal [One Click]",_G.Setting_table.Auto_Raid,function(vu)
+Raid:Toggle("Auto Raid Fully",_G.Setting_table.Auto_Raid,function(vu)
 	Auto_Raid = vu
 	_G.Setting_table.Auto_Raid = vu
 	Update_Setting(getgenv()['MyName'])
 end)
 
-Raid:Toggle("Auto Aweak",_G.Setting_table.Auto_Awaken,function(vu)
+Raid:Toggle("Auto Awake",_G.Setting_table.Auto_Awaken,function(vu)
 	_G.Setting_table.Auto_Awaken = vu
 	Update_Setting(getgenv()['MyName'])
 end)
