@@ -2473,14 +2473,14 @@ if game.PlaceId == 2753915549 then
                 NameMon = "Candy Rebel"
                 CFrameQuest = CFrame.new(150.5066375732422, 30.693693161010742, -12774.5029296875)
                 CFrameMon = CFrame.new(134.86563110351562, 77.2476806640625, -12876.5478515625)
-            elseif MyLevel == 2400 or MyLevel <= 2449 then
+            elseif MyLevel == 2400 or MyLevel <= 2424 then
                 Mon = "Candy Pirate [Lv. 2400]"
                 LevelQuest = 1
                 NameQuest = "CandyQuest1"
                 NameMon = "Candy Pirate"
                 CFrameQuest = CFrame.new(-1150.0400390625, 20.378934860229492, -14446.3349609375)
                 CFrameMon = CFrame.new(-1310.5003662109375, 26.016523361206055, -14562.404296875)
-            elseif MyLevel <= 2450 then
+            elseif MyLevel == 2425 or MyLevel <=2449 then
                 Mon = "Snow Demon [Lv. 2425]"
                 LevelQuest = 2
                 NameQuest = "CandyQuest1"
@@ -2494,7 +2494,7 @@ if game.PlaceId == 2753915549 then
                 NameMon = "Isle Outlaw"
                 CFrameQuest = CFrame.new(-16547.748046875, 61.13533401489258, -173.41360473632812)
                 CFrameMon = CFrame.new(-16442.814453125, 116.13899993896484, -264.4637756347656)
-            elseif MyLevel == 2475 or MyLevel <= 2499 then
+            elseif MyLevel == 2475 or MyLevel <= 2449 then
                 Mon = "Island Boy"
                 LevelQuest = 2
                 NameQuest = "TikiQuest1"
@@ -2508,7 +2508,7 @@ if game.PlaceId == 2753915549 then
                 NameMon = "Sun-kissed Warrior"
                 CFrameQuest = CFrame.new(-16539.078125, 55.68632888793945, 1051.5738525390625)
                 CFrameMon = CFrame.new(-16349.8779296875, 92.0808334350586, 1123.4169921875)
-            elseif MyLevel == 2525 then
+            elseif MyLevel <= 2525 or MyLevel then
                 Mon = "Isle Champion"
                 LevelQuest = 2
                 NameQuest = "TikiQuest2"
@@ -2518,6 +2518,7 @@ if game.PlaceId == 2753915549 then
             end
         end
     end
+
 
     function Hop()
         local PlaceID = game.PlaceId
@@ -4328,7 +4329,7 @@ spawn(function()
 end)
 Main:AddLabel("Cài Đặt")
 
-Main:AddToggle("Di Chuyển = Reset",true,function(Fast)
+Main:AddToggle("Di Chuyển = Reset",false,function(Fast)
 BypassTP = Fast
 end)
 
@@ -4444,13 +4445,13 @@ spawn(function()
   end
   end)
     Main:AddToggle("Cày Cấp Độ",_G.AutoFarm,function(value)
-       _G.AutoFarm = value
+        _G.AutoFarm = value
         StopTween(_G.AutoFarm)
     end)
     spawn(function()
         while wait() do
             if _G.AutoFarm then
-               pcall(function()
+                pcall(function()
                     local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
                     if not string.find(QuestTitle, NameMon) then
                         StartMagnet = false
@@ -4459,9 +4460,15 @@ spawn(function()
                     if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
                         StartMagnet = false
                         CheckQuest()
-                      
+                        if BypassTP then
+                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQuest.Position).Magnitude > 1500 then
+						BTP(CFrameQuest)
+						elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQuest.Position).Magnitude < 1500 then
 						TP1(CFrameQuest)
-				
+						end
+					else
+						TP1(CFrameQuest)
+					end
 					if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQuest.Position).Magnitude <= 5 then
 						game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest",NameQuest,LevelQuest)
                         end
@@ -4476,7 +4483,7 @@ spawn(function()
                                                 EquipWeapon(_G.SelectWeapon)
                                                 AutoHaki()                                            
                                                 PosMon = v.HumanoidRootPart.CFrame
-                                                TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,40,0))
+                                                TP1(v.HumanoidRootPart.CFrame * Pos)
                                                 v.HumanoidRootPart.CanCollide = false
                                                 v.Humanoid.WalkSpeed = 0
                                                 v.Head.CanCollide = false
@@ -4494,6 +4501,7 @@ spawn(function()
                             end
                         else
                             TP1(CFrameMon)
+                            UnEquipWeapon(_G.SelectWeapon)
                             StartMagnet = false
                             if game:GetService("ReplicatedStorage"):FindFirstChild(Mon) then
                              TP1(game:GetService("ReplicatedStorage"):FindFirstChild(Mon).HumanoidRootPart.CFrame * CFrame.new(15,10,2))
@@ -4504,6 +4512,7 @@ spawn(function()
             end
         end
     end)
+					
     
     Main:AddToggle("Cày Cấp Độ Nhanh (Sea1)",_G.AutoFarmFast,function(value)
         _G.Farmfast = value
