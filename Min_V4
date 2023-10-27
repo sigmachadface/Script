@@ -8479,7 +8479,7 @@ M:AddToggle("Auto Tushita", _G.Autotushita,function(value)
         end
     end)
     
-    M:AddSeperator("Pirate Raid [BETA]")
+    M:AddSeperator("Pirate Raid")
     
     M:AddToggle("Auto Pirate Raid", _G.AutoCarvender,function(value)
      _G.RaidPirate = value
@@ -8580,9 +8580,9 @@ M:AddToggle("Auto Tushita", _G.Autotushita,function(value)
         end
     end)
     
-    M:AddSeperator(" Terrorshark [BETA]")
+    M:AddSeperator(" Terrorshark")
     
-    M:AddToggle("Auto Farm Terrorshark", _G.AutoTerrorshark,function(value)
+    M:AddToggle("Auto Attack Terrorshark", _G.AutoTerrorshark,function(value)
          _G.AutoTerrorshark = value
         StopTween( _G.AutoTerrorshark)
     end)
