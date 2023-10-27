@@ -5180,7 +5180,6 @@ end
     end)
     
     Main:AddToggle("Auto Killing Boss",_G.AutoFarmBoss,function(value)
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
         _G.AutoFarmBoss = value
         StopTween(_G.AutoFarmBoss)
     end)
@@ -5201,7 +5200,7 @@ end
                                         v.Humanoid.WalkSpeed = 0
                                         v.HumanoidRootPart.Size = Vector3.new(80,80,80)                             
                                         topos(v.HumanoidRootPart.CFrame * Pos)
-                                        CLick()
+                                        Click()
                                         sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
                                     until not _G.AutoFarmBoss or not v.Parent or v.Humanoid.Health <= 0
                                 end
