@@ -3857,7 +3857,7 @@ local posX = 10
     end)
 
 
-local Library = Update:Window("Min Gaming V4","",Enum.KeyCode.RightControl);
+local Library = Update:Window("Min XT Hub","",Enum.KeyCode.RightControl);
 local Main = Library:AddTab("Main","13075651575")
 local Bone = Library:AddTab("Misc Farm","13075651575")
 local M = Library:AddTab("Quest","13075622619")
