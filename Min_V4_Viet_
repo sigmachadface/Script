@@ -3899,7 +3899,7 @@ end)
 task.spawn(function()
 	while wait() do
 		pcall(function()
-			if _G.SelectWeapon == "Melee" then
+			if _G.SelectWeapon == "Cận Chiến" then
 				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
 					if v.ToolTip == "Melee" then
 						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
@@ -3907,7 +3907,7 @@ task.spawn(function()
 						end
 					end
 				end
-			elseif _G.SelectWeapon == "Sword" then
+			elseif _G.SelectWeapon == "Kiếm" then
 				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
 					if v.ToolTip == "Sword" then
 						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
@@ -3915,7 +3915,7 @@ task.spawn(function()
 						end
 					end
 				end
-			elseif _G.SelectWeapon == "Gun" then
+			elseif _G.SelectWeapon == "Súng" then
 				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
 					if v.ToolTip == "Gun" then
 						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
@@ -3923,7 +3923,7 @@ task.spawn(function()
 						end
 					end
 				end
-			elseif _G.SelectWeapon == "Fruit" then
+			elseif _G.SelectWeapon == "Trái Ác Quỷ" then
 				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
 					if v.ToolTip == "Blox Fruit" then
 						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
