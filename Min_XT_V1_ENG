@@ -3823,7 +3823,7 @@ spawn(function()
                                             EquipWeapon(_G.SelectWeapon)
                                             AutoHaki()                                            
                                             PosMon = v.HumanoidRootPart.CFrame
-                                            toTarget(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
+                                            Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
                                             v.HumanoidRootPart.CanCollide = false
                                             v.Humanoid.WalkSpeed = 0
                                             v.Head.CanCollide = false
@@ -3904,7 +3904,7 @@ if World1 then
                                         StardMag = true
                                         FastMon = v.HumanoidRootPart.CFrame
                                         v.HumanoidRootPart.Size = Vector3.new(80,80,80)                             
-                                        toTarget(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
+                                        Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
                                         game:GetService("VirtualUser"):CaptureController()
                                         game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
                                     until not _G.Farmfast or not v.Parent or v.Humanoid.Health <= 0
@@ -3958,7 +3958,7 @@ Main:AddToggle("Auto Near Mob",_G.AutoFarmNearest,function(value)
                                  }
                                  game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
                                 end
-                             toTarget(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
+                             Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
                              v.HumanoidRootPart.CanCollide = false
                              Fastattack = true
                              v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
@@ -4035,7 +4035,7 @@ Main:AddToggle("Auto Near Mob",_G.AutoFarmNearest,function(value)
                                              v.HumanoidRootPart.CanCollide = false
                                              v.Humanoid.WalkSpeed = 0
                                              v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-                                             toTarget(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
+                                             Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
                                              game:GetService("VirtualUser"):CaptureController()
                                              game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
                                              sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
@@ -4063,7 +4063,7 @@ Main:AddToggle("Auto Near Mob",_G.AutoFarmNearest,function(value)
                                                          v.HumanoidRootPart.Size = Vector3.new(50,50,50)
                                                          MagnetDought = true
                                                          PosMonDoughtOpenDoor = v.HumanoidRootPart.CFrame
-                                                         toTarget(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
+                                                         Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
                                                          game:GetService("VirtualUser"):CaptureController()
                                                          game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
                                                      until not _G.AutoDoughtBoss or not v.Parent or v.Humanoid.Health <= 0 or game:GetService("Workspace").Map.CakeLoaf.BigMirror.Other.Transparency == 0 or game:GetService("ReplicatedStorage"):FindFirstChild("Cake Prince [Lv. 2300] [Raid Boss]") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince [Lv. 2300] [Raid Boss]") or KillMob == 0
@@ -4151,7 +4151,7 @@ Main:AddToggle("Auto Farm Bone",_G.Auto_Bone,function(value)
                                             v.Head.CanCollide = false 
                                             StartMagnetBoneMon = true
                                             PosMonBone = v.HumanoidRootPart.CFrame
-                                           toTarget(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
+                                           Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
                                             game:GetService("VirtualUser"):CaptureController()
                                             game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
                                         until not _G.Auto_Bone or not v.Parent or v.Humanoid.Health <= 0
@@ -4168,7 +4168,6 @@ Main:AddToggle("Auto Farm Bone",_G.Auto_Bone,function(value)
                     else
                         toTarget(BonePos)
                     end
-                            UnEquipWeapon(_G.SelectWeapon)
                             StartMagnetBoneMon = false
                             toTarget(CFrame.new(-9506.234375, 172.130615234375, 6117.0771484375))
                             for i,v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do 
@@ -4245,6 +4244,28 @@ Stats:AddToggle("Auto Kaitun",_G.Auto_Stats_Kaitun,function(value)
             end)
         end
     end)
+
+
+    function Tween(Pos)
+        Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+        if game.Players.LocalPlayer.Character.Humanoid.Sit == true then game.Players.LocalPlayer.Character.Humanoid.Sit = true end
+        pcall(function() tween = game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,TweenInfo.new(Distance/300, Enum.EasingStyle.Linear),{CFrame = Pos}) end)
+        tween:Play()
+        if Distance <= 300 then
+            tween:Cancel()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Pos
+        end
+        if _G.StopTween == true then
+            tween:Cancel()
+            _G.Clip = false
+        end
+    end
+
+
+
+
+
+
     
     Stats:AddToggle("Melee",false,function(Value)
     melee = Value    
@@ -4796,7 +4817,7 @@ Stats:AddToggle("Auto Kaitun",_G.Auto_Stats_Kaitun,function(value)
     end)
 
 
-    
+
     function topos(Pos)
         Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
         if Distance < 25 then
@@ -4970,7 +4991,7 @@ end
                                                         v.Head.CanCollide = false 
                                                         FarmMag = true
                                                         PosGG = v.HumanoidRootPart.CFrame
-                                                       toTarget(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
+                                                       Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
                                                         game:GetService("VirtualUser"):CaptureController()
                                                         game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
                                                     until not StardFarm or not v.Parent or v.Humanoid.Health <= 0
@@ -5819,17 +5840,7 @@ end
                         end
                     end)
                     
-                    Misc:AddButton("Copy Job Id",function()
-                    setclipboard(tostring(game.JobId))
-                    end)
-                    
-                    Misc:AddTextbox("Place Job Id", true, function(value)
-                    _G.Job = value
-                    end)
-                
-                    Misc:AddButton("Join Sever",function()
-                    game:GetService("TeleportService"):TeleportToPlaceInstance(game.placeId,_G.Job, game.Players.LocalPlayer)
-                    end)
+            
                     
                     Misc:AddSeperator("Misc")
                     
