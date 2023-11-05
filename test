@@ -2506,7 +2506,7 @@ function CheckQuest()
             CFrameQuest = CFrame.new(-1151.48987, 16.1422901, -14445.6904, -0.316594511, -6.85698254e-08, -0.948560953, -2.05343067e-08, 1, -6.54346692e-08, 0.948560953, -1.23821675e-09, -0.316594511)
             CFrameMon = CFrame.new(-1408.46521, 16.1423531, -14552.2041, 0.90175873, -8.17216943e-08, -0.432239741, 7.81264475e-08, 1, -2.60746162e-08, 0.432239741, -1.02563433e-08, 0.90175873)
 			SPAWNPOINT = "Chocolate"
-			elseif MyLevel >= 2425 or _G.Select_Mob_Farm == "Snow Demon" then
+			elseif MyLevel == 2425 or MyLevel >= 2449 or _G.Select_Mob_Farm == "Snow Demon" then
 			Ms = "Snow Demon"
             NameQuest = "CandyQuest1"
             LevelQuest = 2
@@ -2514,6 +2514,38 @@ function CheckQuest()
             CFrameQuest = CFrame.new(-1151.48987, 16.1422901, -14445.6904, -0.316594511, -6.85698254e-08, -0.948560953, -2.05343067e-08, 1, -6.54346692e-08, 0.948560953, -1.23821675e-09, -0.316594511)
             CFrameMon = CFrame.new(-777.070862, 23.5809536, -14453.0078, 0.33384338, 0, -0.942628562, 0, 1, 0, 0.942628562, 0, 0.33384338)
 			SPAWNPOINT = "Chocolate"
+		elseif MyLevel == 2450 or MyLevel >= 2474 or _G.Select_Mob_Farm == "Isle Outlaw" then
+			Ms = "Isle Outlaw"
+            NameQuest = "TikiQuest1"
+            LevelQuest = 1
+            NameMon = "Isle Outlaw"
+			CFrameQuest = CFrame.new(-16547.748046875, 61.13533401489258, -173.41360473632812)
+			CFrameMon = CFrame.new(-16442.814453125, 116.13899993896484, -264.4637756347656)
+			SPAWNPOINT = "Isle Outpost"
+		elseif MyLevel == 2475 or MyLevel >= 2499 or _G.Select_Mob_Farm == "Island Boy" then
+			Ms = "Island Boy"
+            NameQuest = "TikiQuest1"
+            LevelQuest = 2
+            NameMon = "Island Boy"
+			CFrameQuest = CFrame.new(-16547.748046875, 61.13533401489258, -173.41360473632812)
+			CFrameMon = CFrame.new(-16901.26171875, 84.06756591796875, -192.88906860351562)
+			SPAWNPOINT = "Isle Outpost"
+		elseif MyLevel == 2500 or MyLevel >= 2524 or _G.Select_Mob_Farm == "Sun-kissed Warrior" then
+			Ms = "Sun-kissed Warrior"
+            NameQuest = "TikiQuest2"
+            LevelQuest = 1
+            NameMon = "Sun-kissed Warrior"
+            CFrameQuest = CFrame.new(-16539.078125, 55.68632888793945, 1051.5738525390625)
+                CFrameMon = CFrame.new(-16349.8779296875, 92.0808334350586, 1123.4169921875)
+			SPAWNPOINT = "Isle Outpost"
+		elseif MyLevel >= 2525 or _G.Select_Mob_Farm == "Isle Champion" then
+			Ms = "Isle Champion"
+            NameQuest = "TikiQuest2"
+            LevelQuest = 2
+            NameMon = "Isle Champion"
+            CFrameQuest = CFrame.new(-16539.078125, 55.68632888793945, 1051.5738525390625)
+                CFrameMon = CFrame.new(-16347.4150390625, 92.09503936767578, 1122.335205078125)
+			SPAWNPOINT = "Isle Outpost"
 		end
     end
 end
@@ -3376,32 +3408,19 @@ function checkselect()
             CFrameMon = CFrame.new(147.52256774902344, 24.793832778930664, -12775.3583984375)
 			--Spawn = "Chocolate"
 elseif MyLevel == 2400 or MyLevel <= 2424 or SelectMonster == "Candy Pirate [Lv. 2400]" then
-
             Mon = "Candy Pirate [Lv. 2400]"
             QuestName = "CandyQuest1"
-
             LevelQuest = 1
             NameMon = "Candy Pirate"
-
             CFrameMon = CFrame.new(-1476, 52, -14638)
-            VectorMon = Vector3.new(-1476, 52, -14638)
-
             CFrameQuest = CFrame.new(-1149, 13, -14445)
-            VectorQuest = Vector3.new(-1149, 13, -14445)
         elseif MyLevel >= 2425 or SelectMonster == "Snow Demon [Lv. 2425]" then
-
-
             Mon = "Snow Demon [Lv. 2425]"
             QuestName = "CandyQuest1"
-
             LevelQuest = 2
             NameMon = "Snow Demon"
-            
             CFrameMon = CFrame.new(-948, 62, -14551)
-            VectorMon = CFrame.new(-948, 62, -14551)
-
             CFrameQuest = CFrame.new(-1149, 13, -14445)
-            VectorQuest = Vector3.new(-1149, 13, -14445)
 		end
     end
 end
@@ -3861,7 +3880,7 @@ spawn(function()
  game:GetService("RunService").Heartbeat:Connect(function()
   pcall(function()
    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-   if _G.Auto_Farm_Bone and StartMagnetBoneMon and (v.Name == "Reborn Skeleton [Lv. 1975]" or v.Name == "Living Zombie [Lv. 2000]" or v.Name == "Demonic Soul [Lv. 2025]" or v.Name == "Posessed Mummy [Lv. 2050]") and (v.HumanoidRootPart.Position - PosMonBone.Position).magnitude <= 350 then
+   if _G.Auto_Farm_Bone and StartMagnetBoneMon and (v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy") and (v.HumanoidRootPart.Position - PosMonBone.Position).magnitude <= 350 then
    v.HumanoidRootPart.CFrame = PosMonBone
    v.HumanoidRootPart.CanCollide = false
    v.HumanoidRootPart.Size = Vector3.new(50,50,50)
@@ -3879,9 +3898,9 @@ spawn(function()
  while wait() do
  if _G.Auto_Farm_Bone and World3 then
  pcall(function()
-  if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton [Lv. 1975]") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie [Lv. 2000]") or game:GetService("Workspace").Enemies:FindFirstChild("Domenic Soul [Lv. 2025]") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy [Lv. 2050]") then
+  if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") or game:GetService("Workspace").Enemies:FindFirstChild("Domenic Soul") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy") then
   for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-  if v.Name == "Reborn Skeleton [Lv. 1975]" or v.Name == "Living Zombie [Lv. 2000]" or v.Name == "Demonic Soul [Lv. 2025]" or v.Name == "Posessed Mummy [Lv. 2050]" then
+  if v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy" then
   if v.Humanoid.Health > 0 then
   repeat wait()
   AutoHaki()
@@ -3900,13 +3919,13 @@ spawn(function()
   else
    StartMagnetBoneMon = false
   for i,v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
-  if v.Name == "Reborn Skeleton [Lv. 1975]" then
+  if v.Name == "Reborn Skeleton" then
   topos(v.HumanoidRootPart.CFrame * MethodFarm)
-  elseif v.Name == "Living Zombie [Lv. 2000]" then
+  elseif v.Name == "Living Zombie" then
   topos(v.HumanoidRootPart.CFrame * MethodFarm)
-  elseif v.Name == "Demonic Soul [Lv. 2025]" then
+  elseif v.Name == "Demonic Soul" then
   topos(v.HumanoidRootPart.CFrame * MethodFarm)
-  elseif v.Name == "Posessed Mummy [Lv. 2050]" then
+  elseif v.Name == "Posessed Mummy" then
   topos(v.HumanoidRootPart.CFrame * MethodFarm)
   end
   end
