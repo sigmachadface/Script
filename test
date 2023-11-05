@@ -2479,7 +2479,7 @@ function CheckQuest()
             NameQuest = "ChocQuest1"
             LevelQuest = 2
             NameMon = "Chocolate Bar Battler"
-            CFrameQuest = CFrame.new(231.13571166992188, 24.734268188476562, -12195.1162109375)
+            CFrameQuest = CFrame.new(231.13571166992188, 24.73426818476562, -12195.1162109375)
             CFrameMon = CFrame.new(231.13571166992188, 24.734268188476562, -12195.1162109375)
 			SPAWNPOINT = "Chocolate"
 		elseif MyLevel == 2350 or MyLevel <= 2374 or _G.Select_Mob_Farm == "Sweet Thief [Lv. 2350]" then
