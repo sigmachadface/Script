@@ -2498,8 +2498,8 @@ function CheckQuest()
             CFrameQuest = CFrame.new(147.52256774902344, 24.793832778930664, -12775.3583984375)
             CFrameMon = CFrame.new(147.52256774902344, 24.793832778930664, -12775.3583984375)
 			SPAWNPOINT = "Chocolate"
-			elseif MyLevel == 2400 or MyLevel <= 2424 or _G.Select_Mob_Farm == "Candy Pirate [Lv. 2400]" then
-			Ms = "Candy Pirate [Lv. 2400]"
+			elseif MyLevel == 2400 or MyLevel <= 2424 or _G.Select_Mob_Farm == "Candy Pirate" then
+			Ms = "Candy Pirate"
             NameQuest = "CandyQuest1"
             LevelQuest = 1
             NameMon = "Candy Pirate"
@@ -3406,48 +3406,47 @@ function checkselect()
             NameMon = "Candy Rebel"
             --CFrameQuest = CFrame.new(147.52256774902344, 24.793832778930664, -12775.3583984375)
             CFrameMon = CFrame.new(147.52256774902344, 24.793832778930664, -12775.3583984375)
-			--Spawn = "Chocolate"
 elseif MyLevel == 2400 or MyLevel <= 2424 or SelectMonster == "Candy Pirate" then
             Mon = "Candy Pirate"
-            QuestName = "CandyQuest1"
+           -- QuestName = "CandyQuest1"
             LevelQuest = 1
             NameMon = "Candy Pirate"
             CFrameMon = CFrame.new(-1476, 52, -14638)
-            CFrameQuest = CFrame.new(-1149, 13, -14445)
+            --CFrameQuest = CFrame.new(-1149, 13, -14445)
         elseif MyLevel == 2425 or MyLevel >= 2449 or SelectMonster == "Snow Demon" then
             Mon = "Snow Demon"
-            QuestName = "CandyQuest1"
+          --  QuestName = "CandyQuest1"
             LevelQuest = 2
             NameMon = "Snow Demon"
             CFrameMon = CFrame.new(-948, 62, -14551)
-            CFrameQuest = CFrame.new(-1149, 13, -14445)
+         --   CFrameQuest = CFrame.new(-1149, 13, -14445)
 		elseif MyLevel == 2450 or MyLevel >= 2474 or SelectMonster == "Isle Outlaw" then
             Mon = "Isle Outlaw"
-            QuestName = "TikiQuest1"
+          --  QuestName = "TikiQuest1"
             LevelQuest = 1
             NameMon = "Isle Outlaw"
-			CFrameQuest = CFrame.new(-16547.748046875, 61.13533401489258, -173.41360473632812)
+			--CFrameQuest = CFrame.new(-16547.748046875, 61.13533401489258, -173.41360473632812)
 			CFrameMon = CFrame.new(-16442.814453125, 116.13899993896484, -264.4637756347656)
 		elseif MyLevel == 2475 or MyLevel >= 2499 or SelectMonster == "Island Boy" then
             Mon = "Island Boy"
-            QuestName = "TikiQuest1"
+         --   QuestName = "TikiQuest1"
             LevelQuest = 2
             NameMon = "Island Boy"
-			CFrameQuest = CFrame.new(-16547.748046875, 61.13533401489258, -173.41360473632812)
+			--CFrameQuest = CFrame.new(-16547.748046875, 61.13533401489258, -173.41360473632812)
 			CFrameMon = CFrame.new(-16901.26171875, 84.06756591796875, -192.88906860351562)
 		elseif MyLevel == 2500 or MyLevel >= 2524 or SelectMonster == "Sun-kissed Warrior" then
             Mon = "Sun-kissed Warrior"
-            QuestName = "TikiQuest2"
+           -- QuestName = "TikiQuest2"
             LevelQuest = 1
             NameMon = "Sun-kissed Warrior"
-            CFrameQuest = CFrame.new(-16539.078125, 55.68632888793945, 1051.5738525390625)
+         --   CFrameQuest = CFrame.new(-16539.078125, 55.68632888793945, 1051.5738525390625)
             CFrameMon = CFrame.new(-16349.8779296875, 92.0808334350586, 1123.4169921875)
 		elseif MyLevel >= 2525 or SelectMonster == "Isle Champion" then
             Mon = "Isle Champion"
-            QuestName = "TikiQuest2"
+           -- QuestName = "TikiQuest2"
             LevelQuest = 2
             NameMon = "Isle Champion"
-            CFrameQuest = CFrame.new(-16539.078125, 55.68632888793945, 1051.5738525390625)
+         --   CFrameQuest = CFrame.new(-16539.078125, 55.68632888793945, 1051.5738525390625)
             CFrameMon = CFrame.new(-16347.4150390625, 92.09503936767578, 1122.335205078125)
 		end
     end
