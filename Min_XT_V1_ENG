@@ -14966,17 +14966,3 @@ spawn(function()
         end
     end)
     end)
-
-print("Domadic Hub Load Complete")
-
-game.StarterGui:SetCore("SendNotification", {
-      Icon = "http://www.roblox.com/asset/?id=12523036534";
-      Title = "Domadic Hub", 
-      Text = "Welcome To Script!!";
-})
-wait(3)
-game.StarterGui:SetCore("SendNotification", {
-      Icon = "http://www.roblox.com/asset/?id=12523036534";
-      Title = "Domadic Hub", 
-      Text = "made by @miidraayeerng อยาก Yed Owner Zps วะ";
-})
