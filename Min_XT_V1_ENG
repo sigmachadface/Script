@@ -1632,7 +1632,7 @@ function CheckQuest()
             NameMon = "Island Boy"
             CFrameQuest = CFrame.new(-16547.748046875, 61.13533401489258, -173.41360473632812)
             CFrameMon = CFrame.new(-16901.26171875, 84.06756591796875, -192.88906860351562)
-        elseif MyLevel == 2525 or MyLevel <= 2550 then
+        elseif MyLevel >= 2550 then
             Mon = "Isle Champion"
             LevelQuest = 2
             NameQuest = "TikiQuest2"
