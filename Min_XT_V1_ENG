@@ -3747,21 +3747,7 @@ end)
      Setting:AddToggle("Skill V",true,function(value)
         _G.SkillV = value
     end)
-
-
-
-
-
-
-
-
-
-    local AttackList = {"0", "0.1", "0.15", "0.155", "0.175"}
-    _G.FastAttackDelay = "0.15"
-    Main:AddDropdown("Fast Attack Delay", AttackList,function(MakoGay)
-    _G.FastAttackDelay = MakoGay
-    end)
-
+--
 local WeaponList = {"Melee","Sword","Blox Fruit","Gun"}
 _G.SelectWeapon = "Melee"
 Main:AddDropdown("Select Weapon",WeaponList,function(value)
@@ -3807,7 +3793,6 @@ task.spawn(function()
 		end)
 	end
     end)
-
 
 Main:AddToggle("Auto Farm Level",_G.AutoFarm,function(value)
     _G.AutoFarm = value
