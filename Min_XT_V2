@@ -12,7 +12,7 @@ ImageButton.BorderSizePixel = 0
 ImageButton.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
 ImageButton.Size = UDim2.new(0, 50, 0, 50)
 ImageButton.Draggable = true
-ImageButton.Image = "http://www.roblox.com/asset/?id=13700678418"
+ImageButton.Image = "http://www.roblox.com/asset/?id=15388425623"
 ImageButton.MouseButton1Down:connect(function()
 game:GetService("VirtualInputManager"):SendKeyEvent(true,305,false,game)
  game:GetService("VirtualInputManager"):SendKeyEvent(false,305,false,game)
@@ -8167,8 +8167,8 @@ M:Seperator(" Trident ")
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest","BartiloQuest",1)
                         end 
                     elseif game:GetService("Players").LocalPlayer.Data.Level.Value >= 800 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BartiloQuestProgress","Bartilo") == 1 then
-                        if game:GetService("Workspace").Enemies:FindFirstChild("Jeremy [Lv. 850]") then
-                            Ms = "Jeremy [Lv. 850]"
+                        if game:GetService("Workspace").Enemies:FindFirstChild("Jeremy") then
+                            Ms = "Jeremy"
                             for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                                 if v.Name == Ms then
                                     OldCFrameBartlio = v.HumanoidRootPart.CFrame
@@ -8187,7 +8187,7 @@ M:Seperator(" Trident ")
                                     until not v.Parent or v.Humanoid.Health <= 0 or _G.AutoBartilo == false
                                 end
                             end
-                        elseif game:GetService("ReplicatedStorage"):FindFirstChild("Jeremy [Lv. 850]") then
+                        elseif game:GetService("ReplicatedStorage"):FindFirstChild("Jeremy") then
                             repeat topos(CFrame.new(-456.28952, 73.0200958, 299.895966)) wait() until not _G.AutoBartilo or (game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position-Vector3.new(-456.28952, 73.0200958, 299.895966)).Magnitude <= 10
                             wait(1.1)
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BartiloQuestProgress","Bartilo")
