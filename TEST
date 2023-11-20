@@ -2540,6 +2540,29 @@ end)
 end)
 
 
+
+
+AutoFarm:Seperator("")
+
+local Mob_Kill_Cake_Prince = AutoFarm:Label("")
+
+	spawn(function()
+		while wait() do
+			pcall(function()
+				if string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")) == 88 then
+					Mob_Kill_Cake_Prince:Set("Killed : "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,41).." : Kill More")
+				elseif string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")) == 87 then
+					Mob_Kill_Cake_Prince:Set("Kill : "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,40).." : Kill More")
+				elseif string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")) == 86 then
+					Mob_Kill_Cake_Prince:Set("Kill : "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,39).." : More")
+				else
+					Mob_Kill_Cake_Prince:Set("Boss Spawn 🟢")
+				end
+			end)
+		end
+	end)
+
+
 AutoFarm:Toggle("Auto Farm Cake Prince",false,function(value)
     _G.Auto_Cake_Prince = value
 end)
@@ -2575,7 +2598,7 @@ spawn(function()
                                     EquipWeapon(SelectToolWeapon)
                                     CakeManet = true
                                     v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)  
-                                    PosMon = v.HumanoidRootPart.CFrame
+                                    MainMonCake = v.HumanoidRootPart.CFrame
                                     TP(v.HumanoidRootPart.CFrame * Farm_Mode)
                                     game:GetService'VirtualUser':CaptureController()
                                     game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
