@@ -2540,8 +2540,6 @@ end)
 end)
 
 
-
-
 AutoFarm:Seperator("")
 
 local Mob_Kill_Cake_Prince = AutoFarm:Label("")
@@ -6251,7 +6249,7 @@ spawn(function()
 	end
 end)
 
---if game:GetService("ReplicatedStorage"):FindFirstChild("Diablo [Lv. 1750]") or game:GetService("ReplicatedStorage"):FindFirstChild("Urban [Lv. 1750]") or game:GetService("ReplicatedStorage"):FindFirstChild("Deandre [Lv. 1750]") then
+--if game:GetService("ReplicatedStorage"):FindFirstChild("Diablo") or game:GetService("ReplicatedStorage"):FindFirstChild("Urban") or game:GetService("ReplicatedStorage"):FindFirstChild("Deandre") then
 
 spawn(function()
 	pcall(function()
@@ -6260,7 +6258,7 @@ spawn(function()
 				local QuestElite = string.find(game.Players.LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, "Diablo") or string.find(game.Players.LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, "Urban") or string.find(game.Players.LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, "Deandre")
 				local ReplicatedStorage = game:GetService("ReplicatedStorage");
 				local Enemies = game:GetService("Workspace").Enemies
-				if ReplicatedStorage:FindFirstChild("Diablo [Lv. 1750]") or Enemies:FindFirstChild("Diablo [Lv. 1750]") or ReplicatedStorage:FindFirstChild("Urban [Lv. 1750]") or Enemies:FindFirstChild("Urban [Lv. 1750]") or ReplicatedStorage:FindFirstChild("Deandre [Lv. 1750]") or Enemies:FindFirstChild("Deadre [Lv. 1750]") then
+				if ReplicatedStorage:FindFirstChild("Diablo") or Enemies:FindFirstChild("Diablo") or ReplicatedStorage:FindFirstChild("Urban") or Enemies:FindFirstChild("Urban") or ReplicatedStorage:FindFirstChild("Deandre") or Enemies:FindFirstChild("Deadre") then
 					Elite = true
 					Auto_Farm = false
 					if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
@@ -6272,7 +6270,7 @@ spawn(function()
 					elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
 						if game.Players.LocalPlayer.PlayerGui.Main.Quest.Container.QuestReward.Title.Text == "Reward:\n$15,000\n60,000,000 Exp." then
 							for i,v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
-								if Elite and v.Name == "Diablo [Lv. 1750]" or v.Name == "Urban [Lv. 1750]" or v.Name == "Deandre [Lv. 1750]" then
+								if Elite and v.Name == "Diablo" or v.Name == "Urban" or v.Name == "Deandre" then
 									repeat game:GetService("RunService").Heartbeat:wait()
 										if QuestElite then
 											EquipWeapon(SelectToolWeapon)
@@ -6476,9 +6474,9 @@ spawn(function()
 						TP(CFrame.new(5541.21338, 668.239258, 198.150391, -0.00426674541, 5.33843725e-09, -0.99999088, 3.50221967e-08, 1, 5.18905363e-09, 0.99999088, -3.49997364e-08, -0.00426674541))
 					end
 				elseif string.find(game.Players.LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, "Kilo Admiral") then
-					if game:GetService("Workspace").Enemies:FindFirstChild("Kilo Admiral [Lv. 1750] [Boss]") then
+					if game:GetService("Workspace").Enemies:FindFirstChild("Kilo Admiral [Boss]") then
 						for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-							if v.Name == "Kilo Admiral [Lv. 1750] [Boss]" then
+							if v.Name == "Kilo Admiral [Boss]" then
 								repeat game:GetService("RunService").Heartbeat:wait()
                                     EquipWeapon(SelectToolWeapon)
 									TP(v.HumanoidRootPart.CFrame * CFrame.new(0, 30, 10))
@@ -7057,8 +7055,8 @@ function CheckBossQuest()
             RewardBoss = "Reward:\n$30,000\n52,000,000 Exp."
             CFrameQBoss = CFrame.new(5445.9541015625, 601.62945556641, 751.43792724609)
             CFrameBoss = CFrame.new(5543.86328125, 668.97399902344, 199.0341796875)
-		elseif SelectBoss == "Kilo Admiral [Lv. 1750] [Boss]" then
-			BossMon = "Kilo Admiral [Lv. 1750] [Boss]"
+		elseif SelectBoss == "Kilo Admiral [Boss]" then
+			BossMon = "Kilo Admiral [Boss]"
 			NameQuestBoss = "MarineTreeIsland"
             QuestLvBoss = 3
             RewardBoss = "Reward:\n$35,000\n56,000,000 Exp."
