@@ -2540,8 +2540,6 @@ end)
 end)
 
 
-AutoFarm:Seperator("")
-
 local Mob_Kill_Cake_Prince = AutoFarm:Label("")
 
 	spawn(function()
