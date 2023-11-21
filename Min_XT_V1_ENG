@@ -3575,11 +3575,11 @@ spawn(function()
    
    
    
-	Main:Label("Chest")  
+	Main:AddLabel("Chest")  
    
    if World3 then   
   
-	   Main:Toggle("Auto Chest",_G.chestsea3,function(value)
+	   Main:AddToggle("Auto Chest",_G.chestsea3,function(value)
 	_G.chestsea3 = value
 	StopTween(_G.chestsea3)
    end)
@@ -3588,7 +3588,7 @@ spawn(function()
 	
 	  if World2 then
 	     
-	   Main:Toggle("Auto Chest",_G.chestsea2,function(value)
+	   Main:AddToggle("Auto Chest",_G.chestsea2,function(value)
 	_G.chestsea2 = value
 	StopTween(_G.chestsea2)
    end)
