@@ -2476,6 +2476,12 @@ elseif placeId == 7449423635 then
 	Three_World = true
 end
 
+AutoFarm:Button("TP to Island Farm Level",function()
+	BTP(CFrameMon)
+end)
+
+
+
 AutoFarm:Toggle("Auto Farm Level", _G.AutoFarmLevel, function(vu)
     _G.AutoFarm = vu
 	if _G.AutoFarm and SelectToolWeapon == "" then
@@ -7894,7 +7900,7 @@ spawn(function()
 						v.HumanoidRootPart.CFrame = MainMonBone
 						sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
 					end
-					
+
                 elseif _G.Auto_Cake_Prince and CakeManet and Magnet then
 					 if (v.Name == "Baking Staff" or v.Name == "Head Baker" or v.Name == "Cake Guard" or v.Name == "Cookie Crafter") and (v.HumanoidRootPart.Position - MainMonCake.Position).Magnitude <= 300 then
 						v.Head.CanCollide = false
