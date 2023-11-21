@@ -7887,7 +7887,7 @@ spawn(function()
 					end
 
 				elseif Auto_Bone and BoneMagnet and Magnet then
-					if (v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy") and (v.HumanoidRootPart.Position - MainMonBone.Position).Magnitude <= 300 then
+					if v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy" and (v.HumanoidRootPart.Position - MainMonBone.Position).Magnitude <= 300 then
 						v.Head.CanCollide = false
 						v.HumanoidRootPart.CanCollide = false
 						v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
