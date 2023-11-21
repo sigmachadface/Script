@@ -2559,6 +2559,24 @@ local Mob_Kill_Cake_Prince = AutoFarm:Label("")
 	end)
 
 
+	---Bypass TP function
+	function BTP(p)
+    	pcall(function()
+	    	if (p.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude >= 1500 and not Auto_Raid and game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
+				repeat wait()
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = p
+					wait(.05)
+					game.Players.LocalPlayer.Character.Head:Destroy()
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = p
+				until (p.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 1500 and game.Players.LocalPlayer.Character.Humanoid.Health > 0
+			end
+		end)
+	end
+------------------------------
+	AutoFarm:Button("TP to Cake Island",function()
+		BTP(CFrame.new(-1820.0634765625, 210.74781799316406, -12297.49609375))
+	end)
+
 AutoFarm:Toggle("Auto Farm Cake Prince",false,function(value)
     _G.Auto_Cake_Prince = value
 end)
@@ -3025,6 +3043,12 @@ AutoFarm:Button("Refresh Weapon",function()
 end)
 
 AutoFarm:Line()
+
+
+AutoFarm:Button("TP to Bone Island",function()
+	BTP(CFrame.new(-9501.64453, 582.052612, 6034.20117))
+end)
+
 
 AutoFarm:Label(""):Refresh("Halloween's Event & Bone Shop")
 
