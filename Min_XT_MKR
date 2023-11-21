@@ -2576,7 +2576,7 @@ spawn(function()
                                     EquipWeapon(_G.Select_Weapon)
                                     v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
                                     v.HumanoidRootPart.CanCollide = false
-                                    TP(v.HumanoidRootPart.CFrame * MethodFarm)
+                                    TP(v.HumanoidRootPart.CFrame * Farm_Mode)
                                     game:GetService'VirtualUser':CaptureController()
                                     game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
                                 until _G.Auto_Cake_Prince == false or not v.Parent or v.Humanoid.Health <= 0
@@ -4364,6 +4364,10 @@ BuyItem:Button("Dragon Talon", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon")
 end)
 
+BuyItem:Button("God Human",function()
+	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman")
+  end)
+
 BuyItem:Line()
 
 BuyItem:Label("Sword")
@@ -4464,7 +4468,7 @@ Setting:Toggle("Press Home Button Stop Tween", true, function(vu)
 	PressHomeStopTween = vu
 end)
 
-Setting:Toggle("Fast Attack 2",true,function(value)
+Setting:Toggle("Fast Attack",true,function(value)
     FastAttackSpeed = value
 end)
 
@@ -4499,9 +4503,6 @@ Setting:Toggle("LevelLock CloseGame", _G.LevelLock, function(vu)
 	LevelLockClose = vu
 end)
 
---[[Setting:Toggle("Hide HitBox", true, function(t)
-    HideHit = t
-end)]]
 
 Setting:Toggle("BringMob/Magnet", true, function(vu)
     Magnet = vu
@@ -7910,7 +7911,7 @@ end
 
 
 
-_G.Fast_Delay = 0.02
+_G.Fast_Delay = 0.1
 
 local CurveFrame = debug.getupvalues(require(game:GetService("Players").LocalPlayer.PlayerScripts:WaitForChild("CombatFramework")))[2]
 local VirtualUser = game:GetService("VirtualUser")
