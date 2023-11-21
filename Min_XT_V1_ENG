@@ -3575,8 +3575,7 @@ spawn(function()
    
    
    
-	Main:AddLabel("Chest")  
-   
+
    if World3 then   
   
 	   Main:AddToggle("Auto Chest",_G.chestsea3,function(value)
@@ -8491,7 +8490,7 @@ local PolePos = CFrame.new(-7748.0185546875, 5606.80615234375, -2305.89868164062
         end
     end)
     
-local ListB = {"NoQuest", "AcceptQuest", "MasteryFruit"}
+local ListB = {"NoQuest", "AcceptQuest"}
 BoneFMode = "AcceptQuest"
 M:AddDropdown("Select Bone Farm Mode", ListB,function(value)
     BoneFMode = value
