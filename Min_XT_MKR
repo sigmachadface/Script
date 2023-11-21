@@ -6007,35 +6007,58 @@ spawn(function()
     end)
 end)
 
+
+local BonePos = CFrame.new(-9501.64453, 582.052612, 6034.20117)
 spawn(function()
-	while wait(.1) do
-		pcall(function()
-			if Auto_Bone then
-				if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") or game:GetService("Workspace").Enemies:FindFirstChild("Domenic Soul") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy") then
+	while wait() do 
+		if Auto_Bone then
+			pcall(function()
+				if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") or game:GetService("Workspace").Enemies:FindFirstChild("Demonic Soul") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy") then
 					for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-						if v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy" then
-							if v:WaitForChild("Humanoid").Health > 0 then
-								repeat game:GetService("RunService").Heartbeat:wait()
+						if v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy" then
+						   if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+							   repeat task.wait()
+									AutoHaki()
 									EquipWeapon(EventWeapon)
-									TP(v.HumanoidRootPart.CFrame * Farm_Mode)
 									v.HumanoidRootPart.CanCollide = false
-									v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
-									game:GetService("VirtualUser"):CaptureController()
-									game:GetService("VirtualUser"):Button1Down(Vector2.new(1280, 670),workspace.CurrentCamera.CFrame)
-									MainMonBone = v.HumanoidRootPart.CFrame
+									v.Humanoid.WalkSpeed = 0
+									v.Head.CanCollide = false 
 									BoneMagnet = true
-								until Auto_Bone == false or not v.Parent or v.Humanoid.Health <= 0
+									MainMonBone = v.HumanoidRootPart.CFrame
+								   TP(v.HumanoidRootPart.CFrame * Farm_Mode)
+									game:GetService("VirtualUser"):CaptureController()
+									game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
+								until not Auto_Bone or not v.Parent or v.Humanoid.Health <= 0
 							end
 						end
 					end
 				else
+				TP(BonePos)
 					BoneMagnet = false
 					TP(CFrame.new(-9501.64453, 582.052612, 6034.20117))
+					for i,v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do 
+						if v.Name == "Reborn Skeleton" then
+							TP(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+						elseif v.Name == "Living Zombie" then
+							TP(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+						elseif v.Name == "Demonic Soul" then
+							TP(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+						elseif v.Name == "Posessed Mummy" then
+							TP(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+						end
+					end
 				end
-			end
-		end)
+			end)
+		end
 	end
-end)
+end) 
+
+
+
+
+
+
+
 
 spawn(function()
     pcall(function()
