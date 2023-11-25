@@ -2505,7 +2505,7 @@ end)
 spawn(function()
     while task.wait() do
         pcall(function()
-            if _G.Auto_Cake_Prince then
+            if _G.Auto_Cake_Prince or _G.AutoFarmBoss then
                 if not game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
                     local Noclip = Instance.new("BodyVelocity")
                     Noclip.Name = "BodyClip"
@@ -2534,7 +2534,7 @@ end)
 spawn(function()
 pcall(function()
 game:GetService("RunService").Stepped:Connect(function()
-if _G.Auto_Cake_Prince then
+if _G.Auto_Cake_Prince or _G.AutoFarmBoss then
 for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
 if v:IsA("BasePart") then
 v.CanCollide = false
@@ -2869,46 +2869,117 @@ end)
 
 AutoFarm:Line()
 
-AutoFarm:Toggle("Auto Farm Boss", false, function(vu)
-	AutoFarmBoss = vu
-	if vu == false then
-		wait(1)
-		TP(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
-	end
-end)
+--Boss
 
-AutoFarm:Toggle("Auto Farm Boss Quest", true, function(vu)
-	BossQuest = vu
-end)
+    
+local BoSs = AutoFarm:Label("")
 
-local BossName = AutoFarm:Dropdown("Select Boss", Boss, function(Value)
-    SelectBoss = Value
-end)
+
+	spawn(function()
+		while wait() do
+			pcall(function()
+				if game:GetService("ReplicatedStorage"):FindFirstChild(_G.SelectBoss) or game:GetService("Workspace").Enemies:FindFirstChild(_G.SelectBoss) then
+					BoSs:Refresh("Status : Spawn")	
+				else
+					BoSs:Refresh("Status : Boss Not Spawn")	
+				end
+			end)
+		end
+	end)
+
+    if Old_World then
+	tableBoss = {"The Gorilla King","Bobby","Yeti","Mob Leader","Vice Admiral","Warden","Chief Warden","Swan","Magma Admiral","Fishman Lord","Wysper","Thunder God","Cyborg","Saber Expert"}
+elseif New_World then
+	tableBoss = {"Diamond","Jeremy","Fajita","Don Swan","Smoke Admiral","Cursed Captain","Darkbeard","Order","Awakened Ice Admiral","Tide Keeper"}
+elseif Three_World then
+	tableBoss = {"Stone","Island Empress","Kilo Admiral","Captain Elephant","Beautiful Pirate","rip_indra True Form","Longma","Soul Reaper","Cake Queen"}
+end
+
+    AutoFarm:Dropdown("Select Boss",tableBoss,function(value)
+        _G.SelectBoss = value
+    end)
+    
+    AutoFarm:Toggle("Auto Farm Boss",_G.AutoFarmBoss,function(value)
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+        _G.AutoFarmBoss = value
+        StopTween(_G.AutoFarmBoss)
+    end)
+    
+    spawn(function()
+        while wait() do
+            if _G.AutoFarmBoss and BypassTP then
+                pcall(function()
+                    if game:GetService("Workspace").Enemies:FindFirstChild(_G.SelectBoss) then
+                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                            if v.Name == _G.SelectBoss then
+                                if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                    repeat task.wait()
+                                        AutoHaki()
+                                        EquipWeapon(SelectWeaponBoss)
+                                        v.HumanoidRootPart.CanCollide = false
+                                        v.Humanoid.WalkSpeed = 0
+                                        v.HumanoidRootPart.Size = Vector3.new(80,80,80)                             
+                                        TP(v.HumanoidRootPart.CFrame * Farm_Mode)
+                                        game:GetService("VirtualUser"):CaptureController()
+                                        game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
+                                        sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
+                                    until not _G.AutoFarmBoss or not v.Parent or v.Humanoid.Health <= 0
+                                end
+                            end
+                        end
+                    elseif game.ReplicatedStorage:FindFirstChild(_G.SelectBoss) then
+						if ((game.ReplicatedStorage:FindFirstChild(_G.SelectBoss).HumanoidRootPart.CFrame).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 1500 then
+							TP(game.ReplicatedStorage:FindFirstChild(_G.SelectBoss).HumanoidRootPart.CFrame)
+						else
+							BTP(game.ReplicatedStorage:FindFirstChild(_G.SelectBoss).HumanoidRootPart.CFrame)
+					    end
+                    end
+                end)
+            end
+        end
+    end)
+    
+    spawn(function()
+        while wait() do
+            if _G.AutoFarmBoss and not BypassTP then
+                pcall(function()
+                    if game:GetService("Workspace").Enemies:FindFirstChild(_G.SelectBoss) then
+                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                            if v.Name == _G.SelectBoss then
+                                if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                    repeat task.wait()
+                                        AutoHaki()
+                                        EquipWeapon(SelectWeaponBoss)
+                                        v.HumanoidRootPart.CanCollide = false
+                                        v.Humanoid.WalkSpeed = 0
+                                        v.HumanoidRootPart.Size = Vector3.new(80,80,80)                             
+                                        TP(v.HumanoidRootPart.CFrame * Farm_Mode)
+                                        game:GetService("VirtualUser"):CaptureController()
+                                        game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
+                                        sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
+                                    until not _G.AutoFarmBoss or not v.Parent or v.Humanoid.Health <= 0
+                                end
+                            end
+                        end
+                    else
+                        if game:GetService("ReplicatedStorage"):FindFirstChild(_G.SelectBoss) then
+                            TP(game:GetService("ReplicatedStorage"):FindFirstChild(_G.SelectBoss).HumanoidRootPart.CFrame * CFrame.new(5,10,7))
+                        end
+                    end
+                end)
+            end
+        end
+    end)
+    
+
+
+
+
+
 
 local SelectWeapon = AutoFarm:Dropdown("Select Weapon",Wapon,function(Value)
     SelectWeaponBoss = Value
 end)
-
-AutoFarm:Button("Refresh Boss", function()
-    BossName:Clear()
-    for i,v in pairs(game.ReplicatedStorage:GetChildren()) do
-        if string.find(v.Name, "Boss") then
-            if v.Name == "Ice Admiral [Lv. 700] [Boss]" then
-			elseif v.Name == "rip_indra [Lv. 1500] [Boss]" then
-			else
-                BossName:Add(v.Name)
-            end
-        end
-    end
-    for i,v in pairs(game.workspace.Enemies:GetChildren()) do
-        if string.find(v.Name, "Boss") then
-            if v.Name ~= "Ice Admiral [Lv. 700] [Boss]" or v.Name ~= "rip_indra [Lv. 1500] [Boss]" then
-                BossName:Add(v.Name)
-            end
-        end
-    end
-end)
-
 AutoFarm:Button("Refresh Weapon",function()
     SelectWeapon:Clear()
     for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do  
@@ -5000,6 +5071,239 @@ Misc:Button("FPS Boost", function()
         end
     end
 end)
+
+
+
+local RaceV4 = serv:Channel("RaceV4", "http://www.roblox.com/asset/?id=7040391851")
+
+    local FullMoon = RaceV4:Label("")
+
+    spawn(function()
+        while task.wait() do
+            pcall(function()
+                 if game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149431" then
+                            FullMoon:Refresh("🌑 : Full Moon 100%")
+                        elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149052" then
+                            FullMoon:Refresh("🌒 : Full Moon 75%")
+                        elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709143733" then
+                            FullMoon:Refresh("🌓 : Full Moon 50%")
+                        elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709150401" then
+                            FullMoon:Refresh("🌗 : Full Moon 25%")
+                        elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149680" then
+                            FullMoon:Refresh("🌖 : Full Moon 15%")
+                        else
+                            FullMoon:Refresh("🌚 : Full Moon 0%")
+                        end
+                    end)
+                end
+    end)
+    
+    
+    local mr = RaceV4:Label("")
+    
+    task.spawn(function()
+        while task.wait() do
+            pcall(function()
+                if game.Workspace._WorldOrigin.Locations:FindFirstChild("Mirage Island") then
+                    mr:Refresh("Check Mirage : Spawn ✅")
+                else
+                    mr:Refresh("Check Mirage : Not Spawn ❌")
+                end
+            end)
+        end
+    end) 
+
+
+
+
+    RaceV4:Button("Teleport To Top Of Great Tree",function()
+        TP(CFrame.new(2947.556884765625, 2281.630615234375, -7213.54931640625))
+          end)
+          
+          RaceV4:Button("Teleport Time Room",function()
+        Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
+          end)
+          
+      RaceV4:Button("Teleport To Lever Pull",function()
+        TP(CFrame.new(28575.181640625, 14936.6279296875, 72.31636810302734))
+      end)
+      
+      RaceV4:Button("Teleport To Red Soul",function()
+        TP(CFrame.new(28981.552734375, 14888.4267578125, -120.245849609375))
+      end)
+         
+         RaceV4:Button("Unlock Lever", function()
+      venyx:Notify("Unlocked")
+      if game:GetService("Workspace").Map["Temple of Time"].Lever.Prompt:FindFirstChild("ProximityPrompt") then
+          game:GetService("Workspace").Map["Temple of Time"].Lever.Prompt:FindFirstChild("ProximityPrompt"):Remove()
+      else
+      --[[]]
+      end
+      wait(0.1)
+      local ProximityPrompt = Instance.new("ProximityPrompt")
+      ProximityPrompt.Parent = game:GetService("Workspace").Map["Temple of Time"].Lever.Prompt
+      ProximityPrompt.MaxActivationDistance = 10
+      ProximityPrompt.ActionText = "Secrets Beholds Inside"
+      ProximityPrompt.ObjectText = "An unknown lever of time"
+      
+      function onProximity()
+      local part = game:GetService("Workspace").Map["Temple of Time"].MainDoor1
+      local TweenService = game:GetService("TweenService")
+      
+      local startPosition = part.Position
+      local endPosition = startPosition + Vector3.new(0, -50, 0)
+      
+      local tweenInfo = TweenInfo.new(10, Enum.EasingStyle.Linear, Enum.EasingDirection.Out)
+      local tween = TweenService:Create(part, tweenInfo, {Position = endPosition})
+      
+      tween:Play()
+      
+      local partnew = game:GetService("Workspace").Map["Temple of Time"].MainDoor2
+      local TweenService = game:GetService("TweenService")
+      
+      local startPosition = partnew.Position
+      local endPosition = startPosition + Vector3.new(0, -50, 0)
+      
+      local tweenInfo = TweenInfo.new(10, Enum.EasingStyle.Linear, Enum.EasingDirection.Out)
+      local tween = TweenService:Create(partnew, tweenInfo, {Position = endPosition})
+      
+      tween:Play()
+      
+      local SoundSFX = Instance.new("Sound")
+      SoundSFX.Parent = workspace
+      SoundSFX.SoundId = "rbxassetid://1904813041"
+      SoundSFX:Play()
+      SoundSFX.Name = "POwfpxzxzfFfFF"
+      game:GetService("Workspace").Map["Temple of Time"].Lever.Prompt:FindFirstChild("ProximityPrompt"):Remove()
+      wait(5)
+      workspace:FindFirstChild("POwfpxzxzfFfFF"):Remove()
+      game:GetService("Workspace").Map["Temple of Time"].NoGlitching:Remove()
+      game:GetService("Workspace").Map["Temple of Time"].NoGlitching:Remove()
+      game:GetService("Workspace").Map["Temple of Time"].NoGlitching:Remove()
+      end
+      
+      ProximityPrompt.Triggered:Connect(onProximity)
+      end)
+      
+      RaceV4:Button("Clock Acces", function()
+          game:GetService("Workspace").Map["Temple of Time"].DoNotEnter:Remove()
+          game:GetService("Workspace").Map["Temple of Time"].ClockRoomExit:Remove()
+      end)
+      
+      RaceV4:Toggle("Disabled Inf Stairs", nil, function(value)
+          game.Players.LocalPlayer.Character.InfiniteStairs.Disabled = value
+      end)
+        RaceV4:Label("Door Race")
+       
+        RaceV4:Button("Teleport Cyborg Door",function()
+        TP(CFrame.new(28492.4140625, 14894.4267578125, -422.1100158691406))
+        end)
+        
+        RaceV4:Button("Teleport Fish Door",function()
+        TP(CFrame.new(28224.056640625, 14889.4267578125, -210.5872039794922))
+        end)
+        
+        RaceV4:Button("Teleport Ghoul Door",function()
+        TP(CFrame.new(28672.720703125, 14889.1279296875, 454.5961608886719))
+        end)
+        
+        RaceV4:Button("Teleport Human Door",function()
+        TP(CFrame.new(29237.294921875, 14889.4267578125, -206.94955444335938))
+        end)
+        
+        RaceV4:Button("Teleport Mink Door",function()
+        TP(CFrame.new(29020.66015625, 14889.4267578125, -379.2682800292969))
+        end)
+        
+        RaceV4:Button("Teleport Sky Door",function()
+        TP(CFrame.new(28967.408203125, 14918.0751953125, 234.31198120117188))
+        end)
+      
+        RaceV4:Label("Complete Trials")
+        
+        RaceV4:Button("Buy Ancient One Quest",function(t)
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer('UpgradeRace','Buy')
+        end)
+        
+      RaceV4:Button("Auto Complete Angel Trial",function(t)
+              game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Map.SkyTrial.Model.FinishPart.CFrame
+              end)
+      
+              RaceV4:Button("Auto Complete Rabbit Trial",function(t)
+              game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Map.MinkTrial.Ceiling.CFrame * CFrame.new(0,-5,0)
+              end)
+      
+              RaceV4:Button("Auto Complete Cyborg Trial",function(t)
+              game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,300,0)
+              end)
+       
+      
+      
+          RaceV4:Toggle("Kill Player When Trial",false,function(Val)
+              _G.AutoKillTial = Val
+              StopTween(_G.AutoKillTial)
+              end)
+              spawn(function()
+                  while wait() do
+                      if _G.AutoKillTial then
+                          for i,v in pairs(game:GetService("Workspace").Characters:GetChildren()) do
+                              if v.Name and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 100 then
+                                  if v.Humanoid.Health > 0 then
+                                      repeat wait()
+                                        EquipWeapon(_G.SelectWeapon)
+                                          if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
+                                              local args = {
+                                                  [1] = "Buso"
+                                              }
+                                              game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+                                             end
+                                          TP(v.HumanoidRootPart.CFrame * CFrame.new(0,0,5))
+                                          UseskillKill = true
+                                          v.HumanoidRootPart.CanCollide = false
+                                          v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+                                          game:GetService("VirtualUser"):CaptureController()
+                                             game:GetService("VirtualUser"):Button1Down(Vector2.new(1280, 672), game.Workspace.CurrentCamera.CFrame)
+                                      until not _G.AutoKillTial or not v.Parent or v.Humanoid.Health <= 0 
+                                      UseskillKill = false
+                                  end
+                              end
+                          end
+                      end
+                  end
+                  end)
+              
+                  spawn(function()
+                  while wait() do
+                      pcall(function()
+                          if UseskillKill then
+                              game:GetService("VirtualInputManager"):SendKeyEvent(true,"Z",false,game)
+                              wait(0.1)
+                              game:GetService("VirtualInputManager"):SendKeyEvent(false,"Z",false,game)
+                              wait(0.1)
+                              game:GetService("VirtualInputManager"):SendKeyEvent(true,"X",false,game)
+                              wait(0.1)
+                              game:GetService("VirtualInputManager"):SendKeyEvent(false,"X",false,game)
+                              wait(0.1)
+                              game:GetService("VirtualInputManager"):SendKeyEvent(true,"C",false,game)
+                              wait(0.1)
+                              game:GetService("VirtualInputManager"):SendKeyEvent(false,"C",false,game)
+                              wait(0.1)
+                              game:GetService("VirtualInputManager"):SendKeyEvent(true,"V",false,game)
+                              wait(0.1)
+                              game:GetService("VirtualInputManager"):SendKeyEvent(false,"V",false,game)
+                          end
+                      end)
+                  end
+                  end)
+      
+
+
+
+
+
+
+
+
 
 function CheckLevel()
     local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
@@ -8144,6 +8448,5 @@ spawn(function()
         end
     end)
     end)
-
 
 return DiscordLib
