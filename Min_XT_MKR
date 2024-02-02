@@ -2361,7 +2361,7 @@ ImageButton.Parent = ScreenGui
 ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 ImageButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
 ImageButton.Size = UDim2.new(0.0627121851, 0, 0.107579626, 0)
-ImageButton.Image = "rbxassetid://15388425623"
+ImageButton.Image = "rbxassetid://13717478897"
 
 UICorner.CornerRadius = UDim.new(0, 30)
 UICorner.Parent = ImageButton
@@ -2427,9 +2427,9 @@ coroutine.wrap(YTZCAJC_fake_script)()
 ------
 local win = DiscordLib:Window("Blox Fruits", _G.Color, _G.Toggle)
 
-local serv = win:Server("Min XT Hub","")
+local serv = win:Server("Min Gaming Hub","")
 
-local AutoFarm = serv:Channel("Main", "http://www.roblox.com/asset/?id=7040391851")
+local AutoFarm = serv:Channel("Chính", "http://www.roblox.com/asset/?id=7040391851")
 
 Time = AutoFarm:Label("Server Time")
 
@@ -2476,13 +2476,13 @@ elseif placeId == 7449423635 then
 	Three_World = true
 end
 
-AutoFarm:Button("TP to Island Farm Level",function()
+AutoFarm:Button("TP đến đảo cày cấp",function()
 	BTP(CFrameMon)
 end)
 
 
 
-AutoFarm:Toggle("Auto Farm Level", _G.AutoFarmLevel, function(vu)
+AutoFarm:Toggle("Cày cấp", _G.AutoFarmLevel, function(vu)
     _G.AutoFarm = vu
 	if _G.AutoFarm and SelectToolWeapon == "" then
 		DiscordLib:Notification("AutoFarm","SelectWeapon First","Okay")
@@ -2505,7 +2505,7 @@ end)
 spawn(function()
     while task.wait() do
         pcall(function()
-            if _G.Auto_Cake_Prince or _G.AutoFarmBoss then
+            if _G.Auto_Cake_Prince or _G.AutoFKitsune or _G.AutoAzuerEmber or _G.AutoFarmBoss then
                 if not game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
                     local Noclip = Instance.new("BodyVelocity")
                     Noclip.Name = "BodyClip"
@@ -2534,7 +2534,7 @@ end)
 spawn(function()
 pcall(function()
 game:GetService("RunService").Stepped:Connect(function()
-if _G.Auto_Cake_Prince or _G.AutoFarmBoss then
+if _G.Auto_Cake_Prince or _G.AutoFarmBoss or _G.AutoFKitsune or _G.AutoAzuerEmber then
 for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
 if v:IsA("BasePart") then
 v.CanCollide = false
@@ -2579,11 +2579,11 @@ local Mob_Kill_Cake_Prince = AutoFarm:Label("")
 		end)
 	end
 ------------------------------
-	AutoFarm:Button("TP to Cake Island",function()
+	AutoFarm:Button("Tp đến đảo katakuri",function()
 		BTP(CFrame.new(-1820.0634765625, 210.74781799316406, -12297.49609375))
 	end)
 
-AutoFarm:Toggle("Auto Farm Cake Prince",false,function(value)
+AutoFarm:Toggle("Cày katakuri",false,function(value)
     _G.Auto_Cake_Prince = value
 end)
 
@@ -2634,12 +2634,12 @@ spawn(function()
 		end
 	end
 end)
-AutoFarm:Toggle("Auto SetSpawnPoint", false, function(vu)
+AutoFarm:Toggle("Đặt điểm hồi sinh", false, function(vu)
     AutoSetSpawn = vu
 end)
 
 if New_World then
-    AutoFarm:Toggle("Auto Factory", false, function(vu)
+    AutoFarm:Toggle("Đánh nhà máy", false, function(vu)
         Factory = vu
 		if vu == false then
 			wait(1)
@@ -2653,7 +2653,7 @@ if _G.Auto_Elite_Hop then
 end
 
 if Three_World then
-	AutoFarm:Toggle("Auto Elite Hunter", _G.AutoElite, function(vu)
+	AutoFarm:Toggle("Đánh boss bí ẩn", _G.AutoElite, function(vu)
 		EliteHunter = vu
 		if vu == false then
 			wait(1)
@@ -2671,10 +2671,10 @@ if Three_World then
 		end
 	end)
 
-	AutoFarm:Toggle("Auto Enma/Yama", _G.AutoYama, function(vu)
+	AutoFarm:Toggle("Lấy kiếm Yama", _G.AutoYama, function(vu)
 		AutoYama = vu
 	end)
-	AutoFarm:Toggle("Auto Rainbow Haki", false, function(vu)
+	AutoFarm:Toggle("Lấy haki cầu vòng", false, function(vu)
 		AutoRainbow = vu
 		if vu == false then
 			wait(1)
@@ -2684,7 +2684,7 @@ if Three_World then
 end
 
 if Old_World then
-	AutoFarm:Toggle("Auto New World", _G.AutoNewworld, function(vu)
+	AutoFarm:Toggle("Qua sea2", _G.AutoNewworld, function(vu)
 		Auto_Newworld = vu
 		if vu == false then
 			wait(1)
@@ -2694,7 +2694,7 @@ if Old_World then
 end
 
 if New_World then
-	AutoFarm:Toggle("Auto Third Sea", _G.AutoThirdSea, function(vu)
+	AutoFarm:Toggle("Qua sea3", _G.AutoThirdSea, function(vu)
         ReadyThirdSea = vu
 		TP(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
         if ReadyThirdSea and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BartiloQuestProgress","Bartilo") ~= 3 then
@@ -2709,15 +2709,15 @@ if New_World then
     end)
 end
 
-AutoFarm:Toggle("Auto Superhuman", _G.AutoSuperhuman, function(vu)
+AutoFarm:Toggle("Lấy superhuman", _G.AutoSuperhuman, function(vu)
     Superhuman = vu
 end)
 
-AutoFarm:Toggle("Auto Fully Superhuman", _G.FullyAutoSuperhuman, function(vu)
+AutoFarm:Toggle("Lấy Superhuman (tất cả)", _G.FullyAutoSuperhuman, function(vu)
     AutoFullySuperhuman = vu
 end)
 
-AutoFarm:Toggle("Auto Electric Claw", false, function(vu)
+AutoFarm:Toggle("Lấy Electric Claw", false, function(vu)
     AutoElectricClaw = vu
 	if AutoElectricClaw then
 		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectro")
@@ -2758,16 +2758,84 @@ spawn(function()
 	end
 end)
 
-AutoFarm:Toggle("Auto Accessories", _G.AutoAccessory, function(Value)
-	AutoAccessories = Value 
+--rough sea
+AutoFarm:Label("Sự kiện biển")
+
+AutoFarm:Toggle("Đánh Terrorshark",false,function(vu)
+	_G.AutoTerrorshark = vu
 end)
 
-local SelectWeapon = AutoFarm:Dropdown("Select Weapon",Wapon,function(Value)
+AutoFarm:Toggle("Đánh Piranha",false,function(vu)
+    _G.farmpiranya = vu
+end)
+
+AutoFarm:Toggle("Đánh Shark",false,function(vu)
+    FarmShark = vu
+end)
+
+AutoFarm:Toggle("Đánh FishCrew",false,function(vu)
+	_G.Fish_Crew_Member = vu
+end)
+
+-----------------------------------------------------
+
+------------------------------------------------------
+
+--kitsune
+
+AutoFarm:Label("Kitsune")
+
+local checkkitsune = AutoFarm:Label("")
+
+spawn(function()
+    pcall(function()
+        while wait() do
+            if game.Workspace._WorldOrigin.Locations:FindFirstChild('Kitsune Island') then
+                checkkitsune:Refresh('🦊: Kitsune Spawn')
+            else
+                checkkitsune:Refresh('🔴: Kitsune Not Spawn')
+            end
+        end
+    end)
+end)
+AutoFarm:Toggle("Tp Đến đảo Kitsune",false,function(vu)
+	_G.AutoFKitsune = vu
+end)
+
+AutoFarm:Toggle("Nhặt Hòn lửa",false,function(vu)
+	_G.AutoAzuerEmber = vu
+end)
+spawn(function()
+	while  _G.AutoFKitsune do wait()
+		pcall(function()
+			if game:GetService("Workspace").Map:FindFirstChild("KitsuneIsland") then
+			TP(game.Workspace.Map.KitsuneIsland.ShrineActive.NeonShrinePart.CFrame * CFrame.new(0,0,10))
+			end
+		end)
+	end
+end)
+
+	
+spawn(function()
+	pcall(function()
+		while wait() do
+			if _G.AutoAzuerEmber then
+				if game.Workspace.AttachedAzureEmber then
+				TP(game.Workspace.EmberTemplate.Part.CFrame)
+				end
+			end
+		end
+	end)
+end)
+
+AutoFarm:Line()
+
+local SelectWeapon = AutoFarm:Dropdown("Chọn vũ khí",Wapon,function(Value)
     SelectToolWeapon = Value
     SelectToolWeaponOld = Value
 end)
 
-AutoFarm:Button("Refresh Weapon", function()
+AutoFarm:Button("Làm mới", function()
     SelectWeapon:Clear()
     for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
         if v:IsA("Tool") then
@@ -2802,19 +2870,19 @@ else
 end
 
 if New_World then
-    AutoFarm:Toggle("Auto Buy Legendary Sword", _G.Auto_Legendary_Sword, function(Value)
+    AutoFarm:Toggle("Mua kiếm huyền thoại", _G.Auto_Legendary_Sword, function(Value)
         LegebdarySword = Value    
     end)
 end
 if not Old_World then
-    AutoFarm:Toggle("Auto Buy Enchancement >= 1500 F", _G.AutoEnchancement, function(Value)
+    AutoFarm:Toggle("Mua haki màu", _G.AutoEnchancement, function(Value)
         Enchancement = Value    
     end)
 end
 
 AutoFarm:Line()
 
-AutoFarm:Toggle("Auto Farm Mastery Devil Fruit", false, function(vu)
+AutoFarm:Toggle("Cày thông thạo trái", false, function(vu)
 	AutoFarmMasteryFruit = vu
 	if AutoFarmMasteryFruit and WeaponMastery == "" then
 		DiscordLib:Notification("Auto Farm Mastery","SelectWeapon First","Okay")
@@ -2827,7 +2895,7 @@ AutoFarm:Toggle("Auto Farm Mastery Devil Fruit", false, function(vu)
 	end
 end)
 
-AutoFarm:Toggle("Auto Farm Mastery Gun", false, function(vu)
+AutoFarm:Toggle("Cày thông thạo súng", false, function(vu)
 	AutoarmMasteryGun = vu
 	if AutoarmMasteryGun and WeaponMastery == "" then
 		DiscordLib:Notification("Auto Farm Mastery","SelectWeapon First","Okay")
@@ -2841,19 +2909,19 @@ AutoFarm:Toggle("Auto Farm Mastery Gun", false, function(vu)
 end)
 
 HealthPersen = 25
-AutoFarm:Slider("Health %", 1,100,HealthPersen, function(Value)
+AutoFarm:Slider("Máu %", 1,100,HealthPersen, function(Value)
 	HealthPersen = Value
 end)
 
-AutoFarm:Toggle("Auto Farm Mastery Magnet", false, function(vu)
+AutoFarm:Toggle("Gom quái thông thạo", false, function(vu)
 	MasteryMagnet = vu
 end)
 
-local SelectWeapon = AutoFarm:Dropdown("Select Weapon",Wapon,function(Value)
+local SelectWeapon = AutoFarm:Dropdown("Chọn vũ khí",Wapon,function(Value)
     WeaponMastery = Value
 end)
 
-AutoFarm:Button("Refresh Weapon", function()
+AutoFarm:Button("Làm mới", function()
     SelectWeapon:Clear()
     for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do  
         if v:IsA("Tool") then
@@ -2879,9 +2947,9 @@ local BoSs = AutoFarm:Label("")
 		while wait() do
 			pcall(function()
 				if game:GetService("ReplicatedStorage"):FindFirstChild(_G.SelectBoss) or game:GetService("Workspace").Enemies:FindFirstChild(_G.SelectBoss) then
-					BoSs:Refresh("Status : Spawn")	
+					BoSs:Refresh("Status : Boss Có")	
 				else
-					BoSs:Refresh("Status : Boss Not Spawn")	
+					BoSs:Refresh("Status : Boss Không")	
 				end
 			end)
 		end
@@ -2895,11 +2963,11 @@ elseif Three_World then
 	tableBoss = {"Stone","Island Empress","Kilo Admiral","Captain Elephant","Beautiful Pirate","rip_indra True Form","Longma","Soul Reaper","Cake Queen"}
 end
 
-    AutoFarm:Dropdown("Select Boss",tableBoss,function(value)
+    AutoFarm:Dropdown("Chọn Boss",tableBoss,function(value)
         _G.SelectBoss = value
     end)
     
-    AutoFarm:Toggle("Auto Farm Boss",_G.AutoFarmBoss,function(value)
+    AutoFarm:Toggle("Đánh Boss",_G.AutoFarmBoss,function(value)
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
         _G.AutoFarmBoss = value
         StopTween(_G.AutoFarmBoss)
@@ -2977,10 +3045,10 @@ end
 
 
 
-local SelectWeapon = AutoFarm:Dropdown("Select Weapon",Wapon,function(Value)
+local SelectWeapon = AutoFarm:Dropdown("Chọn vũ khí",Wapon,function(Value)
     SelectWeaponBoss = Value
 end)
-AutoFarm:Button("Refresh Weapon",function()
+AutoFarm:Button("Làm mới",function()
     SelectWeapon:Clear()
     for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do  
         if v:IsA("Tool") then
@@ -3005,11 +3073,11 @@ elseif Three_World then
 	tableMon = {"Pirate Millionaire [Lv. 1500]","Dragon Crew Warrior [Lv. 1575]","Dragon Crew Archer [Lv. 1600]","Female Islander [Lv. 1625]","Giant Islander [Lv. 1650]","Marine Commodore [Lv. 1700]","Marine Rear Admiral [Lv. 1725]","Fishman Raider [Lv. 1775]","Fishman Captain [Lv. 1800]","Forest Pirate [Lv. 1825]","Mythological Pirate [Lv. 1850]","Jungle Pirate [Lv. 1900]","Musketeer Pirate [Lv. 1925]","Reborn Skeleton","Living Zombie","Demonic Soul","Posessed Mummy"}
 end
 
-AutoFarm:Dropdown("Select Monster", tableMon, function(vu)
+AutoFarm:Dropdown("Chọn quái", tableMon, function(vu)
 	SelectMonster = vu
 end)
 
-AutoFarm:Toggle("Auto Farm Select Monster", false, function(vu)
+AutoFarm:Toggle("Đánh quái", false, function(vu)
 	AutoFarmSelectMonster = vu
 	if vu == false then
 		wait(1)
@@ -3020,7 +3088,7 @@ end)
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getInventoryWeapons")
 
 if New_World then
-	AutoFarm:Toggle("Auto Quest Bartilo", false, function(vu)
+	AutoFarm:Toggle("Làm Nv Bartilo", false, function(vu)
 		CheckBarto = vu
 		if game.Players.LocalPlayer.Backpack:FindFirstChild("Warrior Helmet") then
 			Success = true
@@ -3042,7 +3110,7 @@ if New_World then
 		end
 	end)
 
-	AutoFarm:Toggle("Auto Evo Race", false, function(vu)
+	AutoFarm:Toggle("Nâng Tộc V2", false, function(vu)
 		CheckEvo = vu
 		if not game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BartiloQuestProgress","Bartilo") == 3 and CheckEvo then
 			DiscordLib:Notification("Auto Evo Race","You Have To Success Bartilo Quest","Okay")
@@ -3059,7 +3127,7 @@ if New_World then
 		end
 	end)
 
-	AutoFarm:Toggle("Auto Rengoku", false, function(vu)
+	AutoFarm:Toggle("Lấy kiếm Rengoku", false, function(vu)
 		AutoRengoku = vu
 		if vu == false then
 			wait(1)
@@ -3067,7 +3135,7 @@ if New_World then
 		end
 	end)
 
-	AutoFarm:Toggle("Auto Ectoplasm", false, function(vu)
+	AutoFarm:Toggle("Cày vật chất kì dị", false, function(vu)
 		AutoEcto = vu
 		if vu == false then
 			wait(1)
@@ -3077,7 +3145,7 @@ if New_World then
 end
 
 if Three_World then
-	AutoFarm:Toggle("Auto Citizen Quest", false, function(vu)
+	AutoFarm:Toggle("Làm Nv Citizen", false, function(vu)
 		CheckCitizen = vu
 		TP(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
 		if game.Players.LocalPlayer.Backpack:FindFirstChild("Musketeer Hat") then
@@ -3101,11 +3169,11 @@ if Three_World then
 	end)
 end
 
-local SelectWeapon = AutoFarm:Dropdown("Select Weapon",Wapon,function(value)
+local SelectWeapon = AutoFarm:Dropdown("Chọn vũ khí",Wapon,function(value)
    	MiscFarmWeapon = value
 end)
 
-AutoFarm:Button("Refresh Weapon",function()
+AutoFarm:Button("Làm mới",function()
     SelectWeapon:Clear()
 	for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
 		if v:IsA("Tool") then
@@ -3122,7 +3190,7 @@ end)
 AutoFarm:Line()
 
 
-AutoFarm:Button("TP to Bone Island",function()
+AutoFarm:Button("TP đến đảo xương",function()
 	BTP(CFrame.new(-9501.64453, 582.052612, 6034.20117))
 end)
 
@@ -3133,41 +3201,27 @@ local Bone = AutoFarm:Label("")
 
 spawn(function()
 	while game:GetService("RunService").Heartbeat:wait() do
-		Bone:Refresh("Total Bone : "..tostring(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Check")))
+		Bone:Refresh("Số lượng xương : "..tostring(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Check")))
 	end
 end)
 
-AutoFarm:Button("Buy Reroll race", function()
-	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Buy",1,3)
-end)
 
-AutoFarm:Button("Buy Refund Stats", function()
-	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Buy",1,2)
-end)
-
-AutoFarm:Button("Buy Random Surprise", function()
-	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Buy",1,1)
-end)
-
-AutoFarm:Toggle("Auto Buy Random Surprise", false, function(vu)
+AutoFarm:Toggle("Đổi xương", false, function(vu)
 	AutoBuySurprise = vu
 end)
 
-AutoFarm:Toggle("Auto Buy EXP x2 [ Bone ]", false, function(vu)
-    AutoBuyEXPBone = vu
-end)
 
 if Three_World then
 
-    AutoFarm:Toggle("Auto Try Luck [gravestone]", false, function(vu)
+    AutoFarm:Toggle("Thử may mắn [gravestone]", false, function(vu)
         TryLuck = vu
     end)
 
-    AutoFarm:Toggle("Auto Pray [gravestone]", false, function(vu)
+    AutoFarm:Toggle("Cầu nguyện [gravestone]", false, function(vu)
         Pray = vu
     end)
 
-    AutoFarm:Toggle("Auto Farm Bone", false, function(vu)
+    AutoFarm:Toggle("Cày xương", false, function(vu)
 		Auto_Bone = vu
 		if vu == false then
 			wait(1)
@@ -3175,11 +3229,11 @@ if Three_World then
 		end
 	end)
     
-    local SelectWeaponEvent = AutoFarm:Dropdown("Select Weapon",Wapon,function(value)
+    local SelectWeaponEvent = AutoFarm:Dropdown("Chọn vũ khí",Wapon,function(value)
         EventWeapon = value
     end)
      
-    AutoFarm:Button("Refresh Weapon",function()
+    AutoFarm:Button("Làm mới",function()
         SelectWeaponEvent:Clear()
         for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
             if v:IsA("Tool") then
@@ -3234,7 +3288,7 @@ end)
 AutoFarm:Line()
 
 Sec = 40
-AutoFarm:Slider("Time", 1,600,Sec, function(Value)
+AutoFarm:Slider("Thời Gian", 1,600,Sec, function(Value)
 	Sec = Value
 end)
 
@@ -3244,7 +3298,7 @@ else
 	AutoFarmKen = false
 end
 
-AutoFarm:Toggle("Auto Farm Observation Haki", AutoFarmKen, function(vu)
+AutoFarm:Toggle("Cày điểm haki quan sát", AutoFarmKen, function(vu)
 	AutoFarmObservation = vu
 	TP(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
 	if AutoFarmObservation then
@@ -3268,30 +3322,30 @@ spawn(function()
 	end
 end)
 
-local Stats = serv:Channel("Stats","http://www.roblox.com/asset/?id=7040410130")
+local Stats = serv:Channel("Chỉ số","http://www.roblox.com/asset/?id=7040410130")
 
 Stats:Toggle("Melee", _G.Melee, function(vu)
     Mad = vu
 end)
 
-Stats:Toggle("Defense", _G.Defense, function(vu)
+Stats:Toggle("Máu", _G.Defense, function(vu)
     Gan = vu
 end)
 
-Stats:Toggle("Sword", _G.Sword, function(vu)
+Stats:Toggle("Kiếm", _G.Sword, function(vu)
     Dap = vu
 end)
 
-Stats:Toggle("Gun", _G.Gun, function(vu)
+Stats:Toggle("Súng", _G.Gun, function(vu)
     Pun = vu
 end)
 
-Stats:Toggle("Devil Fruit", _G.DevilFruit, function(vu)
+Stats:Toggle("Trái", _G.DevilFruit, function(vu)
     DevilFruit = vu
 end)
 
 SelectPoint = 1
-Stats:Slider("Point", 1,500,1, function(Point)
+Stats:Slider("Điểm", 1,500,1, function(Point)
     SelectPoint = Point
 end)
 
@@ -3317,7 +3371,7 @@ spawn(function()
 	end
 end)
 
-local Tp = serv:Channel("Teleport","http://www.roblox.com/asset/?id=7044226690")
+local Tp = serv:Channel("Di Chuyển","http://www.roblox.com/asset/?id=7044226690")
 
 function TP(P1)
     Distance = (P1.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
@@ -3354,22 +3408,22 @@ function TP2(P1)
     Clip = false
 end
 
-Tp:Toggle("Ctrl + Click to TP", false, function(vu)
+Tp:Toggle("Ctrl + click = tp (Máy tính)", false, function(vu)
 	CTRL = vu
 end)
 
-Tp:Button("Stop Tween", function()
+Tp:Button("dừng bay", function()
     Clip = false
     TP(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
 end)
 
 if Old_World then
 
-    Tp:Button("Teleport To Second Sea", function()
+    Tp:Button("Đến Sea2", function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")
     end)
 
-	Tp:Button("Teleport To Third Sea", function()
+	Tp:Button("Đến Sea3", function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
     end)
 
@@ -3449,11 +3503,11 @@ if Old_World then
     
 elseif New_World then
         
-    Tp:Button("Teleport To First Sea", function()
+    Tp:Button("Đến Sea1", function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelMain")
     end)
 
-	Tp:Button("Teleport To Third Sea", function()
+	Tp:Button("Đến sea3", function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
     end)
 
@@ -3545,11 +3599,11 @@ elseif New_World then
 
 elseif Three_World then
 
-	Tp:Button("Teleport to First Sea", function()
+	Tp:Button("Đến Sea1", function()
 		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelMain")
 	end)
 
-	Tp:Button("Teleport to Second Sea", function()
+	Tp:Button("Đến Sea2", function()
 		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")
 	end)
 
@@ -3596,18 +3650,18 @@ elseif Three_World then
 	end)
 end
 
-local Players = serv:Channel("Players","http://www.roblox.com/asset/?id=7252023075")
+local Players = serv:Channel("Người chơi","http://www.roblox.com/asset/?id=7252023075")
 
 SelectKillWeapon = ""
 
 Players:Line()
 
 Player = ""
-local SelectPlayer = Players:Dropdown("Selected Player", PlayerName, function(vu)
+local SelectPlayer = Players:Dropdown("Chọn người chơi", PlayerName, function(vu)
     SelectedKillPlayer = vu
 end)
 
-Players:Button("Refresh Player", function()
+Players:Button("Làm mới", function()
     PlayerName = {}
     SelectPlayer:Clear()
     for i,v in pairs(game.Players:GetChildren()) do
@@ -3619,7 +3673,7 @@ end)
 
 Players:Line()
 
-Players:Toggle("Spectate Player", false, function(vu)
+Players:Toggle("Quan Sát", false, function(vu)
     Spectate = vu
     repeat game:GetService("RunService").Heartbeat:wait()
         game.Workspace.Camera.CameraSubject = game.Players:FindFirstChild(SelectedKillPlayer).Character.Humanoid
@@ -3627,22 +3681,22 @@ Players:Toggle("Spectate Player", false, function(vu)
     game.Workspace.Camera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
 end)
 
-Players:Toggle("Kill All Player + Hop [Defense 1 only]", _G.AutoBounty, function()
+Players:Toggle("Đánh người chơi", _G.AutoBounty, function()
 	_G.AutoBounty = vu
 end)
 
-Players:Toggle("Safe Mode", false, function(vu)
+Players:Toggle("Chế độ an toàn", false, function(vu)
     SafeMode = vu
 	TP(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
 end)
 
 Players:Line()
 
-local SelectWeapon = Players:Dropdown("Select Weapon",Wapon,function(Value)
+local SelectWeapon = Players:Dropdown("Chọn vũ khí",Wapon,function(Value)
     SelectKillWeapon = Value
 end)
 
-Players:Button("Refresh Weapon", function()
+Players:Button("Làm mới", function()
     SelectWeapon:Clear()
 	for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
 		if v:IsA("Tool") then
@@ -3656,16 +3710,16 @@ Players:Button("Refresh Weapon", function()
 	end
 end)
 
-Players:Toggle("Kill Player", false, function(vu)
+Players:Toggle("Giết người chơi", false, function(vu)
     KillPlayer = vu
 	TP(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
 end)
 
-Players:Toggle("Aimbot Gun", false, function(vu)
+Players:Toggle("Ngắm chiêu Súng", false, function(vu)
 	Aimbot = vu
 end)
 
-Players:Toggle("Aimbot Skill Nearest", false, function(vu)
+Players:Toggle("Ngắm chiêu người ở gần", false, function(vu)
 	AimSkillNearest = vu
 end)
 
@@ -3701,55 +3755,55 @@ end)
 
 Players:Line()
 
-Players:Slider("WalkSpeed", 0,1000,16, function(t)
+Players:Slider("Tốc Độ", 0,1000,16, function(t)
     game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = t
     while t do wait(1)
         game:GetService("Players").LocalPlayer.Character.Movement.Disabled = true
     end
 end)
 
-Players:Slider("Jump Power", 0,1000,50, function(t)
+Players:Slider("Nhảy", 0,1000,50, function(t)
     game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = t
 end)
 
-Players:Slider("Gravity", 0,500,196, function(t)
+Players:Slider("Trọng lực", 0,500,196, function(t)
     workspace.Gravity = t
 end)
 
-local Raid = serv:Channel("EPS-Raid","http://www.roblox.com/asset/?id=7251993295")
+local Raid = serv:Channel("Esp-Tập Kích","http://www.roblox.com/asset/?id=7251993295")
 if New_World then
-	Raid:Button("Teleport To Lab", function()
+	Raid:Button("Tp đến chỗ mua chip", function()
 		TP2(CFrame.new(-6438.73535, 250.645355, -4501.50684))
 	end)
 elseif Three_World then
-	Raid:Button("Teleport To RaidLab", function()
+	Raid:Button("Tp đến chỗ mua chip", function()
 		TP2(CFrame.new(-5057.146484375, 314.54132080078, -2934.7995605469))
 	end)
 end
 
-Raid:Toggle("Kill Aura", false, function(vu)
+Raid:Toggle("Giết quái", false, function(vu)
     Killaura = vu
 end)
 
-Raid:Toggle("Auto Awakenr", false, function(vu)
+Raid:Toggle("Nâng chiêu v2", false, function(vu)
     AutoAwakener = vu
 end)
 
-Raid:Toggle("Auto Next Island", false, function(vu)
+Raid:Toggle("Qua đảo", false, function(vu)
     NextIsland = vu
 end)
 
 Raid:Line()
 
-Raid:Toggle("Auto Raid", false, function(vu)
+Raid:Toggle("Tự động tập kích", false, function(vu)
     _G.AutoRaid = vu
 end)
 
-Raid:Dropdown("Select Raid", {"Flame","Ice","Quake","Light","Dark","String","Rumble","Magma","Human: Buddha"}, function(vu)
+Raid:Dropdown("Chọn Raid", {"Flame","Ice","Quake","Light","Dark","Spider","Rumble","Magma","Buddha","Dough","Phoenix"}, function(vu)
     _G.SelectRaid = vu
 end)
 
-Raid:Toggle("Auto Buy Microchip", false, function(vu)
+Raid:Toggle("Mua chip", false, function(vu)
     AutoBuychip = vu
 end)
 
@@ -3875,19 +3929,19 @@ end)
 
 Raid:Line()
 
-Raid:Toggle("Auto Law Raid", false, function(vu)
+Raid:Toggle("Đánh boss law", false, function(vu)
 	AutoLowRaid = vu
 end)
 
-Raid:Toggle("Auto Buy Chip Law Raid", false, function(vu)
+Raid:Toggle("Mua chip boss law", false, function(vu)
 	AutoBuyChiplawraid = vu
 end)
 
-local SelectWeaponLaw = Raid:Dropdown("Select Weapon",Wapon,function(vu)
+local SelectWeaponLaw = Raid:Dropdown("Chọn vũ khí",Wapon,function(vu)
 	SelectToolWeaponLaw = vu
 end)
 
-Raid:Button("Refresh Weapon", function()
+Raid:Button("Làm mới", function()
 	SelectWeaponLaw:Clear()
 	for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do  
 		if v:IsA("Tool") then
@@ -3903,26 +3957,26 @@ end)
 
 Raid:Line()
 
-Raid:Toggle("ESP Player",false,function(Value)
+Raid:Toggle("ESP Người chơi",false,function(Value)
     PlayerESP = Value
 	while PlayerESP do wait()
 		UpdatePlayer()
 	end
 end)
-Raid:Toggle("ESP Chest",false,function(Value)
+Raid:Toggle("ESP rương",false,function(Value)
     ChestESP = Value
 	while ChestESP do wait()
         UpdateChest()
     end
 end)
-Raid:Toggle("ESP Devil Fruit",false,function(Value)
+Raid:Toggle("ESP trái ác quỷ",false,function(Value)
     DevilESP = Value
 	while DevilESP do wait()
 		UpdateDevilFruit()
 	end
 end)
 if New_World then
-	Raid:Toggle("ESP Flower",false,function(Value)
+	Raid:Toggle("ESP hoa",false,function(Value)
 		FlowerESP = Value
 		while FlowerESP do wait()
 			UpdateFlower()
@@ -4136,49 +4190,52 @@ function UpdateFruits()
 	end
 end
 
-local Devil = serv:Channel("DevilFruit","http://www.roblox.com/asset/?id=7044284832")
+local Devil = serv:Channel("Trái ác quỷ","http://www.roblox.com/asset/?id=7044284832")
 
 SelectDevil = ""
 CheckF = false
-Devil:Dropdown("AutoBuy DevilFruit",
+Devil:Dropdown("Chọn Trái",
 {
     "Bomb-Bomb",
     "Spike-Spike",
     "Chop-Chop",
     "Spring-Spring",
-	"Kilo-Kilo",
+	"Rocket-Rocket",
 	"Spin-Spin",
-	"Bird: Falcon",
+	"Falcon",
     "Smoke-Smoke",
     "Flame-Flame",
     "Ice-Ice",
     "Sand-Sand",
     "Dark-Dark",
-	"Revive-Revive",
+	"Ghost-Ghost",
 	"Diamond-Diamond",
     "Light-Light",
 	"Love-Love",
     "Rubber-Rubber",
     "Barrier-Barrier",
     "Magma-Magma",
-	"Door-Door",
+	"Portal-Portal",
     "Quake-Quake",
-    "Human-Human: Buddha",
-    "String-String",
-    "Bird-Bird: Phoenix",
+    "Buddha",
+    "Spider-Spider",
+    "Phoenix",
     "Rumble-Rumble",
-    "Paw-Paw",
+    "Pain-Pain",
     "Gravity-Gravity",
     "Dough-Dough",
 	"Shadow-Shadow",
 	"Venom-Venom",
     "Control-Control",
-    "Dragon-Dragon"
+    "Dragon-Dragon",
+    "Leopard-Leopard",
+    "Kitsune-Kítune",
+
     }
     ,function(ply)
         SelectDevil = ply
 end)
-Devil:Toggle("Buy Devil Fruit Sinper",false,function(vu)
+Devil:Toggle("Mua Trái",false,function(vu)
     BuyFruitSinper = vu
 end)
 spawn(function()
@@ -4199,7 +4256,7 @@ spawn(function()
     end
 end)
 
-Devil:Toggle("Auto Store Fruit", false, function(vu)
+Devil:Toggle("Cất Trái", false, function(vu)
 	AutoStoreFruit = vu
 end)
 
@@ -4308,7 +4365,7 @@ spawn(function()
 	end)
 end)
 
-Devil:Toggle("Bring Fruit ", _G.BringFruit, function(value)
+Devil:Toggle("Gom trái ", _G.BringFruit, function(value)
 	BringFruit = value
 end)
 
@@ -4330,7 +4387,7 @@ spawn(function()
 	end)
 end)
 
-Devil:Toggle("Auto Drop Fruit", false, function(vu)
+Devil:Toggle("Thả trái", false, function(vu)
     Drop = vu
 end)
 
@@ -4369,11 +4426,8 @@ end)
 
 Devil:Line()
 
-Devil:Button("Buy Random Devil Fruit", function()
-    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin","Buy")
-end)
 
-Devil:Toggle("Auto Buy Random Devil Fruit", false, function(v)
+Devil:Toggle("Đổi Trái", false, function(v)
     DevilAutoBuy = v
 end)
 
@@ -4385,7 +4439,7 @@ spawn(function()
     end
 end)
 
-local BuyItem = serv:Channel("Buy Item","http://www.roblox.com/asset/?id=7294901968")
+local BuyItem = serv:Channel("Cửa hàng","http://www.roblox.com/asset/?id=7294901968")
 
 BuyItem:Label("Abilities")
 BuyItem:Button("Skyjump", function()
@@ -4401,7 +4455,7 @@ BuyItem:Button("Ken Haki", function()
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("KenTalk","Buy")
 end)
 
-BuyItem:Toggle("Auto Buy Abilities", false, function(t)
+BuyItem:Toggle("Mua hết Abilities", false, function(t)
     Abilities = t
     while Abilities do wait(.1)
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki","Geppo")
@@ -4412,12 +4466,12 @@ end)
 
 BuyItem:Line()
 
-BuyItem:Button("Refund Stat [2500 F]", function()
+BuyItem:Button("Hoản trả chỉ số [2500 F]", function()
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","Refund","1")
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","Refund","2")
 end)
 
-BuyItem:Button("Reroll Race [3000 F]", function()
+BuyItem:Button("Đổi tộc [3000 F]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","Reroll","1")
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","Reroll","2")
 end)
@@ -4462,14 +4516,13 @@ BuyItem:Button("Dragon Talon", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon",true)
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon")
 end)
-
 BuyItem:Button("God Human",function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman")
   end)
 
 BuyItem:Line()
 
-BuyItem:Label("Sword")
+BuyItem:Label("Kiếm")
 
 BuyItem:Button("Katana", function()
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Katana")
@@ -4509,7 +4562,7 @@ end)
 
 BuyItem:Line()
 
-BuyItem:Label("Gun")
+BuyItem:Label("Súng")
 
 BuyItem:Button("Slingshot", function()
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Slingshot")
@@ -4538,7 +4591,7 @@ end)
 
 BuyItem:Line()
 
-BuyItem:Label("Accessory")
+BuyItem:Label("Vật phẩm")
 
 BuyItem:Button("Black Cape", function()
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Black Cape")
@@ -4552,68 +4605,54 @@ BuyItem:Button("Swordsman Hat", function()
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Swordsman Hat")
 end)
 
-local Setting = serv:Channel("Setting","http://www.roblox.com/asset/?id=7040347038")
-
-Setting:Button("Destroy UI", function()
-	if game:GetService("CoreGui"):FindFirstChild("MUKURO Gui") then
-		game:GetService("CoreGui"):FindFirstChild("MUKURO Gui"):Destroy()
-	end
-end)
+local Setting = serv:Channel("Cài đặt","http://www.roblox.com/asset/?id=7040347038")
 
 
 Setting:Line()
 
-Setting:Toggle("Press Home Button Stop Tween", true, function(vu)
-	PressHomeStopTween = vu
-end)
-
-Setting:Toggle("Fast Attack",true,function(value)
+Setting:Toggle("Đánh nhanh",true,function(value)
     FastAttackSpeed = value
 end)
 
-Setting:Toggle("Auto Haki", true, function(vu)
+Setting:Toggle("Bật haki", true, function(vu)
     Auto_Haki = vu
 end)
 
-Setting:Toggle("Auto Observation Haki", false, function(vu)
+Setting:Toggle("Bật haki quan sát", false, function(vu)
 	AutoObservation = vu
 end)
 
-Setting:Label("Auto Farm Setting")
+Setting:Label("Cài đặt")
 
-Y = 3
-Setting:Slider("Distance [Default 20]", 0,50,Y, function(vu)
+Y = 20
+Setting:Slider("Khoảng cách [Mặc định 20]", 0,50,Y, function(vu)
 	Y = vu
 end)
 
 if _G.LevelMax then
 else
-	_G.LevelMax = 2100
+	_G.LevelMax = 2550
 end
-Setting:Slider("Level Lock", 1,2100,_G.LevelMax, function(value)
+Setting:Slider("Khóa Cấp Độ", 1,2550,_G.LevelMax, function(value)
 	LevelLock = value
 end)
 
-Setting:Toggle("LevelLock Kick", false, function(vu)
+Setting:Toggle("Khóa Cấp (Kick)", false, function(vu)
 	LevelLockKick = vu
 end)
 
-Setting:Toggle("LevelLock CloseGame", _G.LevelLock, function(vu)
+Setting:Toggle("Khóa Cấp (Tắt Game)", _G.LevelLock, function(vu)
 	LevelLockClose = vu
 end)
 
-
-Setting:Toggle("BringMob/Magnet", true, function(vu)
+Setting:Toggle("Gom quái", true, function(vu)
     Magnet = vu
 end)
 
-Setting:Toggle("Ghost Mob", true, function(vu)
-    HiddenMon = vu
-end)
 
 Setting:Line()
 
-Setting:Label("Auto Farm Mastery Setting")
+Setting:Label("Kĩ năng thông thạo")
 
 Setting:Toggle("Skill Z", true, function(vu)
     SkillZ = vu
@@ -4631,7 +4670,7 @@ Setting:Toggle("Skill V", true, function(vu)
     SkillV = vu
 end)
 
-local Misc = serv:Channel("Misc","http://www.roblox.com/asset/?id=7044233235")
+local Misc = serv:Channel("Khác","http://www.roblox.com/asset/?id=7044233235")
 
 local LocalPlayer = game:GetService'Players'.LocalPlayer
 local originalstam = LocalPlayer.Character.Energy.Value
@@ -4673,22 +4712,22 @@ end
 
 Misc:Line()
 
-Misc:Button("Hop Lower Server", function()
+Misc:Button("Đổi sv ít người", function()
 	HopLowerServer()
 end)
 
-Misc:Button("Server Hop", function()
+Misc:Button("Đổi sv", function()
 	DiscordLib:Notification("Hop Server", "Wait For Teleport", "Ok")
 	Teleport()
 end)
 
-Misc:Button("Rejoin Server", function()
+Misc:Button("Vào lại sv", function()
 	game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").localPlayer)
 end)
 
 Misc:Line()
 
-Misc:Button("Join Pirates Team", function()
+Misc:Button("Vào Hải tặc", function()
     local args = {
         [1] = "SetTeam",
         [2] = "Pirates"
@@ -4700,7 +4739,7 @@ Misc:Button("Join Pirates Team", function()
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
 end)
 
-Misc:Button("Join Marines Team",function()
+Misc:Button("Vào hải quân",function()
     local args = {
         [1] = "SetTeam",
         [2] = "Marines"
@@ -4714,7 +4753,7 @@ end)
 
 Misc:Line()
 
-Misc:Button("Devil Shop", function()
+Misc:Button("Cửa hàng trái", function()
     local args = {
         [1] = "GetFruits"
     }
@@ -4722,25 +4761,11 @@ Misc:Button("Devil Shop", function()
     game.Players.localPlayer.PlayerGui.Main.FruitShop.Visible = true
 end)
 
-Misc:Button("Inventory", function()
-	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getInventoryWeapons")
-    game.Players.localPlayer.PlayerGui.Main.Inventory.Visible = true
-end)
-
-Misc:Button("Fruit Inventory", function()
-	local args = {
-		[1] = "getInventoryFruits"
-	}
-	
-	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getInventoryFruits")
-	game:GetService("Players").LocalPlayer.PlayerGui.Main.FruitInventory.Visible = true
-end)
-
-Misc:Button("Color Haki", function()
+Misc:Button("Bảng Haki màu", function()
     game.Players.localPlayer.PlayerGui.Main.Colors.Visible = true
 end)
 
-Misc:Button("Title Name", function()
+Misc:Button("Bảng danh hiệu", function()
     local args = {
         [1] = "getTitles"
     }
@@ -4751,7 +4776,7 @@ end)
 Misc:Line()
 
 if New_World then
-	Misc:Button("TP to Flower", function()
+	Misc:Button("tp đến hoa", function()
 		if not game:GetService("Players").LocalPlayer.Character:FindFirstChild("Flower1") or not game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Flower1") then
 			TP(game:GetService("Workspace").Flower1.CFrame)
 		end
@@ -4762,17 +4787,17 @@ if New_World then
 	end)
 end
 
-Misc:Toggle("No Dodge Cooldown", false, function(Value)
+Misc:Toggle("Lướt vô hạn", false, function(Value)
     nododgecool = Value
     NoDodgeCool()
 end)
 
-Misc:Toggle("Inf Energy",false,function(value)
+Misc:Toggle("Vô hạn năng lượng",false,function(value)
     InfinitsEnergy = value
     originalstam = LocalPlayer.Character.Energy.Value
 end)
 
-Misc:Toggle("Inf Ability", false, function(vu)
+Misc:Toggle("Chạy nhanh", false, function(vu)
 	InfAbility = vu
 end)
 
@@ -4822,11 +4847,11 @@ function InfAb()
 	end
 end
 
-Misc:Toggle("Auto Click", false, function(value)
+Misc:Toggle("Tự động click", false, function(value)
     AutoClick = value 
 end)
 
-Misc:Toggle("Walk on Water", false, function(vu)
+Misc:Toggle("Đi trên nước", true, function(vu)
     _G.Water = vu
 end)
 
@@ -4865,7 +4890,7 @@ game:GetService("RunService").Heartbeat:Connect(function()
 end)
 
 if Three_World then
-	Misc:Button("Auto Torch", function()
+	Misc:Button("Thắp đuốc Tushita", function()
 		if not game:GetService("Players").LocalPlayer.Character:FindFirstChild("Holy Torch") and not game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Holy Torch") then
 			DiscordLib:Notification("Auto Holy Torch", "You not Have Holy Torch", "Okay")
 		else
@@ -4885,11 +4910,11 @@ if Three_World then
 	end)
 end
 
-Misc:Button("Beautiful Mode", function()
+Misc:Button("Đồ họa", function()
 	BeautifulMode()
 end)
 
-Misc:Toggle("Body Light", false, function(vu)
+Misc:Toggle("Làm nổi body", false, function(vu)
 	_G.LightMode = vu
 end)
 
@@ -4990,16 +5015,16 @@ function activatefly()
 	start()
 end
 
-Misc:Toggle("Fly", false, function(vu)
+Misc:Toggle("Bay (Máy tính)", false, function(vu)
    Fly = vu
    activatefly()
 end)
 
-Misc:Toggle("Noclip [Fake]", false, function(vu)
+Misc:Toggle("Xuyên tường [Giả]", false, function(vu)
     noclip = vu
 end)
 
-Misc:Button("Remove Lave", function()
+Misc:Button("Xóa Lava", function()
     for i,v in pairs(game.Workspace:GetDescendants()) do
         if v.Name == "Lava" then   
             v:Destroy()
@@ -5012,7 +5037,7 @@ Misc:Button("Remove Lave", function()
     end
 end)
 
-Misc:Button("Redeem All Code", function()
+Misc:Button("Nhập Code", function()
    	function UseCode(Text)
         game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer(Text)
     end
@@ -5032,7 +5057,7 @@ Misc:Button("Redeem All Code", function()
     UseCode("STRAWHATMAINE") 
 end)
 
-Misc:Button("FPS Boost", function()
+Misc:Button("Giảm lag", function()
     local decalsyeeted = true
     local g = game
     local w = g.Workspace
@@ -5074,7 +5099,7 @@ end)
 
 
 
-local RaceV4 = serv:Channel("RaceV4", "http://www.roblox.com/asset/?id=7040391851")
+local RaceV4 = serv:Channel("Tộc V4", "http://www.roblox.com/asset/?id=7040391851")
 
     local FullMoon = RaceV4:Label("")
 
@@ -5116,130 +5141,70 @@ local RaceV4 = serv:Channel("RaceV4", "http://www.roblox.com/asset/?id=704039185
 
 
 
-    RaceV4:Button("Teleport To Top Of Great Tree",function()
+    RaceV4:Button("Tp đến cây",function()
         TP(CFrame.new(2947.556884765625, 2281.630615234375, -7213.54931640625))
           end)
           
-          RaceV4:Button("Teleport Time Room",function()
+          RaceV4:Button("Tp đến phòng up tộc",function()
         Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
           end)
           
-      RaceV4:Button("Teleport To Lever Pull",function()
+      RaceV4:Button("Tp đến cần gạt",function()
         TP(CFrame.new(28575.181640625, 14936.6279296875, 72.31636810302734))
       end)
       
-      RaceV4:Button("Teleport To Red Soul",function()
+      RaceV4:Button("Tp đến Acient One",function()
         TP(CFrame.new(28981.552734375, 14888.4267578125, -120.245849609375))
       end)
          
-         RaceV4:Button("Unlock Lever", function()
-      venyx:Notify("Unlocked")
-      if game:GetService("Workspace").Map["Temple of Time"].Lever.Prompt:FindFirstChild("ProximityPrompt") then
-          game:GetService("Workspace").Map["Temple of Time"].Lever.Prompt:FindFirstChild("ProximityPrompt"):Remove()
-      else
-      --[[]]
-      end
-      wait(0.1)
-      local ProximityPrompt = Instance.new("ProximityPrompt")
-      ProximityPrompt.Parent = game:GetService("Workspace").Map["Temple of Time"].Lever.Prompt
-      ProximityPrompt.MaxActivationDistance = 10
-      ProximityPrompt.ActionText = "Secrets Beholds Inside"
-      ProximityPrompt.ObjectText = "An unknown lever of time"
-      
-      function onProximity()
-      local part = game:GetService("Workspace").Map["Temple of Time"].MainDoor1
-      local TweenService = game:GetService("TweenService")
-      
-      local startPosition = part.Position
-      local endPosition = startPosition + Vector3.new(0, -50, 0)
-      
-      local tweenInfo = TweenInfo.new(10, Enum.EasingStyle.Linear, Enum.EasingDirection.Out)
-      local tween = TweenService:Create(part, tweenInfo, {Position = endPosition})
-      
-      tween:Play()
-      
-      local partnew = game:GetService("Workspace").Map["Temple of Time"].MainDoor2
-      local TweenService = game:GetService("TweenService")
-      
-      local startPosition = partnew.Position
-      local endPosition = startPosition + Vector3.new(0, -50, 0)
-      
-      local tweenInfo = TweenInfo.new(10, Enum.EasingStyle.Linear, Enum.EasingDirection.Out)
-      local tween = TweenService:Create(partnew, tweenInfo, {Position = endPosition})
-      
-      tween:Play()
-      
-      local SoundSFX = Instance.new("Sound")
-      SoundSFX.Parent = workspace
-      SoundSFX.SoundId = "rbxassetid://1904813041"
-      SoundSFX:Play()
-      SoundSFX.Name = "POwfpxzxzfFfFF"
-      game:GetService("Workspace").Map["Temple of Time"].Lever.Prompt:FindFirstChild("ProximityPrompt"):Remove()
-      wait(5)
-      workspace:FindFirstChild("POwfpxzxzfFfFF"):Remove()
-      game:GetService("Workspace").Map["Temple of Time"].NoGlitching:Remove()
-      game:GetService("Workspace").Map["Temple of Time"].NoGlitching:Remove()
-      game:GetService("Workspace").Map["Temple of Time"].NoGlitching:Remove()
-      end
-      
-      ProximityPrompt.Triggered:Connect(onProximity)
-      end)
-      
-      RaceV4:Button("Clock Acces", function()
-          game:GetService("Workspace").Map["Temple of Time"].DoNotEnter:Remove()
-          game:GetService("Workspace").Map["Temple of Time"].ClockRoomExit:Remove()
-      end)
-      
-      RaceV4:Toggle("Disabled Inf Stairs", nil, function(value)
-          game.Players.LocalPlayer.Character.InfiniteStairs.Disabled = value
-      end)
+        
         RaceV4:Label("Door Race")
        
-        RaceV4:Button("Teleport Cyborg Door",function()
+        RaceV4:Button(" Cyborg ",function()
         TP(CFrame.new(28492.4140625, 14894.4267578125, -422.1100158691406))
         end)
         
-        RaceV4:Button("Teleport Fish Door",function()
+        RaceV4:Button(" Fish ",function()
         TP(CFrame.new(28224.056640625, 14889.4267578125, -210.5872039794922))
         end)
         
-        RaceV4:Button("Teleport Ghoul Door",function()
+        RaceV4:Button(" Ghoul ",function()
         TP(CFrame.new(28672.720703125, 14889.1279296875, 454.5961608886719))
         end)
         
-        RaceV4:Button("Teleport Human Door",function()
+        RaceV4:Button(" Human ",function()
         TP(CFrame.new(29237.294921875, 14889.4267578125, -206.94955444335938))
         end)
         
-        RaceV4:Button("Teleport Mink Door",function()
+        RaceV4:Button(" Mink ",function()
         TP(CFrame.new(29020.66015625, 14889.4267578125, -379.2682800292969))
         end)
         
-        RaceV4:Button("Teleport Sky Door",function()
+        RaceV4:Button(" Sky ",function()
         TP(CFrame.new(28967.408203125, 14918.0751953125, 234.31198120117188))
         end)
       
-        RaceV4:Label("Complete Trials")
+        RaceV4:Label("hoàn thành ải")
         
-        RaceV4:Button("Buy Ancient One Quest",function(t)
+        RaceV4:Button("Mua bánh răng",function(t)
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer('UpgradeRace','Buy')
         end)
         
-      RaceV4:Button("Auto Complete Angel Trial",function(t)
+      RaceV4:Button("Tự động ải thiên thần",function(t)
               game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Map.SkyTrial.Model.FinishPart.CFrame
               end)
       
-              RaceV4:Button("Auto Complete Rabbit Trial",function(t)
+              RaceV4:Button("Tự động ải thỏ",function(t)
               game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Map.MinkTrial.Ceiling.CFrame * CFrame.new(0,-5,0)
               end)
       
-              RaceV4:Button("Auto Complete Cyborg Trial",function(t)
+              RaceV4:Button("Tự động ải cyborg",function(t)
               game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,300,0)
               end)
        
       
       
-          RaceV4:Toggle("Kill Player When Trial",false,function(Val)
+          RaceV4:Toggle("Giết người trong ải",false,function(Val)
               _G.AutoKillTial = Val
               StopTween(_G.AutoKillTial)
               end)
@@ -5296,12 +5261,6 @@ local RaceV4 = serv:Channel("RaceV4", "http://www.roblox.com/asset/?id=704039185
                   end
                   end)
       
-
-
-
-
-
-
 
 
 
