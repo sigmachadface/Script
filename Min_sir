@@ -2,13 +2,11 @@
 local ScreenGui1 = Instance.new("ScreenGui")
 local ImageButton1 = Instance.new("ImageButton")
 local UICorner = Instance.new("UICorner")
-local UIGradient = Instance.new("UIGradient")
-local UIStroke = Instance.new("UIStroke")
 ScreenGui1.Name = "ImageButton"
 ScreenGui1.Parent = game.CoreGui
 ScreenGui1.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ImageButton1.Parent = ScreenGui1
-ImageButton1.BackgroundColor3 = Color3.fromRGB(0, 239, 5)
+ImageButton1.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 ImageButton1.BorderSizePixel = 0
 ImageButton1.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
 ImageButton1.Size = UDim2.new(0, 50, 0, 50)
@@ -52,8 +50,6 @@ local TweenSpeed = 300
             end
             end
             end)
-
-            
             Main:Toggle("Màn hình trắng",_G.WhiteScreen,function(value)
               _G.WhiteScreen = value
           if _G.WhiteScreen == true then
@@ -81,7 +77,8 @@ local TweenSpeed = 300
                 end)
 
 
-                _G.LuaAttack = true        
+_G.LuaAttack = true    
+_G.DelayFast = 0.15  
 Main:Toggle('Đánh nhanh',_G.LuaAttack,function(famobile)
     _G.LuaAttack = famobile
 end)
@@ -4268,7 +4265,10 @@ end)
 	    end)
 --------------------------------------------------------------------------------------------------------------------------------------------
 --fast attack
-
+function click()
+    game:GetService'VirtualUser':CaptureController()
+    game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
+end
 local Client = game.Players.LocalPlayer
 local STOP = require(Client.PlayerScripts.CombatFramework.Particle)
 local STOPRL = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
@@ -4339,13 +4339,11 @@ for i = 1, 1 do
     end
 end
 end
-
-
 spawn(function()
 while wait(.1) do
     if _G.LuaAttack then
         pcall(function()
-            repeat task.wait(0.15)
+            repeat task.wait(_G.DelayFast)
                 AttackHit()
             until not _G.LuaAttack
         end)
