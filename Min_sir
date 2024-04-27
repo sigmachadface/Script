@@ -15,7 +15,7 @@ ImageButton1.Size = UDim2.new(0, 50, 0, 50)
 ImageButton1.Draggable = true
 ImageButton1.Image = "rbxassetid://13717478897"
 ImageButton1.MouseButton1Down:connect(function()
-    game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.RightControl,false,game)
+    game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.End,false,game)
 end)
 --------------------------------------------------------------------------------------------------------------------------------------------
 --library
@@ -23,7 +23,7 @@ local lib = loadstring(game:HttpGet"https://raw.githubusercontent.com/sigmachadf
 --------------------------------------------------------------------------------------------------------------------------------------------
 --tabs
 print("Script Loading...")
-local win = lib:Window("Min Gaming Hub",Color3.fromRGB(0, 255, 0), Enum.KeyCode.RightControl)
+local win = lib:Window("Min Gaming Hub",Color3.fromRGB(0, 255, 0), Enum.KeyCode.End)
 local Main = win:Tab("Chính")
 local Stats = win:Tab("Chỉ số")
 local Island = win:Tab("Di chuyển")
