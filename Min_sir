@@ -1,5 +1,4 @@
-local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))()
-local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))()
+--toggle open/close
 local ScreenGui1 = Instance.new("ScreenGui")
 local ImageButton1 = Instance.new("ImageButton")
 local UICorner = Instance.new("UICorner")
@@ -8,7 +7,6 @@ local UIStroke = Instance.new("UIStroke")
 ScreenGui1.Name = "ImageButton"
 ScreenGui1.Parent = game.CoreGui
 ScreenGui1.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-
 ImageButton1.Parent = ScreenGui1
 ImageButton1.BackgroundColor3 = Color3.fromRGB(0, 239, 5)
 ImageButton1.BorderSizePixel = 0
@@ -20,26 +18,31 @@ ImageButton1.MouseButton1Down:connect(function()
     game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.RightControl,false,game)
 end)
 --------------------------------------------------------------------------------------------------------------------------------------------
+--library
 local lib = loadstring(game:HttpGet"https://raw.githubusercontent.com/saiyansaiyan/heylo/main/ui")()
 --------------------------------------------------------------------------------------------------------------------------------------------
-local win = lib:Window("Min Gaming Hub",Color3.fromRGB(0, 245, 0), Enum.KeyCode.RightControl)
-local Main = win:Tab("Main - Setting")
-local Stats = win:Tab("Stats")
-local Island = win:Tab("Travel")
-local Raid = win:Tab("Auto Raid - Esp")
-local Race = win:Tab("Race")
-local Fruit = win:Tab("Devil Fruit")
-local Pvp = win:Tab("Pvp")
-local S = win:Tab("Buy Items")
-local Misc = win:Tab("Misc")
+--tabs
+print("Script Loading...")
+local win = lib:Window("Min Gaming Hub",Color3.fromRGB(0, 255, 0), Enum.KeyCode.RightControl)
+local Main = win:Tab("Chính")
+local Stats = win:Tab("Chỉ số")
+local Island = win:Tab("Di chuyển")
+local Raid = win:Tab("Tập Kích + Esp")
+local Race = win:Tab("Tộc V4")
+local Fruit = win:Tab("Trái ác quỷ")
+local Pvp = win:Tab("Người Chơi")
+local S = win:Tab("Cửa hàng")
+local Misc = win:Tab("Khác")
 --------------------------------------------------------------------------------------------------------------------------------------------
-local bringfrec = 250
+--config farm
+local bringfrec = 225
 local posX = 0
-local posY = 25
+local posY = 45
 local posZ = 0
-local TweenSpeed = 310
---------Setting
-          Main:Toggle("Đặt điểm hồi sinh",false, function(setspawnfunc)
+local TweenSpeed = 300
+--------------------------------------------------------------------------------------------------------------------------------------------
+---Settings
+     Main:Toggle("Đặt điểm hồi sinh",false, function(setspawnfunc)
             AutoSetSpawn = setspawnfunc
             end)
           spawn(function()
@@ -125,15 +128,13 @@ BringMobs = true
                             end)
                           end
                       end)
-                   
-				   
-Main:Label("AutoFarm")
-
+--------------------------------------------------------------------------------------------------------------------------------------------
+--Main		   
+Main:Label("Farming")
 Main:Dropdown("Chọn vũ khí",{"Melee","Sword","Blox Fruit","Gun"}, function(value)
     SelectWeapon = value
     
 end)
-
 spawn(function()
     while wait() do
     pcall(function()
@@ -179,47 +180,8 @@ spawn(function()
       end)
     end
     end)
-
-
-    spawn(function()
-        while wait() do
-        if _G.WhiteScreen then
-          for i, v in pairs(game.Workspace["_WorldOrigin"]:GetChildren()) do
-              if v.Name == "CurvedRing" or v.Name == "SlashHit" or v.Name == "DamageCounter" or v.Name == "SwordSlash" or v.Name == "SlashTail" or v.Name == "Sounds" then
-                  v:Destroy() 
-              end
-          end
-      end
-      end
-  end) 
-
-
-
-  function topos(Pos)
-    Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-    if Distance < 25 then
-        Speed = 5000
-    elseif Distance < 50 then
-        Speed = 2000
-    elseif Distance < 150 then
-        Speed = 800
-    elseif Distance < 250 then
-        Speed = 600
-    elseif Distance < 500 then
-        Speed = 300
-    elseif Distance < 750 then
-        Speed = 250
-    elseif Distance >= 1000 then
-        Speed = 200
-    end
-    game:GetService("TweenService"):Create(
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,
-        TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
-        {CFrame = Pos}
-    ):Play()
-end
------- Main Farm
-	
+--------------------------------------------------------------------------------------------------------------------------------------------
+--CheckQuest & balabala
 local GC = getconnections or get_signal_cons
 if GC then
 for i,v in pairs(GC(game.Players.LocalPlayer.Idled)) do
@@ -238,8 +200,7 @@ game:GetService("Players").LocalPlayer.Idled:connect(function()
   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
   end)
 end
-
-------// BLOX FRUIT
+----// BLOX FRUIT
 --// Sea world
 First_Sea = false
 Second_Sea = false
@@ -252,7 +213,6 @@ Second_Sea = true
 elseif placeId == 7449423635 then
 Third_Sea = true
 end
-
 --// Check Monster
 function CheckLevel()
     local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
@@ -2474,7 +2434,7 @@ end)
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyFishmanKarate")
                     if string.find(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate"), "keys") then  
                         if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Water Key") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Water Key") then
-                            topos(CFrame.new(-2604.6958, 239.432526, -10315.1982, 0.0425701365, 0, -0.999093413, 0, 1, 0, 0.999093413, 0, 0.0425701365))
+                            Tween(CFrame.new(-2604.6958, 239.432526, -10315.1982, 0.0425701365, 0, -0.999093413, 0, 1, 0, 0.999093413, 0, 0.0425701365))
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate")
                         elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild("Fishman Karate") and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Fishman Karate").Level.Value >= 400 then
                         else 
@@ -2491,7 +2451,7 @@ end)
                                             v.HumanoidRootPart.CanCollide = false
                                             v.HumanoidRootPart.Size = Vector3.new(50,50,50)
                                             v.HumanoidRootPart.CFrame = OldCFrameShark
-                                            topos(v.HumanoidRootPart.CFrame*CFrame.new(2,20,2))
+                                            Tween(v.HumanoidRootPart.CFrame*CFrame.new(2,20,2))
                                             game:GetService("VirtualUser"):CaptureController()
                                             game:GetService("VirtualUser"):Button1Down(Vector2.new(1280, 670))
                                             sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
@@ -2499,7 +2459,7 @@ end)
                                     end
                                 end
                             else
-                                topos(CFrame.new(-3570.18652, 123.328949, -11555.9072, 0.465199202, -1.3857326e-08, 0.885206044, 4.0332897e-09, 1, 1.35347511e-08, -0.885206044, -2.72606271e-09, 0.465199202))
+                                Tween(CFrame.new(-3570.18652, 123.328949, -11555.9072, 0.465199202, -1.3857326e-08, 0.885206044, 4.0332897e-09, 1, 1.35347511e-08, -0.885206044, -2.72606271e-09, 0.465199202))
                                 wait(3)
                             end
                         end
@@ -2541,16 +2501,16 @@ end)
                         if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Electro") or game:GetService("Players").LocalPlayer.Character:FindFirstChild("Electro") and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Electro").Level.Value >= 400 or game:GetService("Players").LocalPlayer.Character:FindFirstChild("Electro").Level.Value >= 400 then
                             if _G.AutoFarm == false then
                                 repeat task.wait()
-                                    topos(CFrame.new(-10371.4717, 330.764496, -10131.4199))
+                                    Tween(CFrame.new(-10371.4717, 330.764496, -10131.4199))
                                 until not _G.AutoElectricClaw or (game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position - CFrame.new(-10371.4717, 330.764496, -10131.4199).Position).Magnitude <= 10
                                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw","Start")
                                 wait(2)
                                 repeat task.wait()
-                                    topos(CFrame.new(-12550.532226563, 336.22631835938, -7510.4233398438))
+                                    Tween(CFrame.new(-12550.532226563, 336.22631835938, -7510.4233398438))
                                 until not _G.AutoElectricClaw or (game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position - CFrame.new(-12550.532226563, 336.22631835938, -7510.4233398438).Position).Magnitude <= 10
                                 wait(1)
                                 repeat task.wait()
-                                    topos(CFrame.new(-10371.4717, 330.764496, -10131.4199))
+                                    Tween(CFrame.new(-10371.4717, 330.764496, -10131.4199))
                                 until not _G.AutoElectricClaw or (game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position - CFrame.new(-10371.4717, 330.764496, -10131.4199).Position).Magnitude <= 10
                                 wait(1)
                                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw")
@@ -2558,16 +2518,16 @@ end)
                                 _G.AutoFarm = false
                                 wait(1)
                                 repeat task.wait()
-                                    topos(CFrame.new(-10371.4717, 330.764496, -10131.4199))
+                                    Tween(CFrame.new(-10371.4717, 330.764496, -10131.4199))
                                 until not _G.AutoElectricClaw or (game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position - CFrame.new(-10371.4717, 330.764496, -10131.4199).Position).Magnitude <= 10
                                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw","Start")
                                 wait(2)
                                 repeat task.wait()
-                                    topos(CFrame.new(-12550.532226563, 336.22631835938, -7510.4233398438))
+                                    Tween(CFrame.new(-12550.532226563, 336.22631835938, -7510.4233398438))
                                 until not _G.AutoElectricClaw or (game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position - CFrame.new(-12550.532226563, 336.22631835938, -7510.4233398438).Position).Magnitude <= 10
                                 wait(1)
                                 repeat task.wait()
-                                    topos(CFrame.new(-10371.4717, 330.764496, -10131.4199))
+                                    Tween(CFrame.new(-10371.4717, 330.764496, -10131.4199))
                                 until not _G.AutoElectricClaw or (game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position - CFrame.new(-10371.4717, 330.764496, -10131.4199).Position).Magnitude <= 10
                                 wait(1)
                                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw")
@@ -3495,7 +3455,7 @@ Race:Toggle("Đánh Thuỷ Quái",_G.Auto_Seabest,function(value)
                       if not game:GetService("Workspace").Enemies:FindFirstChild("PirateBrigade") then 
                           if not game:GetService("Workspace").Enemies:FindFirstChild("PirateBasic") then
                               if not game:GetService("Workspace").Boats:FindFirstChild("MarineBrigade") then
-                                  buyb = topos(CFrame.new(-11.78054428100586, 10.302456855773926, 2927.2255859375))
+                                  buyb = Tween(CFrame.new(-11.78054428100586, 10.302456855773926, 2927.2255859375))
                                   if (CFrame.new(-11.78054428100586, 10.302456855773926, 2927.2255859375).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 10 then
                                       if buyb then buyb:Stop() end
                                       local args = {
@@ -4296,7 +4256,7 @@ end)
 	        game:GetService("Players").LocalPlayer.PlayerGui.Main.FruitShop.Visible = true
 	    end)
 --------------------------------------------------------------------------------------------------------------------------------------------
-
+--fast attack
 local CurveFrame = debug.getupvalues(require(game:GetService("Players").LocalPlayer.PlayerScripts:WaitForChild("CombatFramework")))[2]
 local VirtualUser = game:GetService("VirtualUser")
 local RigControllerR = debug.getupvalues(require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework.RigController))[2]
@@ -4465,4 +4425,5 @@ task.spawn(function()
         end)
     end
 end)
+print("Script Loading Completed !")
 --------------------------------------------------------------------------------------------------------------------------------------------
