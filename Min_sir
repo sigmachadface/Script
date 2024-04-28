@@ -5912,7 +5912,7 @@ end)
 
 	
 
-	Pvp:Toggle("Chạy Nhanh",false,function(v)
+	Pvp:Toggle("Chạy Nhanh",true,function(v)
 		_G.GsE = v    
 	end)
 	spawn(function()
@@ -5926,7 +5926,7 @@ end)
 	end)
 	
 	
-	Pvp:Toggle("Trên Nước",false,function(value)
+	Pvp:Toggle("Trên Nước",true,function(value)
     _G.WalkWater = value
 end)
 
