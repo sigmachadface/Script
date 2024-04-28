@@ -1964,6 +1964,22 @@ task.spawn(function()
     end
 end)
 
+Sta:Seperator("Kitsune Island Status")
+local StatusKitsune = Sta:Label("")
+function UpdateKitsune()
+    if game.Workspace._WorldOrigin.Locations:FindFirstChild('Kitsune Island') then
+        StatusKitsune:SetDesc("Kitsune Island : Có")
+    else
+        StatusKitsune:SetDesc("Kitsune Island : Không")
+     end
+end
+spawn(function()
+    pcall(function()
+        while wait() do
+            UpdateKitsune()
+        end
+    end)
+end)
 ---Settings
      Main:Toggle("Đặt điểm hồi sinh",false, function(setspawnfunc)
             AutoSetSpawn = setspawnfunc
