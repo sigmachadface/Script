@@ -1218,7 +1218,6 @@ spawn(function()
 
   Main:Toggle("Cày Cấp",AutoFarmQuest,function(value)
     AutoFarmQuest = value
-   StopTween(AutoFarmQuest)
 end)
 
   spawn(function()
@@ -2453,7 +2452,7 @@ end)
                                         OldCFrameShark = v.HumanoidRootPart.CFrame
                                         repeat task.wait()
                                             AutoHaki()
-                                            EquipWeapon(_G.SelectWeapon)
+                                            EquipTool(_G.SelectWeapon)
                                             v.Head.CanCollide = false
                                             v.Humanoid.WalkSpeed = 0
                                             v.HumanoidRootPart.CanCollide = false
@@ -2661,19 +2660,238 @@ spawn(function()
 	end
 end)
 
+Main:Label("Lấy Vật Phẩm")
+Main:Toggle("Lấy Yama",_G.AutoYama,function(value)
+    _G.AutoYama = value
+end)
+spawn(function()
+    while wait() do
+        if _G.AutoYama then
+            if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("EliteHunter","Progress") >= 30 then
+                repeat wait(.1)
+                    fireclickdetector(game:GetService("Workspace").Map.Waterfall.SealedKatana.Handle.ClickDetector)
+                until game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Yama") or not _G.AutoYama
+            end
+        end
+    end
+end)
 
 
+Main:Toggle("Lấy Tushita", _G.Autotushita,function(value)
+    _G.Autotushita = value
+  
+end)
+spawn(function()
+   while wait() do
+       if  _G.Autotushita and Third_Sea then
+           pcall(function()
+               if game:GetService("Workspace").Enemies:FindFirstChild("Longma") then
+                   for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                       if v.Name == "Longma" then
+                           if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                               repeat task.wait()
+                                   AutoHaki()
+                                   EquipTool(SelectWeapon)
+                                   v.HumanoidRootPart.CanCollide = false
+                                   v.Humanoid.WalkSpeed = 0
+                                   v.HumanoidRootPart.Size = Vector3.new(50,50,50)
+                                   TP2(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                   game:GetService("VirtualUser"):CaptureController()
+                                   game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
+                                   sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
+                               until not  _G.Autotushita or not v.Parent or v.Humanoid.Health <= 0
+                           end
+                       end
+                   end
+               else
+               TP2(CFrame.new(-10238.875976563, 389.7912902832, -9549.7939453125))
+                   if game:GetService("ReplicatedStorage"):FindFirstChild("Longma") then
+                       TP2(game:GetService("ReplicatedStorage"):FindFirstChild("Longma").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+                   else
+                       
+                   end
+               end
+           end)
+       end
+   end
+end)
+Main:Toggle("Lấy Cavander", _G.AutoCarvender,function(value)
+    _G.AutoCarvender = value
+end)
 
+spawn(function()
+   while wait() do
+       if  _G.AutoCarvender and Third_Sea then
+           pcall(function()
+               if game:GetService("Workspace").Enemies:FindFirstChild("Beautiful Pirate") then
+                   for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                       if v.Name == "Beautiful Pirate" then
+                           if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                               repeat task.wait()
+                                   AutoHaki()
+                                   EquipTool(SelectWeapon)
+                                   v.HumanoidRootPart.CanCollide = false
+                                   v.Humanoid.WalkSpeed = 0
+                                   v.HumanoidRootPart.Size = Vector3.new(50,50,50)
+                                   TP2(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                   game:GetService("VirtualUser"):CaptureController()
+                                   game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
+                                   sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
+                               until not  _G.AutoCarvender or not v.Parent or v.Humanoid.Health <= 0
+                           end
+                       end
+                   end
+               else
+               TP2(CFrame.new(5311.07421875, 426.0243835449219, 165.12762451171875))
+                   if game:GetService("ReplicatedStorage"):FindFirstChild("Beautiful Pirate") then
+                       TP2(game:GetService("ReplicatedStorage"):FindFirstChild("Beautiful Pirate").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+                   else
+                   
+                   end
+               end
+           end)
+       end
+   end
+end)
 
+Main:Toggle("Farm Pirate Raid", _G.AutoRaidPirate,function(value)
+_G.AutoRaidPirate = value
+end)
+spawn(function()
+while wait() do
+   if _G.AutoRaidPirate then
+       pcall(function()
+           local CFrameBoss = CFrame.new(-5496.17432, 313.768921, -2841.53027, 0.924894512, 7.37058015e-09, 0.380223751, 3.5881019e-08, 1, -1.06665446e-07, -0.380223751, 1.12297109e-07, 0.924894512)
+           if (CFrame.new(-5539.3115234375, 313.800537109375, -2972.372314453125).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 500 then
+               for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                   if _G.AutoRaidPirate and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                       repeat wait()
+                           AutoHaki()
+                           EquipTool(SelectWeapon)
+                           v.HumanoidRootPart.CanCollide = false
+                           v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+                           TP2(v.HumanoidRootPart.CFrame * CFrame.new(PosX, PosY, PosZ))
+                           Click()
+                       until v.Humanoid.Health <= 0 or not v.Parent or not _G.AutoRaidPirate
+                   end
+               end
+           else
+               if ((CFrameBoss).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 1500 then
+                   TP2(CFrameBoss)
+               else
+                   TP2(CFrameBoss)
+               end
+           end
+       end)
+   end
+end
+end)
 
-
-
-
-
-
+Main:Toggle("Lấy Twin Hook", _G.AutoTwinHook,function(value)
+    _G.AutoTwinHook = value
+end)
+spawn(function()
+   while wait() do
+       if  _G.AutoTwinHook and Third_Sea then
+           pcall(function()
+               if game:GetService("Workspace").Enemies:FindFirstChild("Captain Elephant") then
+                   for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                       if v.Name == "Captain Elephant" then
+                           if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                               repeat task.wait()
+                                   AutoHaki()
+                                   EquipTool(SelectWeapon)
+                                   v.HumanoidRootPart.CanCollide = false
+                                   v.Humanoid.WalkSpeed = 0
+                                   v.HumanoidRootPart.Size = Vector3.new(50,50,50)
+                                   TP2(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                   game:GetService("VirtualUser"):CaptureController()
+                                   game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
+                                   sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
+                               until not  _G.AutoTwinHook or not v.Parent or v.Humanoid.Health <= 0
+                           end
+                       end
+                   end
+               else
+               TP2(CFrame.new(-13348.0654296875, 405.8904113769531, -8570.62890625))
+                   if game:GetService("ReplicatedStorage"):FindFirstChild("Captain Elephant") then
+                       TP2(game:GetService("ReplicatedStorage"):FindFirstChild("Captain Elephant").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+                   else
+                   
+                   end
+               end
+           end)
+       end
+   end
+end)
+Main:Toggle("Lấy Hallow Scythe",_G.AutoFarmBossHallow,function(value)
+    _G.AutoFarmBossHallow = value
+end)
+spawn(function()
+    while wait() do
+        if _G.AutoFarmBossHallow then
+            pcall(function()
+                if game:GetService("Workspace").Enemies:FindFirstChild("Soul Reaper") then
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if string.find(v.Name , "Soul Reaper") then
+                            repeat task.wait()
+                                EquipTool(SelectWeapon)
+                                AutoHaki()
+                                v.HumanoidRootPart.Size = Vector3.new(50,50,50)
+                                TP2(v.HumanoidRootPart.CFrame*CFrame.new(PosX,PosY,PosZ))
+                                game:GetService("VirtualUser"):CaptureController()
+                                game:GetService("VirtualUser"):Button1Down(Vector2.new(1280, 670))
+                                v.HumanoidRootPart.Transparency = 1
+                                sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
+                            until v.Humanoid.Health <= 0 or _G.AutoFarmBossHallow == false
+                        end
+                    end
+                elseif game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Hallow Essence") or game:GetService("Players").LocalPlayer.Character:FindFirstChild("Hallow Essence") then
+                    repeat TP2(CFrame.new(-8932.322265625, 146.83154296875, 6062.55078125)) wait() until (CFrame.new(-8932.322265625, 146.83154296875, 6062.55078125).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 8                        
+                    EquipWeapon("Hallow Essence")
+                else
+                    if game:GetService("ReplicatedStorage"):FindFirstChild("Soul Reaper") then
+                        TP2(game:GetService("ReplicatedStorage"):FindFirstChild("Soul Reaper").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+                    else
+                
+                    end
+                end
+            end)
+        end
+    end
+end)
+Main:Toggle("Đánh Boss Rip Indra",_G.AutoDarkDagger,function(value)
+    _G.AutoDarkDagger = value
+end)
+    
+spawn(function()
+    pcall(function()
+        while wait() do
+            if _G.AutoDarkDagger then
+                if game:GetService("Workspace").Enemies:FindFirstChild("rip_indra True Form") or game:GetService("Workspace").Enemies:FindFirstChild("rip_indra") then
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v.Name == ("rip_indra True Form" or v.Name == "rip_indra") and v.Humanoid.Health > 0 and v:IsA("Model") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") then
+                            repeat task.wait()
+                                pcall(function()
+                                    AutoHaki()
+                                    EquipTool(SelectWeapon)
+                                    v.HumanoidRootPart.CanCollide = false
+                                    v.HumanoidRootPart.Size = Vector3.new(50,50,50)
+                                    TP2(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                    game:GetService("VirtualUser"):CaptureController()
+                                    game:GetService("VirtualUser"):Button1Down(Vector2.new(1280, 670),workspace.CurrentCamera.CFrame)
+                                end)
+                            until _G.AutoDarkDagger == false or v.Humanoid.Health <= 0
+                        end
+                    end
+                else
+                    TP2(CFrame.new(-5344.822265625, 423.98541259766, -2725.0930175781))
+                end
+            end
+        end
+    end)
+end)
 ------------Stats
-
-
 Stats:Toggle("Tự Động Nâng Chỉ số",_G.Auto_Stats_Kaitun,function(value)
 	_G.Auto_Stats_Kaitun = value
 	end)
@@ -3296,7 +3514,6 @@ Raid:Label("Esp")
 
 
 ----------------Race
-
 MysList = {
 	"Đến Đền",
 	"Cổng Thỏ",
@@ -3352,6 +3569,33 @@ Race:Button("Hoàn thành ải thiên thần",function(t)
   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,300,0)
   end)
 
+Race:Toggle("Kill Người Chơi Trong Ải",false,function(v)
+    _G.KillAfterTrials = v
+end)
+spawn(function()
+    while wait() do 
+        pcall(function()
+            if _G.KillAfterTrials then
+                for i,v in pairs(game:GetService("Workspace").Characters:GetChildren()) do
+                    if v.Name ~= game.Players.LocalPlayer.Name and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 100 then
+                        if v.Humanoid.Health > 0 then
+                            repeat wait()
+                                AutoHaki()
+                                EquipTool(SelectWeapon)
+                                NameTarget = v.Name
+                                TP2(v.HumanoidRootPart.CFrame * CFrame.new(0,0,5))
+                                v.HumanoidRootPart.CanCollide = false
+                                v.Head.CanCollide = false
+                                v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+                                Click()
+                            until not _G.KillAfterTrials or not v.Parent or v.Humanoid.Health <= 0 
+                        end
+                    end
+                end
+            end
+        end)
+    end
+end)
 --------mirage Island
 
 Race:Label("Mirage Island")
@@ -4244,6 +4488,8 @@ spawn(function()
         wait(1)
     end
     end)
+
+
  Fruit:Toggle("Tp Đến Trái",false,function(value)
  _G.Grabfruit = value
 end)
