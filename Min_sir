@@ -508,7 +508,7 @@ local ThunderScreen = Instance.new("ScreenGui")
 	 TabImage.BackgroundTransparency = 1.000
 	 TabImage.Position = UDim2.new(0, 0, 0, 0)
 	 TabImage.Size = UDim2.new(0, 20, 0, 20)
-	 TabImage.Image = img or "rbxassetid://8666601749"
+	 TabImage.Image = img or "rbxassetid://"
 	 TabImage.ImageColor3 = _G.Color
 	 
 	 local MainFramePage = Instance.new("ScrollingFrame")
@@ -1968,9 +1968,9 @@ Sta:Seperator("Kitsune Island Status")
 local StatusKitsune = Sta:Label("")
 function UpdateKitsune()
     if game.Workspace._WorldOrigin.Locations:FindFirstChild('Kitsune Island') then
-        StatusKitsune:SetDesc("Kitsune Island : Có")
+        StatusKitsune:Set("Kitsune Island : Có")
     else
-        StatusKitsune:SetDesc("Kitsune Island : Không")
+        StatusKitsune:Set("Kitsune Island : Không")
      end
 end
 spawn(function()
