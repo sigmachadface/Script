@@ -4685,7 +4685,7 @@ spawn(function()
    end
 end)
 
-Main:Toggle("Farm Pirate Raid", _G.AutoRaidPirate,function(value)
+Main:Toggle("Cày Pirate Raid", _G.AutoRaidPirate,function(value)
 _G.AutoRaidPirate = value
 end)
 spawn(function()
